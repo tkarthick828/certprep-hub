@@ -38,7 +38,7 @@ export default function FooterPolicies() {
 
   return (
     <>
-      <footer className="max-w-3xl mx-auto px-4 pt-8 pb-6 mt-8 border-t border-stone-200 text-xs text-stone-500 space-y-3">
+      <footer className="max-w-5xl mx-auto px-4 pt-8 pb-6 mt-8 border-t border-stone-200 text-xs text-stone-500 space-y-3">
         <p className="text-[11px] text-stone-500 leading-relaxed">
           <strong className="text-stone-700">Original Practice Content:</strong> All questions and explanations on CertPrep Hub are original, blueprint-aligned practice scenarios—not official exam dumps. Independent study resource; not affiliated with Anthropic, AWS, Microsoft, Google, GitHub, or CompTIA.
         </p>

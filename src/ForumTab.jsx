@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ThumbsUp, Send, LogIn, Trash2, MessageSquare } from 'lucide-react';
 import { supabase } from './supabaseClient';
 
-export default function ForumTab({ catalog, currentUser = null }) {
+export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
   const [user, setUser] = useState(currentUser);
   const [posts, setPosts] = useState([]);
   const [myUpvotes, setMyUpvotes] = useState(new Set());
@@ -67,12 +67,16 @@ export default function ForumTab({ catalog, currentUser = null }) {
   }, [selectedTag, user]);
 
   const handleGoogleLogin = async () => {
-    if (!supabase) return;
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin },
-    });
-  };
+  if (typeof requireAuth === 'function') {
+    requireAuth();
+    return;
+  }
+  if (!supabase) return;
+  await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.origin },
+  });
+};
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
