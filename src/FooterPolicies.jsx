@@ -20,7 +20,7 @@ const POLICIES = {
     title: 'Privacy Policy',
     body: [
       'Practice quizzes and exam simulations run locally in your browser without requiring an account or collecting personal data.',
-      'If you choose to sign in with Google to participate in the Guidance Forum, we store only your public display name, user ID, posts, and upvotes in our secured Supabase database. We never sell user data.',
+      'If you choose to sign in with Google or Email to participate in the Guidance Forum, we store only your public display name, user ID, posts, and upvotes in our secured Supabase database. We never sell user data.',
       'To keep this platform 100% free, we may display advertisements served by Google AdSense, which uses cookies to serve relevant ads based on prior visits. You can manage ad personalization anytime in your Google Ad Settings.',
     ],
   },
@@ -38,24 +38,28 @@ export default function FooterPolicies() {
 
   return (
     <>
-      <footer className="max-w-3xl mx-auto px-4 pt-8 pb-6 mt-8 border-t border-slate-200 text-xs text-slate-500">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 text-slate-600 font-medium">
-            <ShieldCheck className="w-4 h-4 text-indigo-600" />
-            <span>CertPrep Hub • Original Blueprint Practice</span>
+      <footer className="max-w-3xl mx-auto px-4 pt-8 pb-6 mt-8 border-t border-stone-200 text-xs text-stone-500 space-y-3">
+        <p className="text-[11px] text-stone-500 leading-relaxed">
+          <strong className="text-stone-700">Original Practice Content:</strong> All questions and explanations on CertPrep Hub are original, blueprint-aligned practice scenarios—not official exam dumps. Independent study resource; not affiliated with Anthropic, AWS, Microsoft, Google, GitHub, or CompTIA.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+          <div className="flex items-center gap-1.5 text-stone-600 font-medium">
+            <ShieldCheck className="w-4 h-4 text-emerald-700" />
+            <span>CertPrep Hub • Blueprint Practice</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={() => setActiveKey('about')} className="hover:text-indigo-600">
+            <button onClick={() => setActiveKey('about')} className="hover:text-emerald-700 transition">
               About
             </button>
-            <button onClick={() => setActiveKey('disclaimer')} className="hover:text-indigo-600">
+            <button onClick={() => setActiveKey('disclaimer')} className="hover:text-emerald-700 transition">
               Exam Disclaimer
             </button>
-            <button onClick={() => setActiveKey('privacy')} className="hover:text-indigo-600">
+            <button onClick={() => setActiveKey('privacy')} className="hover:text-emerald-700 transition">
               Privacy Policy
             </button>
-            <button onClick={() => setActiveKey('terms')} className="hover:text-indigo-600">
+            <button onClick={() => setActiveKey('terms')} className="hover:text-emerald-700 transition">
               Terms of Use
             </button>
           </div>
@@ -65,22 +69,22 @@ export default function FooterPolicies() {
       {activeKey && (
         <div
           onClick={() => setActiveKey(null)}
-          className="fixed inset-0 z-50 bg-slate-900/50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-stone-900/50 flex items-center justify-center p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-5 shadow-xl space-y-3"
+            className="bg-white border border-stone-200 rounded-2xl max-w-lg w-full p-5 shadow-xl space-y-3"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="font-bold text-sm text-slate-900">{POLICIES[activeKey].title}</h3>
+            <div className="flex items-center justify-between border-b border-stone-100 pb-3">
+              <h3 className="font-bold text-sm text-stone-900">{POLICIES[activeKey].title}</h3>
               <button
                 onClick={() => setActiveKey(null)}
-                className="p-1 text-slate-400 hover:text-slate-700"
+                className="p-1 text-stone-400 hover:text-stone-700"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
-            <div className="space-y-2.5 text-xs text-slate-600 leading-relaxed">
+            <div className="space-y-2.5 text-xs text-stone-600 leading-relaxed">
               {POLICIES[activeKey].body.map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
