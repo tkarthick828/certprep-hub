@@ -5,7 +5,8 @@ import {
   ArrowLeft, RotateCcw, AlertCircle, Grid,
   Bookmark, Target, Sparkles, LogIn, LogOut,
   BookOpenCheck, CheckSquare, User, Search,
-  ShieldCheck, ExternalLink
+  ShieldCheck, ExternalLink, Flame, Calendar,
+  Share2, Check, Keyboard
 } from 'lucide-react';
 import { supabase } from './supabaseClient';
 import AuthGate from './AuthGate';
@@ -27,6 +28,12 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
   const [practiceCount, setPracticeCount] = useState('10'); // '10' | '20' | '30' | '50' | 'ALL'
   const [loadingQs, setLoadingQs] = useState(false);
 
+  // Goal Editor State (Logged-in sidebar)
+  const [editingGoal, setEditingGoal] = useState(false);
+  const [goalCertId, setGoalCertId] = useState('ccdv-f');
+  const [goalDate, setGoalDate] = useState('');
+  const [goalDaily, setGoalDaily] = useState('15');
+
   // Quiz Session State
   const [mode, setMode] = useState(null); // null | 'practice' | 'exam' | 'report'
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -36,6 +43,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
   const [secondsLeft, setSecondsLeft] = useState(0);
   const [showGrid, setShowGrid] = useState(false);
   const [confirmFinish, setConfirmFinish] = useState(false);
+  const [copiedScore, setCopiedScore] = useState(false);
 
   const latestAnswersRef = useRef({});
   latestAnswersRef.current = answers;
@@ -44,8 +52,20 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     recordAnswer,
     toggleBookmark,
     getExamStats,
+    getDailyMetrics,
+    setStudyGoal,
     resetExamProgress,
-  } = useStudyProgress(user?.id);
+  } = useStudyProgress(user, supabase);
+
+  const dailyMetrics = user ? getDailyMetrics() : null;
+
+  useEffect(() => {
+    if (dailyMetrics?.goal) {
+      setGoalCertId(dailyMetrics.goal.certId || 'ccdv-f');
+      setGoalDate(dailyMetrics.goal.examDate || '');
+      setGoalDaily(String(dailyMetrics.goal.dailyTarget || 15));
+    }
+  }, [dailyMetrics?.goal?.certId, dailyMetrics?.goal?.examDate, dailyMetrics?.goal?.dailyTarget]);
 
   // Automatically leave My Profile if the user signs out
   useEffect(() => {
@@ -70,6 +90,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
       }
     });
     setConfirmFinish(false);
+    setCopiedScore(false);
     setMode('report');
   };
 
@@ -87,6 +108,60 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     }, 1000);
     return () => clearInterval(timer);
   }, [mode, sessionQuestions, selectedCert]);
+
+  const handleSelectOption = (q, optId) => {
+    if (mode === 'practice' && revealed[q.id]) return;
+    setAnswers((prev) => ({ ...prev, [q.id]: optId }));
+    if (mode === 'practice') {
+      setRevealed((prev) => ({ ...prev, [q.id]: true }));
+      const isRight = q.correctAnswers.includes(optId);
+      recordAnswer(selectedCert.id, q, isRight, currentIndex);
+    }
+  };
+
+  // Desktop Keyboard Shortcuts during active Practice / Timed Exam
+  useEffect(() => {
+    if ((mode !== 'practice' && mode !== 'exam') || confirmFinish) return;
+    const activeQ = sessionQuestions[currentIndex];
+    if (!activeQ || !selectedCert) return;
+
+    const onKeyDown = (e) => {
+      const tag = e.target?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.metaKey || e.ctrlKey || e.altKey) {
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+      const optionMap = { a: 0, '1': 0, b: 1, '2': 1, c: 2, '3': 2, d: 3, '4': 3 };
+
+      if (key in optionMap) {
+        const opt = activeQ.options?.[optionMap[key]];
+        if (opt) {
+          e.preventDefault();
+          handleSelectOption(activeQ, opt.id);
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (currentIndex < sessionQuestions.length - 1) {
+          e.preventDefault();
+          setCurrentIndex((i) => i + 1);
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (currentIndex > 0) {
+          e.preventDefault();
+          setCurrentIndex((i) => i - 1);
+        }
+      } else if (key === 's') {
+        e.preventDefault();
+        toggleBookmark(selectedCert.id, activeQ, currentIndex);
+      } else if (key === 'f') {
+        e.preventDefault();
+        setFlagged((p) => ({ ...p, [activeQ.id]: !p[activeQ.id] }));
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [mode, confirmFinish, sessionQuestions, currentIndex, selectedCert, revealed]);
 
   const openBlueprint = async (cert) => {
     setActiveTab('certs');
@@ -165,6 +240,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     setCurrentIndex(0);
     setShowGrid(false);
     setConfirmFinish(false);
+    setCopiedScore(false);
 
     if (chosenMode === 'exam') {
       const examSet = buildExamSet(allQuestions, selectedCert);
@@ -187,25 +263,24 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     setMode(chosenMode);
   };
 
-  // Prompt sign-in before launching any Practice or Timed Exam session
   const startSession = (chosenMode, overrideFilter = null) => {
     requireAuth(() => launchSession(chosenMode, overrideFilter));
-  };
-
-  const handleSelectOption = (q, optId) => {
-    if (mode === 'practice' && revealed[q.id]) return;
-    setAnswers((prev) => ({ ...prev, [q.id]: optId }));
-    if (mode === 'practice') {
-      setRevealed((prev) => ({ ...prev, [q.id]: true }));
-      const isRight = q.correctAnswers.includes(optId);
-      recordAnswer(selectedCert.id, q, isRight, currentIndex);
-    }
   };
 
   const formatTime = (secs) => {
     const m = Math.floor(secs / 60);
     const s = secs % 60;
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  };
+
+  const handleSaveGoal = (e) => {
+    e.preventDefault();
+    setStudyGoal({
+      certId: goalCertId,
+      examDate: goalDate,
+      dailyTarget: Math.max(5, Math.min(100, Number(goalDaily) || 15)),
+    });
+    setEditingGoal(false);
   };
 
   const categories = ['All', 'Cloud', 'Claude & AI', 'Security'];
@@ -282,6 +357,26 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     return { correct, attempted, total, pct, scaledEstimate, passed, domainStats };
   };
 
+  const handleCopyScorecard = async (report) => {
+    const denom = report.attempted > 0 ? report.attempted : report.total;
+    const summary = [
+      `CertPrep Hub — ${selectedCert.title} (${selectedCert.code})`,
+      `Status: ${report.passed ? 'BENCHMARK PASSED' : 'PRACTICE IN PROGRESS'}`,
+      `Score: ${report.pct}% (${report.correct}/${denom})${
+        report.scaledEstimate ? ` • Est. Scaled Score: ${report.scaledEstimate}` : ''
+      }`,
+      `Practice free at: ${window.location.origin}`,
+    ].join('\n');
+
+    try {
+      await navigator.clipboard.writeText(summary);
+      setCopiedScore(true);
+      setTimeout(() => setCopiedScore(false), 2500);
+    } catch {
+      // Fallback ignored if clipboard blocked
+    }
+  };
+
   const currentStats = selectedCert
     ? getExamStats(selectedCert.id, allQuestions)
     : null;
@@ -298,6 +393,9 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     user && Array.isArray(user.user_metadata?.completed_certs)
       ? user.user_metadata.completed_certs
       : [];
+  const targetCertObj = dailyMetrics?.goal?.certId
+    ? catalog.find((c) => c.id === dailyMetrics.goal.certId)
+    : null;
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-sans pb-16">
@@ -485,15 +583,22 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   </div>
                 </div>
 
-                {/* Right Snapshot Card: Personal Readiness when logged in, Platform Overview when logged out */}
+                {/* Right Snapshot Card: Personal Readiness when logged in, Platform Highlights when logged out */}
                 <div className="lg:col-span-5 bg-stone-50 border border-stone-200/90 rounded-2xl p-4 sm:p-5 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-stone-800">
                       {user ? `${displayName}'s Readiness Overview` : 'Platform Highlights'}
                     </span>
-                    <span className="text-[11px] font-semibold text-emerald-700">
-                      9 Active Tracks
-                    </span>
+                    {user && dailyMetrics ? (
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded-full">
+                        <Flame className="w-3 h-3 text-amber-600 fill-amber-500" />
+                        {dailyMetrics.streak}d Streak
+                      </span>
+                    ) : (
+                      <span className="text-[11px] font-semibold text-emerald-700">
+                        9 Active Tracks
+                      </span>
+                    )}
                   </div>
 
                   {user ? (
@@ -505,8 +610,10 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                         <p className="text-[11px] text-stone-500">Avg Accuracy</p>
                       </div>
                       <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
-                        <p className="text-lg sm:text-xl font-extrabold text-stone-900">1,167</p>
-                        <p className="text-[11px] text-stone-500">Original Qs</p>
+                        <p className="text-lg sm:text-xl font-extrabold text-stone-900">
+                          {dailyMetrics?.todayCount || 0}/{dailyMetrics?.dailyTarget || 15}
+                        </p>
+                        <p className="text-[11px] text-stone-500">Today's Goal</p>
                       </div>
                       <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
                         <p className="text-lg sm:text-xl font-extrabold text-amber-700">
@@ -575,9 +682,127 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   </div>
                 </div>
 
-                {/* Personal Study Queue & Credentials: Shown ONLY when logged in */}
-                {user ? (
+                {/* Personal Widgets: Shown ONLY when logged in */}
+                {user && dailyMetrics ? (
                   <>
+                    {/* Exam Countdown & Daily Target Card */}
+                    <div className="bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
+                          Exam Target & Goal
+                        </h3>
+                        <button
+                          onClick={() => setEditingGoal((v) => !v)}
+                          className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                        >
+                          {editingGoal ? 'Cancel' : dailyMetrics.goal ? 'Edit' : '+ Set Target'}
+                        </button>
+                      </div>
+
+                      {editingGoal ? (
+                        <form onSubmit={handleSaveGoal} className="space-y-2.5 text-xs">
+                          <div>
+                            <label className="block text-[11px] font-medium text-stone-600 mb-1">
+                              Target Exam
+                            </label>
+                            <select
+                              value={goalCertId}
+                              onChange={(e) => setGoalCertId(e.target.value)}
+                              className="w-full border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs bg-stone-50"
+                            >
+                              {catalog.map((c) => (
+                                <option key={c.id} value={c.id}>
+                                  {c.code} — {c.title}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-medium text-stone-600 mb-1">
+                              Exam Date (Optional)
+                            </label>
+                            <input
+                              type="date"
+                              value={goalDate}
+                              onChange={(e) => setGoalDate(e.target.value)}
+                              className="w-full border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs bg-stone-50"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[11px] font-medium text-stone-600 mb-1">
+                              Daily Question Goal
+                            </label>
+                            <select
+                              value={goalDaily}
+                              onChange={(e) => setGoalDaily(e.target.value)}
+                              className="w-full border border-stone-200 rounded-lg px-2.5 py-1.5 text-xs bg-stone-50"
+                            >
+                              <option value="10">10 questions / day</option>
+                              <option value="15">15 questions / day</option>
+                              <option value="20">20 questions / day</option>
+                              <option value="30">30 questions / day</option>
+                            </select>
+                          </div>
+                          <button
+                            type="submit"
+                            className="w-full py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold transition"
+                          >
+                            Save Study Goal
+                          </button>
+                        </form>
+                      ) : (
+                        <div className="space-y-2.5 text-xs">
+                          {targetCertObj ? (
+                            <div
+                              onClick={() => openBlueprint(targetCertObj)}
+                              className="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 cursor-pointer hover:border-emerald-400 transition"
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="font-bold text-emerald-900">
+                                  {targetCertObj.code}
+                                </span>
+                                {dailyMetrics.daysLeft !== null && (
+                                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">
+                                    <Calendar className="w-3 h-3" /> {dailyMetrics.daysLeft}d left
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-emerald-800 truncate mt-0.5">
+                                {targetCertObj.title}
+                              </p>
+                            </div>
+                          ) : (
+                            <p className="text-stone-500 leading-relaxed">
+                              Set your target exam date to track a daily countdown.
+                            </p>
+                          )}
+
+                          <div>
+                            <div className="flex justify-between text-[11px] mb-1">
+                              <span className="text-stone-600 font-medium">Today's Progress</span>
+                              <span className="font-bold text-stone-900">
+                                {dailyMetrics.todayCount} / {dailyMetrics.dailyTarget} Qs
+                              </span>
+                            </div>
+                            <div className="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                              <div
+                                className="bg-emerald-600 h-full rounded-full transition-all"
+                                style={{
+                                  width: `${Math.min(
+                                    100,
+                                    Math.round(
+                                      (dailyMetrics.todayCount / dailyMetrics.dailyTarget) * 100
+                                    )
+                                  )}%`,
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Your Study Queue */}
                     <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
                         Your Study Queue
@@ -602,6 +827,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                       </div>
                     </div>
 
+                    {/* My Credentials */}
                     <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
                       <div className="flex items-center justify-between">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
@@ -670,7 +896,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                       </li>
                       <li>
                         <strong className="text-stone-800">3. Track Mastery:</strong> Sign in to
-                        save domain scores, mistakes, and Credly badges.
+                        save domain scores, streaks, and Credly badges.
                       </li>
                     </ul>
                     <button
@@ -853,7 +1079,9 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                 <div className="flex items-center justify-between text-xs font-semibold text-stone-700 mb-2.5">
                   <span className="flex items-center gap-1.5">
                     <Layers className="w-4 h-4 text-emerald-700" />
-                    {user ? 'Syllabus Weightage & Your Mastery' : 'Syllabus Weightage & Question Split'}
+                    {user
+                      ? 'Syllabus Weightage & Your Mastery'
+                      : 'Syllabus Weightage & Question Split'}
                   </span>
                   <span className="text-stone-400">{user ? 'Weight • Accuracy' : 'Est. Qs'}</span>
                 </div>
@@ -1083,7 +1311,11 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                             ? 'bg-amber-50 border-amber-300 text-amber-700'
                             : 'border-stone-200 text-stone-400 hover:text-stone-700'
                         }`}
-                        title={isBookmarked ? 'Remove bookmark' : 'Save question to Bookmarks'}
+                        title={
+                          isBookmarked
+                            ? 'Remove bookmark (Shortcut: S)'
+                            : 'Save question to Bookmarks (Shortcut: S)'
+                        }
                       >
                         <Bookmark
                           className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-amber-500' : ''}`}
@@ -1097,7 +1329,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                             ? 'bg-amber-50 border-amber-300 text-amber-700'
                             : 'border-stone-200 text-stone-400 hover:text-stone-700'
                         }`}
-                        title="Flag in current session"
+                        title="Flag in current session (Shortcut: F)"
                       >
                         <Flag className="w-3.5 h-3.5" />
                       </button>
@@ -1250,6 +1482,13 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                       <ChevronLeft className="w-4 h-4" /> Prev
                     </button>
 
+                    <span className="hidden sm:flex items-center gap-1.5 text-[11px] text-stone-400">
+                      <Keyboard className="w-3.5 h-3.5" />
+                      Keys: <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">A–D</kbd> Answer •{' '}
+                      <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">←/→</kbd> Nav •{' '}
+                      <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">S</kbd> Save
+                    </span>
+
                     {currentIndex < sessionQuestions.length - 1 ? (
                       <button
                         onClick={() => setCurrentIndex((i) => i + 1)}
@@ -1297,6 +1536,25 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                       Attempted {report.attempted} of {report.total} questions • Target Pass Mark:{' '}
                       {selectedCert.passMarkDisplay}
                     </p>
+
+                    <div className="mt-3">
+                      <button
+                        onClick={() => handleCopyScorecard(report)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold transition"
+                      >
+                        {copiedScore ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-700" />
+                            <span>Copied Scorecard!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Share2 className="w-3.5 h-3.5" />
+                            <span>Copy / Share Scorecard</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
 
                   <h3 className="text-xs font-bold text-stone-700 mb-3">Domain-Wise Accuracy</h3>
