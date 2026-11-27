@@ -410,8 +410,9 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     : null;
 
   // Unified styling for all top navigation menu tabs
+ // Unified styling for all top navigation menu tabs
   const navTabClass = (tabKey) =>
-    `px-2.5 sm:px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition cursor-pointer ${
+    `px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 whitespace-nowrap transition cursor-pointer focus:outline-none ${
       activeTab === tabKey
         ? 'bg-white text-emerald-950 font-bold shadow-xs'
         : 'text-emerald-100 hover:bg-emerald-800/80 hover:text-white'
@@ -420,9 +421,10 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
   return (
     <div className="min-h-screen bg-[#EFECE6] text-stone-900 font-sans flex flex-col">
       {/* Deep Forest Emerald Top Navigation Bar */}
-      <header className="sticky top-0 z-20 bg-emerald-950 text-white border-b border-emerald-900 px-4 sm:px-6 py-3 shadow-sm">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-4">
+      {/* Deep Forest Emerald Top Navigation Bar */}
+      <header className="sticky top-0 z-20 bg-emerald-950 text-white border-b border-emerald-900 px-4 sm:px-6 py-2.5 shadow-sm">
+        <div className="max-w-7xl mx-auto flex flex-wrap lg:flex-nowrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3.5 shrink-0">
             <div
               onClick={() => {
                 setSelectedCert(null);
@@ -444,8 +446,8 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
               </div>
             </div>
 
-            {/* Desktop Header Search */}
-            <div className="hidden md:flex items-center relative w-60 lg:w-68">
+            {/* Compact Desktop Header Search */}
+            <div className="hidden md:flex items-center relative w-44 xl:w-56">
               <Search className="w-3.5 h-3.5 text-emerald-300/80 absolute left-3" />
               <input
                 type="text"
@@ -458,14 +460,14 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                     setMode(null);
                   }
                 }}
-                placeholder="Search exam code or topic..."
+                placeholder="Search exams..."
                 className="w-full pl-8 pr-3 py-1.5 text-xs bg-emerald-900/90 border border-emerald-800 text-white placeholder-emerald-300/70 rounded-lg focus:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-400"
               />
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Unified Menu Bar */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* Unified Single-Row Menu Bar */}
             <nav className="flex bg-emerald-900/90 border border-emerald-800/90 p-1 rounded-xl text-xs font-medium">
               <button
                 onClick={() => {
@@ -545,20 +547,21 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
             </nav>
 
             {user ? (
-              <div className="flex items-center gap-2 pl-2 border-l border-emerald-800 text-xs">
+              <div className="flex items-center gap-2 pl-2.5 border-l border-emerald-800 text-xs shrink-0">
                 <button
                   onClick={() => {
                     setActiveTab('profile');
                     setSelectedCert(null);
                     setMode(null);
                   }}
-                  className="hidden xl:inline font-medium text-emerald-100 hover:text-white max-w-[120px] truncate"
+                  className="hidden xl:inline font-medium text-emerald-100 hover:text-white max-w-[110px] truncate focus:outline-none"
+                  title={displayName}
                 >
                   {displayName}
                 </button>
                 <button
                   onClick={signOut}
-                  className="px-2.5 py-1.5 rounded-lg bg-emerald-900/90 border border-emerald-800 text-emerald-100 hover:bg-emerald-800 hover:text-white flex items-center gap-1 font-medium transition"
+                  className="px-2.5 py-1.5 rounded-lg bg-emerald-900/90 border border-emerald-800 text-emerald-100 hover:bg-emerald-800 hover:text-white flex items-center gap-1 font-medium whitespace-nowrap transition focus:outline-none"
                   title="Sign out"
                 >
                   <LogOut className="w-3.5 h-3.5" />
@@ -568,7 +571,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
             ) : (
               <button
                 onClick={() => requireAuth()}
-                className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-emerald-950 text-xs font-bold flex items-center gap-1.5 transition shadow-xs"
+                className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-emerald-950 text-xs font-bold flex items-center gap-1.5 whitespace-nowrap transition shadow-xs focus:outline-none"
               >
                 <LogIn className="w-3.5 h-3.5" />
                 <span>Sign In</span>
