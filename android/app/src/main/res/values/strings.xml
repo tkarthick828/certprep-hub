@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">CertPrep Hub</string>
+    <string name="title_activity_main">CertPrep Hub</string>
+    <string name="package_name">com.certprephub.app</string>
+    <string name="custom_url_scheme">com.certprephub.app</string>
+</resources>

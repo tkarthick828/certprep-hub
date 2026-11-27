@@ -1,0 +1,181 @@
+[
+  {
+    "id": "claude-arch-f",
+    "code": "CCA-F",
+    "hashtag": "#CCA-F",
+    "category": "Claude & AI",
+    "title": "Claude Certified Architect – Foundations",
+    "provider": "Anthropic",
+    "durationMinutes": 120,
+    "examQuestionCount": 60,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "720 / 1000 (~72%)",
+    "scoringNote": "60 scenario-based items across 5 weighted domains (4 of 6 core scenarios per sitting). No guessing penalty.",
+    "domains": [
+      { "name": "Agentic Architecture & Orchestration", "weight": 27 },
+      { "name": "Claude Code Configuration & Workflows", "weight": 20 },
+      { "name": "Prompt Engineering & Structured Output", "weight": 20 },
+      { "name": "Tool Design & MCP Integration", "weight": 18 },
+      { "name": "Context Management & Reliability", "weight": 15 }
+    ]
+  },
+  {
+    "id": "ccdv-f",
+    "code": "CCDV-F",
+    "hashtag": "#CCDV-F",
+    "category": "Claude & AI",
+    "title": "Claude Certified Developer – Foundations",
+    "provider": "Anthropic",
+    "durationMinutes": 120,
+    "examQuestionCount": 53,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "720 / 1000 (~72%)",
+    "scoringNote": "53 scenario-based items across 8 domains. Heavy focus on Applications & Integration (33.1%) and Model Optimization (16.8%).",
+    "domains": [
+      { "name": "Applications and Integration", "weight": 33.1 },
+      { "name": "Model Selection and Optimization", "weight": 16.8 },
+      { "name": "Agents and Workflows", "weight": 14.7 },
+      { "name": "Prompt and Context Engineering", "weight": 11.0 },
+      { "name": "Tools and MCPs", "weight": 10.6 },
+      { "name": "Security and Safety", "weight": 8.1 },
+      { "name": "Claude Code", "weight": 3.1 },
+      { "name": "Eval, Testing, and Debugging", "weight": 2.6 }
+    ]
+  },
+  {
+    "id": "aws-saa-c03",
+    "code": "SAA-C03",
+    "hashtag": "#SAA-C03",
+    "category": "Cloud",
+    "title": "AWS Solutions Architect – Associate",
+    "provider": "AWS",
+    "durationMinutes": 130,
+    "examQuestionCount": 65,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "720 / 1000 (~72%)",
+    "scoringNote": "65 questions total (50 scored + 15 unscored pretest items). Question weights vary by difficulty; no negative marking.",
+    "domains": [
+      { "name": "Design Secure Architectures", "weight": 30 },
+      { "name": "Design Resilient Architectures", "weight": 26 },
+      { "name": "Design High-Performing Architectures", "weight": 24 },
+      { "name": "Design Cost-Optimized Architectures", "weight": 20 }
+    ]
+  },
+  {
+    "id": "aws-dva-c03",
+    "code": "DVA-C03",
+    "hashtag": "#DVA-C03",
+    "category": "Cloud",
+    "title": "AWS Certified Developer – Associate",
+    "provider": "AWS",
+    "durationMinutes": 130,
+    "examQuestionCount": 65,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "720 / 1000 (~72%)",
+    "scoringNote": "65 questions total (50 scored + 15 unscored). DVA-C02 retires Nov 30, 2026; DVA-C03 is active Dec 1, 2026 with identical weights.",
+    "domains": [
+      { "name": "Development with AWS Services", "weight": 32 },
+      { "name": "Security", "weight": 26 },
+      { "name": "Deployment", "weight": 24 },
+      { "name": "Troubleshooting and Optimization", "weight": 18 }
+    ]
+  },
+  {
+    "id": "az-900",
+    "code": "AZ-900",
+    "hashtag": "#AZ-900",
+    "category": "Cloud",
+    "title": "Microsoft Azure Fundamentals",
+    "provider": "Microsoft",
+    "durationMinutes": 45,
+    "examQuestionCount": 45,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "700 / 1000 (~70%)",
+    "scoringNote": "Microsoft varies sitting length dynamically (~35–50 questions in 45 mins). Scaled score out of 1000; 700 required to pass.",
+    "domains": [
+      { "name": "Describe Cloud Concepts", "weight": 28 },
+      { "name": "Describe Azure Architecture and Services", "weight": 38 },
+      { "name": "Describe Azure Management and Governance", "weight": 34 }
+    ]
+  },
+  {
+    "id": "gcp-ace",
+    "code": "GCP-ACE",
+    "hashtag": "#GCP-ACE",
+    "category": "Cloud",
+    "title": "Google Cloud Associate Cloud Engineer",
+    "provider": "Google Cloud",
+    "durationMinutes": 120,
+    "examQuestionCount": 50,
+    "scoringType": "Scaled Pass / Fail",
+    "passMarkDisplay": "~70% (35 / 50 Qs)",
+    "scoringNote": "50–60 multiple-choice and multiple-select items in 120 mins. Google reports Pass/Fail without a numeric score.",
+    "domains": [
+      { "name": "Setting up a Cloud Solution Environment", "weight": 23 },
+      { "name": "Planning and Implementing a Cloud Solution", "weight": 30 },
+      { "name": "Ensuring Successful Operation of a Cloud Solution", "weight": 27 },
+      { "name": "Configuring Access and Security", "weight": 20 }
+    ]
+  },
+  {
+    "id": "aws-aif-c01",
+    "code": "AIF-C01",
+    "hashtag": "#AIF-C01",
+    "category": "Claude & AI",
+    "title": "AWS Certified AI Practitioner",
+    "provider": "AWS",
+    "durationMinutes": 90,
+    "examQuestionCount": 65,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "700 / 1000 (~70%)",
+    "scoringNote": "65 questions total (50 scored + 15 unscored). Covers foundation models, Amazon Bedrock, RAG, and Responsible AI.",
+    "domains": [
+      { "name": "Fundamentals of AI and ML", "weight": 20 },
+      { "name": "Fundamentals of Generative AI", "weight": 24 },
+      { "name": "Applications of Foundation Models", "weight": 28 },
+      { "name": "Guidelines for Responsible AI", "weight": 14 },
+      { "name": "Security, Compliance, and Governance for AI", "weight": 14 }
+    ]
+  },
+  {
+    "id": "gh-300",
+    "code": "GH-300",
+    "hashtag": "#GH-300",
+    "category": "Claude & AI",
+    "title": "GitHub Copilot Certification",
+    "provider": "GitHub",
+    "durationMinutes": 100,
+    "examQuestionCount": 60,
+    "scoringType": "Scaled Score (100–1000)",
+    "passMarkDisplay": "700 / 1000 (~70%)",
+    "scoringNote": "~50–65 questions in 100 mins (scaled 100–1000). Heavy focus on Copilot features, context crafting, and privacy exclusions.",
+    "domains": [
+      { "name": "Use GitHub Copilot Features", "weight": 28 },
+      { "name": "Use GitHub Copilot Responsibly", "weight": 18 },
+      { "name": "Understand GitHub Copilot Data and Architecture", "weight": 14 },
+      { "name": "Apply Prompt Engineering and Context Crafting", "weight": 14 },
+      { "name": "Improve Developer Productivity with GitHub Copilot", "weight": 13 },
+      { "name": "Configure Privacy, Content Exclusions, and Safeguards", "weight": 13 }
+    ]
+  },
+  {
+    "id": "comptia-sy0-701",
+    "code": "SY0-701",
+    "hashtag": "#SY0-701",
+    "category": "Security",
+    "title": "CompTIA Security+ (SY0-701)",
+    "provider": "CompTIA",
+    "durationMinutes": 90,
+    "examQuestionCount": 90,
+    "scoringType": "Scaled Score (100–900)",
+    "passMarkDisplay": "750 / 900 (~83%)",
+    "scoringNote": "Maximum of 90 questions (multiple-choice + performance-based) in 90 mins. Requires 750/900 scaled score to pass.",
+    "domains": [
+      { "name": "General Security Concepts", "weight": 12 },
+      { "name": "Threats, Vulnerabilities, and Mitigations", "weight": 22 },
+      { "name": "Security Architecture", "weight": 18 },
+      { "name": "Security Operations", "weight": 28 },
+      { "name": "Security Program Management and Oversight", "weight": 20 }
+    ]
+  }
+]

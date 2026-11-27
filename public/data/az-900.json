@@ -1,0 +1,4133 @@
+{
+  "examId": "az-900",
+  "questions": [
+    {
+      "id": "az-900-0001",
+      "domain": "Describe Cloud Concepts",
+      "question": "An enterprise is planning to migrate its on-premises data center to Azure. The finance department requires a predictable cost model where capital expenditure (CapEx) is minimized and expenses are treated as operational expenditure (OpEx). Which characteristic of cloud computing best satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "High Availability"
+        },
+        {
+          "id": "B",
+          "text": "Cloud Economics"
+        },
+        {
+          "id": "C",
+          "text": "Fault Tolerance"
+        },
+        {
+          "id": "D",
+          "text": "Consumption-based pricing"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Cloud economics refers to the financial advantages of cloud computing, particularly the ability to replace upfront capital expenses (CapEx) with variable operational expenses (OpEx).",
+      "wrongOptionNotes": {
+        "A": "High availability ensures systems remain operational with minimal downtime, but it does not dictate the financial cost model.",
+        "C": "Fault tolerance allows a system to continue operating in the event of component failure, unrelated to OpEx versus CapEx.",
+        "D": "Consumption-based pricing means paying only for what you use, but the fundamental shift from physical hardware purchasing to operational rental is defined by cloud economics."
+      }
+    },
+    {
+      "id": "az-900-0002",
+      "domain": "Describe Cloud Concepts",
+      "question": "A retail company experiences massive traffic spikes only during the holiday shopping season. They need an Azure hosting strategy that automatically allocates and deallocates resources to match performance demands without manual intervention. Which cloud benefit is this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elasticity"
+        },
+        {
+          "id": "B",
+          "text": "Capital Expenditure"
+        },
+        {
+          "id": "C",
+          "text": "Disaster Recovery"
+        },
+        {
+          "id": "D",
+          "text": "Latencies"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Elasticity allows cloud environments to automatically scale up or scale out resources when demand increases and scale down when demand subsides, ensuring optimal performance and cost.",
+      "wrongOptionNotes": {
+        "B": "Capital expenditure is spending money on physical infrastructure, which does not address automatic scaling.",
+        "C": "Disaster recovery involves restoring data and infrastructure after a catastrophic event, not automated resource scaling.",
+        "D": "Latency refers to the time it takes for data to travel across the network, which is separate from resource scaling."
+      }
+    },
+    {
+      "id": "az-900-0003",
+      "domain": "Describe Cloud Concepts",
+      "question": "A multinational financial firm needs to deploy a mission-critical application. Due to strict regulatory compliance, certain customer financial records must remain stored and processed exclusively on private infrastructure, while non-sensitive reporting can run on scalable public cloud resources. Which cloud deployment model should they adopt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Public cloud"
+        },
+        {
+          "id": "B",
+          "text": "Hybrid cloud"
+        },
+        {
+          "id": "C",
+          "text": "Private cloud"
+        },
+        {
+          "id": "D",
+          "text": "Multi-cloud"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "A hybrid cloud environment connects on-premises private infrastructure with cloud resources, allowing organizations to run sensitive workloads securely on-premises while leveraging public cloud scalability.",
+      "wrongOptionNotes": {
+        "A": "A public cloud shares infrastructure across multiple tenants, which may not meet strict single-tenant regulatory requirements.",
+        "C": "A private cloud uses infrastructure dedicated solely to a single organization, but lacks the seamless integration for public cloud burst scenarios mentioned.",
+        "D": "Multi-cloud involves using multiple public cloud providers, which does not inherently solve the requirement for combining private on-premises infrastructure with a public cloud."
+      }
+    },
+    {
+      "id": "az-900-0004",
+      "domain": "Describe Cloud Concepts",
+      "question": "A healthcare startup wants to deploy an electronic health record system in Azure. They want zero responsibility for server hardware maintenance, patching, or OS configuration, while focusing entirely on application logic. Which cloud service model matches this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Software as a Service (SaaS)"
+        },
+        {
+          "id": "B",
+          "text": "Infrastructure as a Service (IaaS)"
+        },
+        {
+          "id": "C",
+          "text": "Desktop as a Service (DaaS)"
+        },
+        {
+          "id": "D",
+          "text": "Platform as a Service (PaaS)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Platform as a Service (PaaS) abstracts away infrastructure management, allowing developers to focus strictly on writing code and managing their application data.",
+      "wrongOptionNotes": {
+        "A": "SaaS delivers a fully functioning software product (like Microsoft 365), but developers cannot deploy custom application logic into it.",
+        "B": "IaaS provides raw virtual machines where the customer is still responsible for operating system patching, updates, and maintenance.",
+        "C": "DaaS delivers virtual desktops to end users over the cloud, which is unrelated to deploying application logic."
+      }
+    },
+    {
+      "id": "az-900-0005",
+      "domain": "Describe Cloud Concepts",
+      "question": "An organization is migrating legacy applications that require direct access to custom Windows registry settings, specific local file system configurations, and custom device drivers. Which cloud service model is most appropriate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serverless computing"
+        },
+        {
+          "id": "B",
+          "text": "Platform as a Service (PaaS)"
+        },
+        {
+          "id": "C",
+          "text": "Infrastructure as a Service (IaaS)"
+        },
+        {
+          "id": "D",
+          "text": "Software as a Service (SaaS)"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "IaaS offers maximum flexibility and control over the operating system, allowing administrators to configure environments exactly like traditional on-premises servers.",
+      "wrongOptionNotes": {
+        "A": "Serverless execution models run isolated functions and do not allow persistent access to OS-level configurations.",
+        "B": "PaaS abstracts the operating system, preventing modifications to low-level settings like custom registry keys or local drivers.",
+        "D": "SaaS offers ready-to-use software applications with no administrative access to the underlying OS or configuration layers."
+      }
+    },
+    {
+      "id": "az-900-0006",
+      "domain": "Describe Cloud Concepts",
+      "question": "A university provides its faculty and students with access to web-based email, calendar, and document collaboration tools hosted entirely by Microsoft. Users do not manage any infrastructure or application code. What cloud service model does this represent?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serverless computing"
+        },
+        {
+          "id": "B",
+          "text": "Software as a Service"
+        },
+        {
+          "id": "C",
+          "text": "Platform as a Service"
+        },
+        {
+          "id": "D",
+          "text": "Infrastructure as a Service"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Software as a Service (SaaS) provides ready-to-use applications (such as Microsoft 365) where users simply log in and consume the service.",
+      "wrongOptionNotes": {
+        "A": "Serverless is an architectural design pattern for event-driven backend code, not end-user productivity software.",
+        "C": "PaaS is designed for developers to build and host applications, not for end-users to consume finished software.",
+        "D": "IaaS requires the user to configure and manage operating systems and networking."
+      }
+    },
+    {
+      "id": "az-900-0007",
+      "domain": "Describe Cloud Concepts",
+      "question": "An organization needs to host a web application that executes code only in response to specific incoming HTTP requests, scaling down to zero instances when idle so they incur no charges for idle time. Which cloud architecture model should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serverless computing"
+        },
+        {
+          "id": "B",
+          "text": "Containers"
+        },
+        {
+          "id": "C",
+          "text": "Virtual Machines"
+        },
+        {
+          "id": "D",
+          "text": "Bare metal servers"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Serverless computing enables developers to run code as functions triggered by events without managing servers, automatically scaling to zero when not in use.",
+      "wrongOptionNotes": {
+        "B": "Standard container orchestration platforms usually maintain running instances to handle incoming traffic.",
+        "C": "Virtual machines typically run continuously and accrue costs even when idle unless explicitly stopped and deallocated.",
+        "D": "Bare metal provides dedicated physical hardware with fixed ongoing infrastructure costs."
+      }
+    },
+    {
+      "id": "az-900-0008",
+      "domain": "Describe Cloud Concepts",
+      "question": "An enterprise requires their cloud infrastructure to ensure that if an entire data center experiences a power failure or fiber cut, their secondary site located hundreds of miles away instantly takes over with zero data loss. Which cloud concept is being implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Disaster Recovery"
+        },
+        {
+          "id": "B",
+          "text": "Scalability"
+        },
+        {
+          "id": "C",
+          "text": "High Availability"
+        },
+        {
+          "id": "D",
+          "text": "Agility"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Disaster recovery focuses on business continuity, ensuring that applications and data can be restored or failed over to a secondary geographic location after a major disaster.",
+      "wrongOptionNotes": {
+        "B": "Scalability is the ability to adjust resource capacity to handle workload increases or decreases.",
+        "C": "High availability protects against local component failures, but doesn't always guarantee zero data loss across catastrophic regional disasters.",
+        "D": "Agility refers to how quickly an organization can develop, test, and release new software and features."
+      }
+    },
+    {
+      "id": "az-900-0009",
+      "domain": "Describe Cloud Concepts",
+      "question": "A global media streaming company wants to reduce latency for end-users accessing video content across multiple continents by caching data at locations closer to those users. What cloud capability enables this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "CapEx reduction"
+        },
+        {
+          "id": "B",
+          "text": "Global Reach"
+        },
+        {
+          "id": "C",
+          "text": "Shared responsibility model"
+        },
+        {
+          "id": "D",
+          "text": "Vertical scaling"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Global reach allows organizations to deploy resources worldwide, taking advantage of Microsoft's expansive network infrastructure to improve performance and reduce latency.",
+      "wrongOptionNotes": {
+        "A": "CapEx reduction is a financial benefit, not a performance or geographic benefit.",
+        "C": "The shared responsibility model defines security obligations between the cloud provider and the customer.",
+        "D": "Vertical scaling increases the compute or RAM capacity of a single server, which does not address geographic distance."
+      }
+    },
+    {
+      "id": "az-900-0010",
+      "domain": "Describe Cloud Concepts",
+      "question": "A development team wants the ability to rapidly provision, test, and decommission entire multi-tier testing environments within minutes via code templates rather than manual ticket requests. Which cloud advantage does this demonstrate?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Agility"
+        },
+        {
+          "id": "B",
+          "text": "Elasticity"
+        },
+        {
+          "id": "C",
+          "text": "Reliability"
+        },
+        {
+          "id": "D",
+          "text": "Data sovereignty"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Agility in cloud computing gives businesses the speed and flexibility to provision resources instantly, enabling rapid experimentation and delivery.",
+      "wrongOptionNotes": {
+        "B": "Elasticity specifically refers to automated scaling of workload capacity based on traffic demands.",
+        "C": "Reliability is the ability of a system to recover from failures and continue to function.",
+        "D": "Data sovereignty refers to digital data being subject to the laws of the country in which it is located."
+      }
+    },
+    {
+      "id": "az-900-0011",
+      "domain": "Describe Cloud Concepts",
+      "question": "Under the Azure Shared Responsibility Model, which security task is always the sole responsibility of the customer regardless of whether they use IaaS, PaaS, or SaaS?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Operating system security patching"
+        },
+        {
+          "id": "B",
+          "text": "Physical datacenter security"
+        },
+        {
+          "id": "C",
+          "text": "Account and access management"
+        },
+        {
+          "id": "D",
+          "text": "Physical host patching"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Regardless of the cloud service model (IaaS, PaaS, or SaaS), the customer is always responsible for managing user identities, access control, and safeguarding their data.",
+      "wrongOptionNotes": {
+        "A": "In PaaS and SaaS models, the cloud provider manages operating system patching.",
+        "B": "Physical security of data centers is always managed by the cloud provider (Microsoft).",
+        "D": "Host hardware and hypervisor patching are managed by Microsoft across all service models."
+      }
+    },
+    {
+      "id": "az-900-0012",
+      "domain": "Describe Cloud Concepts",
+      "question": "An organization deploying a web application on Azure IaaS wants to ensure that if a single virtual machine fails, user requests are automatically redirected to another healthy virtual machine. Which architectural principle are they applying?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Low Latency"
+        },
+        {
+          "id": "B",
+          "text": "Economies of scale"
+        },
+        {
+          "id": "C",
+          "text": "High Availability"
+        },
+        {
+          "id": "D",
+          "text": "Elasticity"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "High availability ensures systems have redundant components to ensure continuous operation and minimal downtime during localized failures.",
+      "wrongOptionNotes": {
+        "A": "Low latency is concerned with minimizing network delay rather than fault tolerance.",
+        "B": "Economies of scale relate to cost savings achieved through large-scale cloud operations.",
+        "D": "Elasticity addresses scaling capacity up or down based on load rather than handling component failures."
+      }
+    },
+    {
+      "id": "az-900-0013",
+      "domain": "Describe Cloud Concepts",
+      "question": "Why can cloud providers like Microsoft offer lower computing costs per unit than individual enterprises running their own private data centers?",
+      "options": [
+        {
+          "id": "A",
+          "text": "They do not require cooling or power maintenance."
+        },
+        {
+          "id": "B",
+          "text": "Economies of scale"
+        },
+        {
+          "id": "C",
+          "text": "They eliminate all software licensing fees."
+        },
+        {
+          "id": "D",
+          "text": "Customers pay a one-time lifetime fee for servers."
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Economies of scale refer to the cost advantages that enterprises obtain due to scale, characterized by increased output and decreased fixed costs.",
+      "wrongOptionNotes": {
+        "A": "Datacenters require massive power and cooling infrastructure, which is a major operational expense.",
+        "C": "Software licensing costs still exist in the cloud depending on the operating systems and software used.",
+        "D": "Cloud computing operates on a pay-as-you-go consumption model, not one-time lifetime fees."
+      }
+    },
+    {
+      "id": "az-900-0014",
+      "domain": "Describe Cloud Concepts",
+      "question": "A financial institution operating in the European Union must ensure that all customer personal identifiable information (PII) is stored within datacenters located inside the EU borders. Which cloud concept does this requirement address?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Consumption-based pricing"
+        },
+        {
+          "id": "B",
+          "text": "Fault tolerance"
+        },
+        {
+          "id": "C",
+          "text": "Data Sovereignty"
+        },
+        {
+          "id": "D",
+          "text": "Vertical scaling"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Data sovereignty ensures that data complies with the legal and regulatory requirements of the specific geographic jurisdiction where it resides.",
+      "wrongOptionNotes": {
+        "A": "Consumption-based pricing is the pay-as-you-go financial model.",
+        "B": "Fault tolerance ensures continuous operations during failures, independent of geographic legal frameworks.",
+        "D": "Vertical scaling refers to adding hardware resources to a server, unrelated to geographic compliance."
+      }
+    },
+    {
+      "id": "az-900-0015",
+      "domain": "Describe Cloud Concepts",
+      "question": "An e-commerce company wants to expand its service to international customers. They want to deploy database read replicas close to customers in Asia, Europe, and North America to ensure fast data retrieval. Which cloud benefit enables this rapid geographic expansion?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Capital expenditure elimination"
+        },
+        {
+          "id": "B",
+          "text": "Serverless execution"
+        },
+        {
+          "id": "C",
+          "text": "Shared responsibility"
+        },
+        {
+          "id": "D",
+          "text": "Global Infrastructure and Reach"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure's global infrastructure of regions and datacenters enables businesses to achieve global reach instantly, deploying services near their customer base.",
+      "wrongOptionNotes": {
+        "A": "Eliminating CapEx is a financial benefit, not a geographic deployment capability.",
+        "B": "Serverless is an execution model for running code, not a mechanism for international deployment.",
+        "C": "Shared responsibility outlines security task allocation, not geographic expansion."
+      }
+    },
+    {
+      "id": "az-900-0016",
+      "domain": "Describe Cloud Concepts",
+      "question": "An enterprise wants to deploy an internal application across Azure regions while maintaining absolute control over the hypervisor and operating system patches. Which cloud deployment model and service type combination should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Public cloud using Infrastructure as a Service (IaaS)"
+        },
+        {
+          "id": "B",
+          "text": "Public cloud using Serverless computing"
+        },
+        {
+          "id": "C",
+          "text": "Private cloud using Platform as a Service (PaaS)"
+        },
+        {
+          "id": "D",
+          "text": "Hybrid cloud using Software as a Service (SaaS)"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Infrastructure as a Service (IaaS) provides the highest level of control over your IT resources, allowing you to manage operating systems, storage, and deployed applications directly, while the cloud provider manages the physical data center hardware.",
+      "wrongOptionNotes": {
+        "B": "Serverless architectures completely abstract the server and OS management layer away from the developer.",
+        "C": "PaaS abstracts the underlying operating system and does not grant hypervisor control.",
+        "D": "SaaS manages both application and infrastructure, leaving no direct OS-level control to the enterprise."
+      }
+    },
+    {
+      "id": "az-900-0017",
+      "domain": "Describe Cloud Concepts",
+      "question": "A logistics company needs to guarantee that their mission-critical database remains operational even if an entire Azure region suffers a major outage due to a natural disaster. Which core cloud architectural benefit directly addresses this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elastic scalability"
+        },
+        {
+          "id": "B",
+          "text": "Capital expenditure minimization"
+        },
+        {
+          "id": "C",
+          "text": "High availability through regional redundancy"
+        },
+        {
+          "id": "D",
+          "text": "Disaster recovery using paired regions"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Disaster recovery in Azure leverages regional pairing to replicate data and services across vast geographic distances, ensuring business continuity during widespread regional disruptions.",
+      "wrongOptionNotes": {
+        "A": "Elasticity deals with automatically adjusting compute capacity to handle changes in load, not catastrophic regional failures.",
+        "B": "Capex reduction relates to financial budgeting models, not operational resilience against disasters.",
+        "C": "High availability typically refers to resilience within a single region, such as across availability zones, rather than surviving a full regional outage."
+      }
+    },
+    {
+      "id": "az-900-0018",
+      "domain": "Describe Cloud Concepts",
+      "question": "An online gaming company launches a new multiplayer title and experiences unpredictable surges in concurrent players globally. They need their backend servers to automatically scale out within seconds of high demand and scale in when players log off, ensuring they only pay for the exact compute time consumed. Which cloud characteristic best describes this capability?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Capital Expenditure (CapEx)"
+        },
+        {
+          "id": "B",
+          "text": "Elasticity"
+        },
+        {
+          "id": "C",
+          "text": "High latency"
+        },
+        {
+          "id": "D",
+          "text": "Fault tolerance"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Elasticity is a defining attribute of cloud computing that allows automated provisioning and de-provisioning of resources to match real-time workload fluctuations efficiently.",
+      "wrongOptionNotes": {
+        "A": "CapEx refers to funds used by a company to acquire, upgrade, and maintain physical assets.",
+        "C": "High latency is an undesirable network delay, not a cloud capability.",
+        "D": "Fault tolerance ensures a system continues operating properly in the event of the failure of one or more faults, but does not inherently manage dynamic resource sizing."
+      }
+    },
+    {
+      "id": "az-900-0019",
+      "domain": "Describe Cloud Concepts",
+      "question": "A manufacturing firm wants to transition from a traditional datacenter model where they purchase servers upfront to an operational expense model where they pay exclusively for the resources they consume each month. Which financial benefit of cloud computing are they primarily leveraging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vertical scaling limitation"
+        },
+        {
+          "id": "B",
+          "text": "Economies of scale"
+        },
+        {
+          "id": "C",
+          "text": "Data residency compliance"
+        },
+        {
+          "id": "D",
+          "text": "Transitioning from CapEx to OpEx"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Cloud computing allows organizations to replace upfront capital expenses (CapEx) with operational expenses (OpEx), meaning they only pay for IT infrastructure as they consume it.",
+      "wrongOptionNotes": {
+        "A": "Vertical scaling is a technical scaling method, not a financial billing model.",
+        "B": "Economies of scale refer to cost savings achieved by cloud providers through massive bulk purchases of hardware and electricity.",
+        "C": "Data residency is a regulatory and governance requirement regarding where data is physically stored."
+      }
+    },
+    {
+      "id": "az-900-0020",
+      "domain": "Describe Cloud Concepts",
+      "question": "An auditing firm is designing a multi-tenant cloud application. They need to ensure that different corporate clients utilizing the same software instance have completely isolated data storage and processing paths for regulatory purposes. Which cloud concept describes the isolation of resources between multiple tenants?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Serverless computing"
+        },
+        {
+          "id": "B",
+          "text": "Edge computing"
+        },
+        {
+          "id": "C",
+          "text": "Load balancing"
+        },
+        {
+          "id": "D",
+          "text": "Multi-tenancy isolation"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Multi-tenancy allows cloud providers to serve multiple customers using shared physical infrastructure while enforcing strict logical separation of data and compute.",
+      "wrongOptionNotes": {
+        "A": "Serverless computing executes code based on triggers but does not explicitly define tenant isolation architectures.",
+        "B": "Edge computing processes data closer to where it is being generated rather than centrally in the cloud.",
+        "C": "Load balancing distributes network traffic across multiple servers to ensure reliability and performance."
+      }
+    },
+    {
+      "id": "az-900-0021",
+      "domain": "Describe Cloud Concepts",
+      "question": "A multinational corporation needs to deploy applications that comply with local data protection laws across various countries, ensuring that European user data never leaves European data centers. Which Azure architectural component allows them to achieve this geographic organization?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Availability Zones"
+        },
+        {
+          "id": "B",
+          "text": "Azure Regions"
+        },
+        {
+          "id": "C",
+          "text": "Resource Groups"
+        },
+        {
+          "id": "D",
+          "text": "Management Groups"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Regions give customers the ability to deploy workloads close to their users or comply with specific data sovereignty, residency, and compliance laws.",
+      "wrongOptionNotes": {
+        "A": "Availability Zones are isolated locations within a single region, not entire geopolitical boundaries.",
+        "C": "Resource groups are logical containers for Azure resources within a single subscription and region.",
+        "D": "Management groups are hierarchical containers used for governance and policy application across subscriptions, not physical geographic boundaries."
+      }
+    },
+    {
+      "id": "az-900-0022",
+      "domain": "Describe Cloud Concepts",
+      "question": "An IoT-enabled smart city project generates massive volumes of sensor data at traffic intersections. Processing this data centrally in a remote cloud datacenter introduces unacceptable network latency for emergency response systems. Which architectural model should they use to process time-sensitive data locally at the intersection?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Software as a Service"
+        },
+        {
+          "id": "B",
+          "text": "Public Cloud Computing"
+        },
+        {
+          "id": "C",
+          "text": "Vertical scaling"
+        },
+        {
+          "id": "D",
+          "text": "Edge Computing"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Edge computing brings computation and data storage closer to the devices where data is gathered, minimizing latency and bandwidth consumption for real-time applications.",
+      "wrongOptionNotes": {
+        "A": "SaaS is a software delivery model, not a distributed compute topology for low-latency IoT.",
+        "B": "Public cloud computing relies on centralized hyperscale datacenters, which introduce latency for real-time edge use cases.",
+        "C": "Vertical scaling refers to adding compute power to a single machine rather than distributing computing nodes."
+      }
+    },
+    {
+      "id": "az-900-0023",
+      "domain": "Describe Cloud Concepts",
+      "question": "A retail enterprise is considering moving their core inventory database to Azure. Their chief technology officer wants to understand the financial advantages of cloud computing. Which factor explains why Microsoft can offer significantly lower computing costs per unit than an individual enterprise running its own private datacenter?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Economies of scale"
+        },
+        {
+          "id": "B",
+          "text": "Free data egress across all regions"
+        },
+        {
+          "id": "C",
+          "text": "Guaranteed elimination of maintenance staff"
+        },
+        {
+          "id": "D",
+          "text": "Elimination of all software licensing fees"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Economies of scale allow Microsoft to purchase hardware, secure power contracts, and optimize cooling at a massive scale, reducing the cost per unit far below what individual companies can achieve.",
+      "wrongOptionNotes": {
+        "B": "Data leaving Azure datacenters generally incurs data egress transfer fees.",
+        "C": "While infrastructure maintenance shifts to Microsoft, cloud customers still need engineers to manage architecture, applications, and data.",
+        "D": "Software licensing costs still apply in the cloud depending on the operating system and database products used."
+      }
+    },
+    {
+      "id": "az-900-0024",
+      "domain": "Describe Cloud Concepts",
+      "question": "An organization wants to host a public-facing corporate website. They want to completely avoid managing web servers, operating system updates, or runtime patching, while letting Azure manage server scaling and provisioning automatically. Which cloud service model should they adopt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Platform as a Service (PaaS)"
+        },
+        {
+          "id": "B",
+          "text": "Private cloud virtual machines"
+        },
+        {
+          "id": "C",
+          "text": "On-premises deployment"
+        },
+        {
+          "id": "D",
+          "text": "Infrastructure as a Service (IaaS)"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Platform as a Service (PaaS) removes the need for organizations to manage the underlying hardware and operating systems, allowing developers to focus entirely on application development and deployment.",
+      "wrongOptionNotes": {
+        "B": "Private cloud virtual machines still place operational management of the guest OS and runtime on the organization.",
+        "C": "On-premises deployments require full management of both hardware and software layers.",
+        "D": "IaaS requires the customer to manage OS patches, updates, and configuration of the virtual machines."
+      }
+    },
+    {
+      "id": "az-900-0025",
+      "domain": "Describe Cloud Concepts",
+      "question": "An insurance company has strict regulatory guidelines preventing them from storing sensitive customer policy records in a public multi-tenant cloud environment. However, they want the rapid provisioning benefits of cloud architecture for these specific databases. Which deployment model fits their governance requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Private cloud"
+        },
+        {
+          "id": "B",
+          "text": "Hybrid cloud without isolation"
+        },
+        {
+          "id": "C",
+          "text": "Software as a Service multi-tenant model"
+        },
+        {
+          "id": "D",
+          "text": "Public cloud"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "A private cloud model provides cloud computing resources dedicated exclusively to a single business or organization, addressing stringent regulatory and security mandates.",
+      "wrongOptionNotes": {
+        "B": "A general hybrid model does not inherently mandate single-tenant isolation for sensitive data unless specifically configured as a private cloud component.",
+        "C": "SaaS multi-tenant apps share compute and storage across multiple customers, conflicting with the regulation.",
+        "D": "Public cloud shares underlying multi-tenant infrastructure, which violates their strict non-shared compliance policy."
+      }
+    },
+    {
+      "id": "az-900-0026",
+      "domain": "Describe Cloud Concepts",
+      "question": "A media agency wants to build a hybrid cloud architecture. They need to keep legacy high-performance rendering software on-premises due to specialized hardware dependencies, while bursting rendering jobs to Azure during peak project deadlines. Which primary advantage does a hybrid cloud model offer in this scenario?",
+      "options": [
+        {
+          "id": "A",
+          "text": "The ability to combine on-premises infrastructure with cloud scalability"
+        },
+        {
+          "id": "B",
+          "text": "Complete elimination of on-premises hardware costs"
+        },
+        {
+          "id": "C",
+          "text": "Automatic translation of legacy code to cloud-native code"
+        },
+        {
+          "id": "D",
+          "text": "Removal of all security compliance responsibilities"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "A hybrid cloud connects on-premises environments with public cloud services, allowing organizations flexibility to run workloads where they fit best and burst capacity dynamically.",
+      "wrongOptionNotes": {
+        "B": "Legacy hardware remains on-premises, meaning on-premises capital expenses are not eliminated.",
+        "C": "Cloud platforms do not automatically rewrite or translate legacy binaries into cloud-native microservices.",
+        "D": "Security responsibilities remain shared between the customer and cloud provider depending on the service model used."
+      }
+    },
+    {
+      "id": "az-900-0027",
+      "domain": "Describe Cloud Concepts",
+      "question": "A software development organization wants to build a continuous integration pipeline. They want to run custom build agents on virtual machines where they have full administrative privileges to install custom compilers, modify network settings, and configure local security policies. Which cloud service category satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Software as a Service (SaaS)"
+        },
+        {
+          "id": "B",
+          "text": "Platform as a Service (PaaS)"
+        },
+        {
+          "id": "C",
+          "text": "Serverless functions"
+        },
+        {
+          "id": "D",
+          "text": "Infrastructure as a Service (IaaS)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "IaaS provides raw compute resources (virtual machines, networking, storage) giving administrators complete control over the guest OS environment and software stack.",
+      "wrongOptionNotes": {
+        "A": "SaaS provides ready-to-use software applications with zero administrative access to underlying servers.",
+        "B": "PaaS abstracts the operating system, preventing direct installation of arbitrary system-level compilers or custom kernel drivers.",
+        "C": "Serverless execution environments execute isolated blocks of code without server access."
+      }
+    },
+    {
+      "id": "az-900-0028",
+      "domain": "Describe Cloud Concepts",
+      "question": "A financial enterprise requires that their cloud-based transaction database remains accessible even if a local power failure affects an individual datacenter building within a specific region. Which Azure structural feature provides independent power, cooling, and networking to protect against local outages?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Regions"
+        },
+        {
+          "id": "B",
+          "text": "Azure Availability Zones"
+        },
+        {
+          "id": "C",
+          "text": "Global Load Balancers"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Groups"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Availability Zones are unique physical locations within an Azure region, each made up of one or more datacenters equipped with independent power, cooling, and networking to ensure high availability.",
+      "wrongOptionNotes": {
+        "A": "A region encompasses multiple datacenters; Availability Zones are the specific isolated subsets within a region providing resilience.",
+        "C": "Load balancers route traffic across endpoints, but do not provide physical facility redundancy.",
+        "D": "Resource groups are logical containers for management, not physical data center facilities."
+      }
+    },
+    {
+      "id": "az-900-0029",
+      "domain": "Describe Cloud Concepts",
+      "question": "A global enterprise needs to deploy an internal corporate document management portal used exclusively by their employees worldwide. The portal requires zero infrastructure management, automatic software updates managed by Microsoft, and subscription-based user access. Which cloud service model does this represent?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Platform as a Service"
+        },
+        {
+          "id": "B",
+          "text": "Private cloud infrastructure"
+        },
+        {
+          "id": "C",
+          "text": "Infrastructure as a Service"
+        },
+        {
+          "id": "D",
+          "text": "Software as a Service"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Software as a Service (SaaS) provides fully realized applications (such as Microsoft 365) where the provider manages all hardware, software, updates, and maintenance.",
+      "wrongOptionNotes": {
+        "A": "PaaS provides a development and deployment environment, not a fully finished end-user business application like email or document portals.",
+        "B": "Private cloud refers to hosting infrastructure privately, not a fully managed end-user software product.",
+        "C": "IaaS requires the enterprise to manage OS patching, updates, and maintenance."
+      }
+    },
+    {
+      "id": "az-900-0030",
+      "domain": "Describe Cloud Concepts",
+      "question": "An e-commerce startup is evaluating cloud deployment models. They want to retain critical customer financial records on an on-premises mainframe due to legacy compliance mandates, while hosting their public web catalog and shopping cart on scalable public cloud infrastructure. What term describes this operational setup?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Public Cloud Only"
+        },
+        {
+          "id": "B",
+          "text": "Private Cloud Only"
+        },
+        {
+          "id": "C",
+          "text": "Infrastructure as a Service"
+        },
+        {
+          "id": "D",
+          "text": "Hybrid Cloud"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "A hybrid cloud environment combines public cloud and on-premises infrastructure, enabling organizations to leverage the benefits of both architectures based on security, regulatory, and technical needs.",
+      "wrongOptionNotes": {
+        "A": "Keeping critical records on an on-premises mainframe means the architecture is not purely public cloud.",
+        "B": "Hosting the web catalog on public cloud infrastructure extends the environment beyond a strict private cloud boundary.",
+        "C": "IaaS is a service provisioning model, whereas combining on-premises and public cloud describes a deployment model."
+      }
+    },
+    {
+      "id": "az-900-0031",
+      "domain": "Describe Cloud Concepts",
+      "question": "An enterprise is planning to migrate their legacy data center workloads to Azure. The finance department needs to accurately forecast monthly expenses and allocate cloud costs directly to various business units based on their usage. Which financial management strategy in Azure should the enterprise implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Disabling resource monitoring to minimize telemetry data processing charges"
+        },
+        {
+          "id": "B",
+          "text": "Cloud financial management utilizing tags, Cost Management, and Budgets"
+        },
+        {
+          "id": "C",
+          "text": "Capital expenditure planning using rigid annual budget allocations"
+        },
+        {
+          "id": "D",
+          "text": "Manual spreadsheet tracking of unallocated subscription invoices at the end of each fiscal year"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure provides robust tools like Azure Cost Management + Billing, Azure Budgets, and resource tags to implement cloud financial management (FinOps), allowing enterprises to track, allocate, and optimize their operational expenditure.",
+      "wrongOptionNotes": {
+        "A": "Disabling monitoring reduces visibility into resource utilization, making cost attribution and capacity planning impossible.",
+        "C": "Capital expenditure planning focuses on upfront hardware purchases, which contradicts the cloud's operational expenditure model.",
+        "D": "Manual tracking is inefficient, prone to human error, and fails to provide real-time cost visibility or granular chargeback."
+      }
+    },
+    {
+      "id": "az-900-0032",
+      "domain": "Describe Cloud Concepts",
+      "question": "A healthcare startup is deploying an application that handles confidential patient records. The chief compliance officer insists that the cloud architecture must offer maximum control over the underlying operating systems, network configuration, and data security infrastructure while still utilizing cloud economics. Which cloud service model best fits these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Infrastructure as a Service (IaaS)"
+        },
+        {
+          "id": "B",
+          "text": "Software as a Service (SaaS)"
+        },
+        {
+          "id": "C",
+          "text": "Platform as a Service (PaaS)"
+        },
+        {
+          "id": "D",
+          "text": "Serverless Computing"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Infrastructure as a Service (IaaS) is the most flexible cloud service model, providing building blocks that give organizations complete control over the operating systems, network settings, and application architecture.",
+      "wrongOptionNotes": {
+        "B": "SaaS delivers a fully managed application where the user has minimal control over the underlying infrastructure and OS.",
+        "C": "PaaS abstracts away the operating system and infrastructure management, which does not satisfy the requirement for maximum control over OS and network configuration.",
+        "D": "Serverless computing completely abstracts infrastructure management, leaving no control over the underlying servers or operating systems."
+      }
+    },
+    {
+      "id": "az-900-0033",
+      "domain": "Describe Cloud Concepts",
+      "question": "An international shipping company is expanding its operations into new geographic regions. They want to ensure their web applications are deployed close to their customers in Europe, Asia, and North America to minimize network latency and improve user experience. Which core cloud benefit is the company primarily leveraging?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Global reach and scalability"
+        },
+        {
+          "id": "B",
+          "text": "Disaster recovery via offline tape backups"
+        },
+        {
+          "id": "C",
+          "text": "High availability through redundant local power supplies"
+        },
+        {
+          "id": "D",
+          "text": "Capital expenditure reduction by purchasing dedicated physical hosting sites"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Global reach enables organizations to scale their applications across multiple Azure regions globally, ensuring that services are hosted close to end-users to reduce latency and enhance overall user experience.",
+      "wrongOptionNotes": {
+        "B": "Offline tape backups relate to data retention strategies, not real-time global deployment and latency reduction.",
+        "C": "Local power redundancy addresses fault tolerance within a datacenter rather than global user proximity and latency reduction.",
+        "D": "Purchasing physical hosting sites contradicts the cloud model and does not provide instant global deployment."
+      }
+    },
+    {
+      "id": "az-900-0034",
+      "domain": "Describe Cloud Concepts",
+      "question": "An enterprise software vendor is planning their annual IT budget. They want to avoid large upfront costs for physical hardware and instead pay only for the compute and storage resources they actually consume each month, adjusting their expenses dynamically as their customer base grows. Which cloud financial characteristic are they taking advantage of?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Capital Expenditure (CapEx)"
+        },
+        {
+          "id": "B",
+          "text": "Operational Expenditure (OpEx)"
+        },
+        {
+          "id": "C",
+          "text": "Fixed Depreciation Accounting"
+        },
+        {
+          "id": "D",
+          "text": "Premises Procurement Model"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Cloud computing operates on an Operational Expenditure (OpEx) model where you do not incur upfront costs for physical infrastructure; instead, you pay for what you use on a recurring or consumption basis.",
+      "wrongOptionNotes": {
+        "A": "CapEx involves major upfront investments in physical infrastructure, which the vendor is explicitly trying to avoid.",
+        "C": "Fixed depreciation accounting is associated with long-term physical asset management rather than dynamic, usage-based cloud pricing.",
+        "D": "A premises procurement model involves acquiring physical buildings and hardware locally."
+      }
+    },
+    {
+      "id": "az-900-0035",
+      "domain": "Describe Cloud Concepts",
+      "question": "A retail corporation is migrating its point-of-sale infrastructure to Azure. They need to ensure that their services remain accessible even if an entire Azure region experiences an unexpected outage due to a natural disaster. Which architectural design principle should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Disaster recovery and high availability across multiple geographic regions"
+        },
+        {
+          "id": "B",
+          "text": "Relying solely on local software updates to prevent hardware failures"
+        },
+        {
+          "id": "C",
+          "text": "Consolidating all virtual machines into a single datacenter rack"
+        },
+        {
+          "id": "D",
+          "text": "Disabling geo-replication to save on network egress costs"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Designing for high availability and disaster recovery across multiple regions guarantees that an application can withstand regional failures, maintaining continuous operations for end-users.",
+      "wrongOptionNotes": {
+        "B": "Software updates patch vulnerabilities but do not protect against physical regional infrastructure disruptions.",
+        "C": "Placing all resources in a single rack creates a single point of failure and leaves the application vulnerable to regional outages.",
+        "D": "Disabling geo-replication restricts data copies to a single region, increasing the risk of data loss during a disaster."
+      }
+    },
+    {
+      "id": "az-900-0036",
+      "domain": "Describe Cloud Concepts",
+      "question": "A research institution is setting up a high-performance computing cluster for climate modeling that runs continuously for three months and then shuts down completely for the rest of the year. They want to ensure they choose a cloud deployment model that eliminates hardware maintenance responsibilities and scales instantly without managing physical servers. Which cloud characteristic best describes this capability?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Manual Patch Management"
+        },
+        {
+          "id": "B",
+          "text": "Static Capacity Provisioning"
+        },
+        {
+          "id": "C",
+          "text": "Physical Hardware Ownership"
+        },
+        {
+          "id": "D",
+          "text": "Elasticity"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Elasticity is a core benefit of cloud computing that enables workloads to scale up or down automatically or dynamically, matching resource allocation closely to demand and eliminating the need for manual hardware provisioning.",
+      "wrongOptionNotes": {
+        "A": "Manual patch management is an administrative overhead that cloud models aim to minimize or eliminate.",
+        "B": "Static provisioning involves setting a fixed amount of hardware capacity regardless of actual workload fluctuations.",
+        "C": "Physical hardware ownership implies managing on-premises data centers, which contradicts cloud agility and maintenance elimination."
+      }
+    },
+    {
+      "id": "az-900-0037",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise organization needs to deploy virtual machines across multiple physical data centers in the same geographic region to ensure high availability and protection against single hardware failures. Which Azure architectural component should they utilize?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Management Groups"
+        },
+        {
+          "id": "B",
+          "text": "Resource Groups"
+        },
+        {
+          "id": "C",
+          "text": "Region Pairs"
+        },
+        {
+          "id": "D",
+          "text": "Availability Zones"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Availability Zones provide physically separate locations within the same Azure region, providing fault tolerance for critical applications.",
+      "wrongOptionNotes": {
+        "A": "Management groups are used for applying governance and access control across multiple subscriptions, unrelated to physical high availability.",
+        "B": "A resource group is simply a logical container for grouping Azure resources and does not provide physical data center isolation or high availability.",
+        "C": "Region pairs span hundreds of miles apart to protect against regional disasters, not for multi-datacenter deployment within the same geographic region for low-latency high availability."
+      }
+    },
+    {
+      "id": "az-900-0038",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A financial company must replicate its critical data to a secondary location that is at least 300 miles away from the primary region to comply with business continuity regulations. Which Azure feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Availability Zones"
+        },
+        {
+          "id": "B",
+          "text": "Availability Sets"
+        },
+        {
+          "id": "C",
+          "text": "Paired Regions"
+        },
+        {
+          "id": "D",
+          "text": "Local Redundant Storage (LRS)"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Paired regions guarantee distance separation and prioritized regional recovery, making them ideal for compliance mandates requiring geographic redundancy.",
+      "wrongOptionNotes": {
+        "A": "Availability Zones reside within the same region and are too close to satisfy multi-hundred-mile regulatory geographic distance requirements.",
+        "B": "Availability Sets protect against rack-level hardware failures within a single datacenter, not across geographic regions.",
+        "D": "LRS only replicates data synchronously three times within a single physical data center in the primary region."
+      }
+    },
+    {
+      "id": "az-900-0039",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A development team wants to deploy a stateless web application container that scales automatically based on incoming HTTP traffic without having to manage underlying virtual machines or orchestrators. Which Azure compute service is the best fit?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "B",
+          "text": "Azure Kubernetes Service (AKS)"
+        },
+        {
+          "id": "C",
+          "text": "Azure Container Instances (ACI)"
+        },
+        {
+          "id": "D",
+          "text": "Azure Container Apps"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Container Apps provides a managed, serverless environment optimized for deploying containers with automatic scaling based on HTTP requests.",
+      "wrongOptionNotes": {
+        "A": "Virtual machines require manual operating system patching, scaling configuration, and infrastructure management.",
+        "B": "AKS is a managed Kubernetes service that still requires node pool management and cluster administration overhead compared to serverless container offerings.",
+        "C": "ACI is great for running single containers quickly, but for full automatic scaling of HTTP traffic web applications, Container Apps or App Service is more suitable."
+      }
+    },
+    {
+      "id": "az-900-0040",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise is planning to migrate thousands of existing virtual machines from an on-premises VMware environment to Azure. They need fine-grained control over the operating system, networking, and custom software installations. Which Azure compute option should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure App Service"
+        },
+        {
+          "id": "B",
+          "text": "Azure Container Apps"
+        },
+        {
+          "id": "C",
+          "text": "Azure Functions"
+        },
+        {
+          "id": "D",
+          "text": "Azure Virtual Machines"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Virtual Machines (IaaS) provide full administrative control over the OS and environment, making them the standard choice for lift-and-shift migrations.",
+      "wrongOptionNotes": {
+        "A": "App Service is a Platform-as-a-Service (PaaS) designed for hosting web apps and APIs, not for lifting and shifting arbitrary virtual machines.",
+        "B": "Container Apps runs packaged containers rather than standard virtual machine disk images.",
+        "C": "Azure Functions is a serverless code execution environment, unsuited for general-purpose virtual machine migration."
+      }
+    },
+    {
+      "id": "az-900-0041",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A retail company wants to build an event-driven microservices architecture where backend tasks are triggered asynchronously by queue messages without provisioning servers. Which Azure service should they utilize?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Logic Apps"
+        },
+        {
+          "id": "B",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "C",
+          "text": "Azure Functions"
+        },
+        {
+          "id": "D",
+          "text": "Azure Virtual Machine Scale Sets"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Functions enables serverless, event-driven execution ideal for processing asynchronous messages and triggers.",
+      "wrongOptionNotes": {
+        "A": "Logic Apps are designed for workflow orchestration and business process integration rather than low-level event-driven queue processing.",
+        "B": "ExpressRoute is a networking service used for creating private, high-speed connections between on-premises datacenters and Azure.",
+        "D": "Virtual Machine Scale Sets require managing infrastructure, OS updates, and scaling rules."
+      }
+    },
+    {
+      "id": "az-900-0042",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A media company needs to store petabytes of unstructured video files that are accessed infrequently (once a year or less), but require extremely low storage costs. Which Azure Storage tier should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Hot tier"
+        },
+        {
+          "id": "B",
+          "text": "Premium tier"
+        },
+        {
+          "id": "C",
+          "text": "Archive tier"
+        },
+        {
+          "id": "D",
+          "text": "Cool tier"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Archive tier is designed for long-term cold data backup storage, providing minimal storage costs at the expense of retrieval latency.",
+      "wrongOptionNotes": {
+        "A": "The Hot tier is optimized for storing frequently accessed data with higher storage costs and lower access costs.",
+        "B": "Premium storage provides high-performance SSD-backed storage for I/O-intensive workloads at a much higher cost.",
+        "D": "The Cool tier is optimized for data that is stored for at least 30 days and accessed infrequently, but Archive is cheaper for yearly access."
+      }
+    },
+    {
+      "id": "az-900-0043",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An application running on an Azure Virtual Machine needs to securely store database connection strings and API keys without hardcoding them in the source code or configuration files. Which Azure service should be integrated?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Key Vault"
+        },
+        {
+          "id": "B",
+          "text": "Azure Storage Account"
+        },
+        {
+          "id": "C",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "D",
+          "text": "Azure Bastion"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Key Vault centralizes application secrets and credentials management, removing sensitive values from code repositories.",
+      "wrongOptionNotes": {
+        "B": "Storage accounts hold blobs, files, queues, and tables, but are not designed for centralized application secret management and access auditing.",
+        "C": "Azure SQL Database is a relational database management service, not a dedicated vault for application secrets.",
+        "D": "Azure Bastion is a secure PaaS service providing seamless RDP/SSH connectivity to virtual machines over SSL."
+      }
+    },
+    {
+      "id": "az-900-0044",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization wants to securely connect their corporate on-premises datacenter to an Azure Virtual Network over the public internet with encrypted traffic. Which networking resource should they deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "VPN Gateway"
+        },
+        {
+          "id": "B",
+          "text": "Azure Application Gateway"
+        },
+        {
+          "id": "C",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "D",
+          "text": "Azure Firewall"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "A VPN Gateway establishes encrypted Site-to-Site connections between on-premises networks and Azure over the public internet.",
+      "wrongOptionNotes": {
+        "B": "Application Gateway is a web traffic (OSI layer 7) load balancer for managing HTTP/HTTPS traffic to web applications.",
+        "C": "ExpressRoute provides dedicated, private connectivity that does not travel over the public internet.",
+        "D": "Azure Firewall is a managed network security service that protects Azure Virtual Network resources, not a site-to-site connectivity tunnel."
+      }
+    },
+    {
+      "id": "az-900-0045",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A global enterprise needs to distribute incoming HTTP web traffic across multiple Azure regions worldwide with high performance and instant failover. Which Azure load balancing service should they deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Load Balancer"
+        },
+        {
+          "id": "B",
+          "text": "Azure Application Gateway"
+        },
+        {
+          "id": "C",
+          "text": "Traffic Manager"
+        },
+        {
+          "id": "D",
+          "text": "Azure Front Door"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Front Door is a global, cloud-based Layer 7 load balancer and content delivery network providing fast global routing for web applications.",
+      "wrongOptionNotes": {
+        "A": "Azure Load Balancer is a layer 4 (TCP/UDP) load balancer operating at regional scope, not global scope.",
+        "B": "Application Gateway is a regional web traffic load balancer, lacking global multi-region routing capabilities.",
+        "C": "Traffic Manager is a DNS-based traffic load balancer, whereas Azure Front Door provides reverse proxy and SSL offloading with global Anycast routing."
+      }
+    },
+    {
+      "id": "az-900-0046",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A database administrator needs a fully managed relational database service in Azure that automatically handles scaling, backups, and high availability while maintaining SQL Server compatibility. Which Azure service should they choose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "B",
+          "text": "SQL Server on Azure Virtual Machines"
+        },
+        {
+          "id": "C",
+          "text": "Azure Cache for Redis"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cosmos DB"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure SQL Database provides fully managed relational database capabilities with built-in high availability and automated maintenance.",
+      "wrongOptionNotes": {
+        "B": "Hosting SQL Server on an IaaS virtual machine requires the administrator to manage OS patching, updates, and custom backup schedules.",
+        "C": "Azure Cache for Redis is an in-memory data store used for caching, not a primary relational database management system.",
+        "D": "Azure Cosmos DB is a globally distributed NoSQL and multi-model database service, not a relational SQL Server database."
+      }
+    },
+    {
+      "id": "az-900-0047",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An IT administrator needs to manage and query large volumes of operational log data collected from various Azure resources using a rich query language. Which Azure management service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "C",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "D",
+          "text": "Azure Monitor Logs (Log Analytics)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Monitor Logs collect and organize telemetry data into Log Analytics workspaces, enabling deep analysis via KQL.",
+      "wrongOptionNotes": {
+        "A": "Azure Service Health tracks outages, planned maintenance, and health advisories affecting Azure services.",
+        "B": "Azure Advisor provides best-practice recommendations for cost, security, reliability, and performance, not raw log querying.",
+        "C": "Azure Policy is used to enforce organizational standards and assess resource compliance against rules."
+      }
+    },
+    {
+      "id": "az-900-0048",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise wants to enforce a rule that all newly created virtual machines must be deployed only in specific approved regions (e.g., East US) to comply with data residency policies. Which Azure governance tool should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resource Locks"
+        },
+        {
+          "id": "B",
+          "text": "Azure Budgets"
+        },
+        {
+          "id": "C",
+          "text": "Azure Role-Based Access Control (RBAC)"
+        },
+        {
+          "id": "D",
+          "text": "Azure Policy"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Policy allows organizations to enforce governance and compliance rules, such as restricting resource deployment to specific regions.",
+      "wrongOptionNotes": {
+        "A": "Resource locks prevent accidental deletion or modification of existing resources, rather than restricting deployment locations.",
+        "B": "Azure Budgets track spending thresholds and trigger alerts or notifications, unrelated to deployment compliance.",
+        "C": "RBAC manages who has access to resources and what actions they can perform, but cannot restrict geographic deployment locations."
+      }
+    },
+    {
+      "id": "az-900-0049",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An operations team needs to receive automated SMS or email alerts when CPU utilization on production virtual machines exceeds 90% for more than 15 minutes. Which Azure Monitor feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Advisor Recommendations"
+        },
+        {
+          "id": "B",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "C",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "D",
+          "text": "Metric Alerts and Action Groups"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Monitor metric alerts combined with Action Groups provide real-time notification capabilities based on performance thresholds.",
+      "wrongOptionNotes": {
+        "A": "Azure Advisor provides proactive recommendations based on historical usage patterns, not real-time alerting.",
+        "B": "Azure Service Health notifies users about Azure platform issues and outages, not internal VM performance metrics.",
+        "C": "Azure Bastion is a connectivity service for secure remote management of virtual machines."
+      }
+    },
+    {
+      "id": "az-900-0050",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A security auditor wants to verify whether multi-factor authentication (MFA) is currently enforced for all administrator accounts across the entire Azure tenant. Which tool should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure DNS"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cost Management + Billing"
+        },
+        {
+          "id": "C",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "D",
+          "text": "Microsoft Defender for Cloud"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Microsoft Defender for Cloud assesses security posture and identifies vulnerabilities such as missing MFA configurations on accounts.",
+      "wrongOptionNotes": {
+        "A": "Azure DNS is a hosting service for DNS domains that provides name resolution using Microsoft Azure infrastructure.",
+        "B": "Cost Management is dedicated to monitoring cloud spending, invoices, and budget forecasts.",
+        "C": "ExpressRoute is a private networking connection service."
+      }
+    },
+    {
+      "id": "az-900-0051",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization wants to categorize their Azure resources by department (e.g., Finance, Marketing) and project name for billing and reporting purposes. What Azure mechanism should they apply?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Tags"
+        },
+        {
+          "id": "B",
+          "text": "Network Security Groups (NSGs)"
+        },
+        {
+          "id": "C",
+          "text": "Azure Availability Sets"
+        },
+        {
+          "id": "D",
+          "text": "Azure Subscriptions"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Tags enable users to attach metadata name/value pairs to resources to facilitate granular categorization and cost allocation.",
+      "wrongOptionNotes": {
+        "B": "NSGs filter network traffic to and from Azure resources, unrelated to metadata tagging.",
+        "C": "Availability Sets are used to ensure VM redundancy against hardware failures within a datacenter.",
+        "D": "Subscriptions are billing and governance boundaries, which are too coarse-grained for granular department and project categorization."
+      }
+    },
+    {
+      "id": "az-900-0052",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise development team wants to run serverless backend code that responds to HTTP requests and timer triggers without provisioning or managing underlying virtual machines or infrastructure. Which Azure service should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "B",
+          "text": "Azure App Service Web Apps"
+        },
+        {
+          "id": "C",
+          "text": "Azure Functions"
+        },
+        {
+          "id": "D",
+          "text": "Azure Container Instances"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Functions is the premier serverless compute option in Azure designed specifically for executing small pieces of code (functions) triggered by various events such as HTTP requests, timers, or queue messages, abstracting away all server management.",
+      "wrongOptionNotes": {
+        "A": "Azure Virtual Machines require full management, patching, and provisioning of the underlying OS and compute resources.",
+        "B": "While App Service manages the hosting environment, it relies on dedicated or shared App Service Plans rather than purely serverless event-driven execution models.",
+        "D": "Azure Container Instances allows running containers without managing servers, but it is optimized for containerized workloads rather than lightweight function code snippets triggered by events."
+      }
+    },
+    {
+      "id": "az-900-0053",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A multinational corporation needs to deploy a scalable web application that allows users to collaborate on documents in real-time. They want to utilize containers orchestrated using Kubernetes without having to manage complex cluster infrastructure and control planes. Which Azure service is best suited?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Machine Scale Sets"
+        },
+        {
+          "id": "B",
+          "text": "Azure Container Instances"
+        },
+        {
+          "id": "C",
+          "text": "Azure App Service"
+        },
+        {
+          "id": "D",
+          "text": "Azure Kubernetes Service (AKS)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Kubernetes Service (AKS) simplifies the deployment of a managed Kubernetes cluster in Azure by offloading the operational overhead of management, automated updates, and patching to Azure while leaving you in control of your worker nodes.",
+      "wrongOptionNotes": {
+        "A": "Virtual Machine Scale Sets manage groups of load-balanced virtual machines, not container orchestrators like Kubernetes.",
+        "B": "ACI is designed for running single containers or small groups of containers quickly, but lacks advanced multi-container orchestration capabilities required for complex production Kubernetes workloads.",
+        "C": "App Service can host containers, but it does not provide native Kubernetes cluster management or standard Kubernetes API endpoints."
+      }
+    },
+    {
+      "id": "az-900-0054",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An IT department is designing a cloud architecture where they want complete control over the guest operating system, custom software installations, and networking configurations for an enterprise custom application. Which compute service provides this level of control?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure App Service"
+        },
+        {
+          "id": "B",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "C",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "D",
+          "text": "Azure Functions"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Virtual Machines represent Infrastructure as a Service (IaaS), allowing organizations to configure, manage, and maintain the operating system and application stack precisely as required.",
+      "wrongOptionNotes": {
+        "A": "App Service is a Platform as a Service (PaaS) offering where underlying infrastructure and operating systems are managed by Microsoft.",
+        "C": "Azure SQL Database is a managed database service, not a general-purpose compute instance providing OS-level control.",
+        "D": "Azure Functions is a serverless function platform that abstracts away server and operating system management completely."
+      }
+    },
+    {
+      "id": "az-900-0055",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization wants to host a public-facing corporate website using a fully managed platform where developers only need to deploy their application source code or packaged web artifacts without managing the underlying web servers or operating systems. Which Azure service should they choose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "B",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "C",
+          "text": "Azure Blob Storage"
+        },
+        {
+          "id": "D",
+          "text": "Azure App Service"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure App Service is a Platform as a Service (PaaS) offering designed specifically to host web applications, allowing developers to focus on writing code while Azure handles scaling, load balancing, and OS maintenance.",
+      "wrongOptionNotes": {
+        "A": "ExpressRoute is a private networking service used to connect on-premises networks to Microsoft cloud services, not a web hosting platform.",
+        "B": "Virtual Machines require manual configuration of web servers (like IIS or Apache), OS patching, and network routing rules.",
+        "C": "Blob Storage can host static websites, but it cannot run dynamic web applications, backend logic, or server-side scripts."
+      }
+    },
+    {
+      "id": "az-900-0056",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A software development team needs to deploy isolated, lightweight container instances quickly for a batch processing task without configuring orchestrators or managing virtual machine hosts. Which Azure service fits best?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "B",
+          "text": "Azure Blob Storage"
+        },
+        {
+          "id": "C",
+          "text": "Azure Kubernetes Service"
+        },
+        {
+          "id": "D",
+          "text": "Azure Container Instances (ACI)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Container Instances (ACI) enables developers to run containers on-demand in Azure with per-second billing and zero cluster infrastructure management, ideal for simple containerized tasks.",
+      "wrongOptionNotes": {
+        "A": "Deploying raw VMs for container execution requires manually installing a container runtime and managing the operating system.",
+        "B": "Blob Storage is an object storage solution and cannot execute container images or code.",
+        "C": "AKS introduces cluster management overhead, node pools, and operational complexity which is unnecessary for simple, quick, isolated container execution."
+      }
+    },
+    {
+      "id": "az-900-0057",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise company is looking to build a massive data warehouse to run complex analytical queries across petabytes of structured and semi-structured data using massive parallel processing (MPP). Which Azure data service should they deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Synapse Analytics"
+        },
+        {
+          "id": "B",
+          "text": "Azure Table Storage"
+        },
+        {
+          "id": "C",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cosmos DB"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Synapse Analytics integrates data integration, enterprise data warehousing, and big data analytics, allowing users to query data using serverless or dedicated resources at scale.",
+      "wrongOptionNotes": {
+        "B": "Table Storage provides key-value NoSQL storage for structured data, lacking advanced analytics and complex SQL data warehousing capabilities.",
+        "C": "Azure SQL Database is designed for transactional processing (OLTP) workloads and is not optimized for petabyte-scale analytical data warehousing.",
+        "D": "Azure Cosmos DB is a globally distributed NoSQL database built for low-latency operational apps, not large-scale relational data warehousing."
+      }
+    },
+    {
+      "id": "az-900-0058",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A gaming startup wants to build a globally distributed multiplayer game backend that guarantees low-latency access for players worldwide and offers multiple database APIs like SQL, MongoDB, and Cassandra. Which Azure service should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Blob Storage"
+        },
+        {
+          "id": "B",
+          "text": "Azure Database for PostgreSQL"
+        },
+        {
+          "id": "C",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cosmos DB"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Cosmos DB is Microsoft's globally distributed, multi-model database designed for high availability, guaranteed low latencies, and elastic scaling of throughput and storage worldwide.",
+      "wrongOptionNotes": {
+        "A": "Blob Storage is object storage for files and streams, not a database with query APIs and transactional guarantees.",
+        "B": "PostgreSQL is a relational database service that lacks native multi-model NoSQL APIs and instant turnkey multi-master global distribution.",
+        "C": "Azure SQL Database is a regional relational database service that does not provide multi-model APIs like MongoDB or Cassandra."
+      }
+    },
+    {
+      "id": "az-900-0059",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization needs a high-performance, fully managed file share in the cloud that can be mounted simultaneously using standard Server Message Block (SMB) protocol across multiple virtual machines and on-premises environments. Which Azure storage service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Disk Storage"
+        },
+        {
+          "id": "B",
+          "text": "Azure Files"
+        },
+        {
+          "id": "C",
+          "text": "Azure Blob Storage"
+        },
+        {
+          "id": "D",
+          "text": "Azure Archive Storage"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Files enables organizations to replace or supplement traditional on-premises file servers with cloud-based file shares that use standard SMB and NFS protocols without requiring code changes.",
+      "wrongOptionNotes": {
+        "A": "Azure Managed Disks provide block-level storage volumes attached to individual virtual machines, and generally cannot be shared concurrently across multiple VMs without specialized cluster configurations.",
+        "C": "Azure Blob Storage is an object store accessed via REST APIs or SDKs, not standard operating system file shares mounting via SMB.",
+        "D": "Azure Archive is an offline tier of blob storage meant for long-term retention with delayed retrieval times."
+      }
+    },
+    {
+      "id": "az-900-0060",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise wants to isolate their Azure Virtual Machines and secure communication between internal subnets while controlling inbound and outbound traffic via network security rules. Which foundational networking component must they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Traffic Manager"
+        },
+        {
+          "id": "B",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "C",
+          "text": "Azure Content Delivery Network (CDN)"
+        },
+        {
+          "id": "D",
+          "text": "Azure Virtual Network (VNet)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "An Azure Virtual Network (VNet) provides the secure foundational networking environment in Azure, allowing resources to communicate securely with each other, the internet, and on-premises networks.",
+      "wrongOptionNotes": {
+        "A": "Azure Traffic Manager is a DNS-based traffic load balancer that distributes traffic across global Azure regions.",
+        "B": "ExpressRoute connects on-premises networks to Microsoft cloud services over a private connection, but a VNet is required inside Azure as the core networking container.",
+        "C": "Azure CDN is designed for caching static web content close to users globally to reduce latency, not for internal virtual network isolation."
+      }
+    },
+    {
+      "id": "az-900-0061",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A multinational retail company experiences fluctuating web traffic patterns throughout the day and needs a solution that automatically adds or removes virtual machine instances based on CPU load to maintain high performance and cost efficiency. Which Azure feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Availability Sets"
+        },
+        {
+          "id": "B",
+          "text": "Virtual Machine Scale Sets with autoscale"
+        },
+        {
+          "id": "C",
+          "text": "Azure Load Balancer"
+        },
+        {
+          "id": "D",
+          "text": "Azure Dedicated Host"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Virtual Machine Scale Sets combine load balancing and automated scaling to handle high-performance workloads by dynamically provisioning or de-provisioning VM instances.",
+      "wrongOptionNotes": {
+        "A": "Availability Sets protect VMs against hardware failures and maintenance events across update and fault domains, but do not provide dynamic scaling based on load.",
+        "C": "Azure Load Balancer distributes incoming network traffic across backend instances, but it does not manage or scale the virtual machine instances themselves.",
+        "D": "Azure Dedicated Hosts provide physical server capacity dedicated to your organization for compliance and isolation, without native scaling capabilities."
+      }
+    },
+    {
+      "id": "az-900-0062",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An architectural team is designing a disaster recovery strategy for mission-critical applications running on Azure Virtual Machines. They need protection against complete data center failures within a single region by spreading VMs across independent power, cooling, and networking infrastructure. Which deployment construct should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Storage Accounts"
+        },
+        {
+          "id": "B",
+          "text": "Azure Regions"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Groups"
+        },
+        {
+          "id": "D",
+          "text": "Availability Zones"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Availability Zones provide high availability by partitioning a region's data centers into distinct physical zones with independent infrastructure, safeguarding applications from localized datacenter outages.",
+      "wrongOptionNotes": {
+        "A": "Storage Accounts handle data storage persistence, not virtual machine compute fault domain distribution within a data center.",
+        "B": "Regions are expansive geographic areas containing multiple datacenters, but a single region comprises multiple availability zones for localized resilience.",
+        "C": "Resource Groups are logical containers used to group Azure resources for management and billing, offering no physical hardware fault isolation."
+      }
+    },
+    {
+      "id": "az-900-0063",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A financial institution wants to ensure their custom enterprise applications comply with strict regulatory requirements stating that all cloud resources and data must reside exclusively within the Germany Central Azure region and never replicate outside that geographic boundary. What primary Azure architectural boundary enforces this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Subscription"
+        },
+        {
+          "id": "B",
+          "text": "Azure Availability Set"
+        },
+        {
+          "id": "C",
+          "text": "Azure Management Group"
+        },
+        {
+          "id": "D",
+          "text": "Azure Region"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Regions are designed to respect data residency, sovereignty, and compliance requirements by keeping customer data and compute localized within specific geographic boundaries.",
+      "wrongOptionNotes": {
+        "A": "Subscriptions are billing and governance containers that can contain resources deployed across multiple different global regions.",
+        "B": "Availability Sets organize VMs across hardware racks within a single datacenter for fault tolerance, not data residency across political borders.",
+        "C": "Management Groups help hierarchically organize subscriptions for governance and policy enforcement, but do not inherently define data residency physical boundaries."
+      }
+    },
+    {
+      "id": "az-900-0064",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise development organization wants to organize and govern their Azure subscriptions efficiently. They have multiple business units (Finance, HR, and Engineering) and need to apply Azure Policy governance rules collectively to all subscriptions belonging to the Engineering unit. Which Azure construct provides this hierarchical grouping above subscriptions?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Active Directory Tenants"
+        },
+        {
+          "id": "B",
+          "text": "Resource Groups"
+        },
+        {
+          "id": "C",
+          "text": "Management Groups"
+        },
+        {
+          "id": "D",
+          "text": "Availability Sets"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Management Groups allow organizations to structure Azure subscriptions into hierarchical trees, making it easy to apply policies and role-based access control (RBAC) uniformly across entire business units.",
+      "wrongOptionNotes": {
+        "A": "An Azure AD tenant is a dedicated identity and access management directory instance, not a hierarchical governance scope for Azure resource subscriptions.",
+        "B": "Resource groups exist underneath a single subscription to organize related individual resources like VMs and databases.",
+        "D": "Availability sets are infrastructure constructs for virtual machine fault tolerance."
+      }
+    },
+    {
+      "id": "az-900-0065",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A systems engineer needs to provision a new set of Azure resources using an automated, repeatable script that defines the infrastructure state in declarative JSON or Bicep templates. Which Azure management tool should they utilize?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Cost Management"
+        },
+        {
+          "id": "B",
+          "text": "Azure Resource Manager (ARM) templates"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor"
+        },
+        {
+          "id": "D",
+          "text": "Azure Advisor"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Resource Manager (ARM) and Bicep provide Infrastructure as Code (IaC) capabilities, allowing developers and administrators to deploy, update, and manage Azure resources consistently through declarative templates.",
+      "wrongOptionNotes": {
+        "A": "Azure Cost Management is used for tracking, analyzing, and optimizing cloud spend and budgets, not for deploying infrastructure.",
+        "C": "Azure Monitor collects telemetry, metrics, and logs from your cloud environment for observability and alerting.",
+        "D": "Azure Advisor analyzes resource configurations to provide best practice recommendations for security, performance, and cost."
+      }
+    },
+    {
+      "id": "az-900-0066",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise cloud architect is evaluating how to connect two separate Azure Virtual Networks located in different Azure regions so that virtual machines in both networks can communicate directly with each other securely over the Microsoft backbone network. Which feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure VPN Gateway"
+        },
+        {
+          "id": "B",
+          "text": "Azure Content Delivery Network"
+        },
+        {
+          "id": "C",
+          "text": "Azure Application Gateway"
+        },
+        {
+          "id": "D",
+          "text": "Virtual Network Peering"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Virtual Network Peering connects virtual networks in the same or different regions together, enabling data transfer between them with high bandwidth and low latency without traversing the public internet.",
+      "wrongOptionNotes": {
+        "A": "While VPN Gateway can connect VNets, VNet Peering provides a faster, lower-latency, and encrypted-by-default connection directly across the Microsoft backbone without requiring gateway hardware.",
+        "B": "Azure CDN caches static web assets for end-user delivery and does not connect internal cloud virtual networks.",
+        "C": "Application Gateway is a web traffic (OSI layer 7) load balancer for managing HTTP/HTTPS web application traffic, not inter-VNet routing."
+      }
+    },
+    {
+      "id": "az-900-0067",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An analytics team wants to ingest streaming data from thousands of IoT devices globally and process it in real time with minimal latency before storing it in a data lake. Which Azure service should they select for the ingestion layer?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Event Hubs"
+        },
+        {
+          "id": "B",
+          "text": "Azure Blob Storage"
+        },
+        {
+          "id": "C",
+          "text": "Azure Data Factory"
+        },
+        {
+          "id": "D",
+          "text": "Azure Queue Storage"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Event Hubs is engineered for high-throughput data streaming and ingestion scenarios, making it ideal for processing telemetry from IoT devices in real time.",
+      "wrongOptionNotes": {
+        "B": "Azure Blob Storage is an object storage solution meant for storing massive amounts of unstructured data, not for high-frequency live event ingestion.",
+        "C": "Azure Data Factory is an orchestration service for ETL and ELT data pipelines, not a real-time event ingestion engine.",
+        "D": "Azure Queue Storage is designed for simple message queuing between application components, not high-throughput real-time IoT event streaming."
+      }
+    },
+    {
+      "id": "az-900-0068",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A healthcare provider needs to deploy a relational database backend for a critical patient records system that guarantees high availability and automated patching without requiring database server administration. Which Azure service is the best fit?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cosmos DB"
+        },
+        {
+          "id": "C",
+          "text": "Azure Cache for Redis"
+        },
+        {
+          "id": "D",
+          "text": "SQL Server on Azure Virtual Machines"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure SQL Database provides fully managed relational database capabilities as a PaaS offering, eliminating the overhead of OS and database engine management.",
+      "wrongOptionNotes": {
+        "B": "Azure Cosmos DB is a globally distributed NoSQL database service, whereas the requirement specifies a relational database backend.",
+        "C": "Azure Cache for Redis is an in-memory data store used primarily for caching and session management, not as a primary relational system of record.",
+        "D": "SQL Server on Azure VMs is an infrastructure-as-a-service (IaaS) offering that requires the administrative team to manage OS patching and database maintenance."
+      }
+    },
+    {
+      "id": "az-900-0069",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise development team needs a centralized repository to store, version, and manage their proprietary Docker container images before deploying them to Azure Kubernetes Service. Which Azure service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Storage Account"
+        },
+        {
+          "id": "B",
+          "text": "Azure Artifacts"
+        },
+        {
+          "id": "C",
+          "text": "GitHub Packages"
+        },
+        {
+          "id": "D",
+          "text": "Azure Container Registry"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Container Registry allows organizations to build, store, and manage container images and artifacts across all types of Azure deployments.",
+      "wrongOptionNotes": {
+        "A": "While container images can technically be stored as blobs, a storage account lacks container-specific management features, vulnerability scanning, and native integration with container runtimes.",
+        "B": "Azure Artifacts is designed for package management (such as NuGet, npm, and Maven packages), not container images.",
+        "C": "GitHub Packages is an external service, whereas Azure Container Registry is the native Azure-managed service for container storage."
+      }
+    },
+    {
+      "id": "az-900-0070",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A company wants to build a recommendation engine that requires storing semi-structured JSON data with global distribution, flexible schema design, and guaranteed single-digit millisecond latencies. Which Azure database service should they select?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Database for PostgreSQL"
+        },
+        {
+          "id": "B",
+          "text": "Azure Table Storage"
+        },
+        {
+          "id": "C",
+          "text": "Azure SQL Database"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cosmos DB"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Cosmos DB offers turnkey global distribution, elastic scaling of throughput and storage, and support for multiple NoSQL APIs, matching the requirements perfectly.",
+      "wrongOptionNotes": {
+        "A": "Azure Database for PostgreSQL is a relational database service which is not optimized for flexible, schemaless document storage at global scale.",
+        "B": "Azure Table Storage is a key-value store with simpler querying capabilities and lacks the advanced global distribution and multi-model features of Cosmos DB.",
+        "C": "Azure SQL Database is a relational database management system, which is less suited for rapid schema evolution typical of NoSQL recommendation engines."
+      }
+    },
+    {
+      "id": "az-900-0071",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise requires a centralized logging and monitoring solution that can collect, query, and analyze telemetry data from both Azure resources and on-premises servers. Which Azure service fulfills this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "B",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor"
+        },
+        {
+          "id": "D",
+          "text": "Azure Service Health"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Monitor provides comprehensive infrastructure and application monitoring, aggregating logs and metrics for analysis and alerting.",
+      "wrongOptionNotes": {
+        "A": "Azure Advisor is a configuration and best-practices recommendation tool, not a log collection and analysis platform.",
+        "B": "Azure Bastion is a fully managed PaaS service that provides secure RDP and SSH connectivity to virtual machines.",
+        "D": "Azure Service Health notifies users about Azure service outages and planned maintenance affecting their specific subscriptions."
+      }
+    },
+    {
+      "id": "az-900-0072",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A global media organization needs to deliver high-bandwidth video content to end users worldwide with minimum latency and high transfer speeds. Which Azure networking service should be implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "B",
+          "text": "Azure Load Balancer"
+        },
+        {
+          "id": "C",
+          "text": "Azure Traffic Manager"
+        },
+        {
+          "id": "D",
+          "text": "Azure Content Delivery Network"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure CDN uses a global network of edge servers to cache content close to end users, ensuring high performance and low-latency delivery.",
+      "wrongOptionNotes": {
+        "A": "Azure ExpressRoute creates private connections between on-premises datacenters and Azure, not optimized for public internet video delivery to global end users.",
+        "B": "Azure Load Balancer operates at layer 4 for high availability within a region, rather than providing global content delivery.",
+        "C": "Azure Traffic Manager is a DNS-based traffic load balancer that directs incoming DNS requests, but it does not cache or distribute media content itself."
+      }
+    },
+    {
+      "id": "az-900-0073",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An IT team needs to connect their primary on-premises corporate datacenter to their Azure Virtual Network over a secure, encrypted tunnel across the public internet. Which Azure service should they deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure VPN Gateway"
+        },
+        {
+          "id": "B",
+          "text": "Azure Application Gateway"
+        },
+        {
+          "id": "C",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "D",
+          "text": "Azure Bastion"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure VPN Gateway is designed to establish secure, cross-premises site-to-site VPN connections over the public internet.",
+      "wrongOptionNotes": {
+        "B": "Azure Application Gateway is a layer 7 web traffic load balancer used for managing HTTP/HTTPS traffic to web applications.",
+        "C": "Azure ExpressRoute provides private, dedicated connections that do not travel over the public internet.",
+        "D": "Azure Bastion provides secure administrative access to Azure VMs via browser and SSH/RDP, not site-to-site datacenter connections."
+      }
+    },
+    {
+      "id": "az-900-0074",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization is deploying a multi-tier web application and needs a layer 7 load balancer that supports cookie-based session affinity, SSL termination, and URL path-based routing. Which Azure service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Front Door"
+        },
+        {
+          "id": "B",
+          "text": "Azure Load Balancer"
+        },
+        {
+          "id": "C",
+          "text": "Azure Traffic Manager"
+        },
+        {
+          "id": "D",
+          "text": "Azure Application Gateway"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Application Gateway is specifically engineered for Layer 7 web traffic management, offering advanced routing features like SSL termination and path-based routing.",
+      "wrongOptionNotes": {
+        "A": "While Azure Front Door offers Layer 7 capabilities, it is a global cloud content delivery network and layer 7 load balancer, whereas regional web apps typically use Application Gateway.",
+        "B": "Azure Load Balancer operates at Layer 4 (Transport layer) and does not inspect HTTP headers, URL paths, or provide cookie-based affinity.",
+        "C": "Azure Traffic Manager is a DNS-based traffic load balancer that operates globally, rather than serving as a regional application delivery controller."
+      }
+    },
+    {
+      "id": "az-900-0075",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A financial company needs to store sensitive audit logs in Azure Blob Storage such that the data cannot be modified or deleted by any user, including root accounts, for a mandated retention period of five years. Which storage feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Immutable storage with time-based retention"
+        },
+        {
+          "id": "B",
+          "text": "Azure Storage soft delete"
+        },
+        {
+          "id": "C",
+          "text": "Storage Account Access Keys rotation"
+        },
+        {
+          "id": "D",
+          "text": "Blob versioning"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Immutable storage with time-based retention locks blob data against modification and deletion, satisfying strict regulatory WORM requirements.",
+      "wrongOptionNotes": {
+        "B": "Soft delete allows deleted blobs or snapshots to be recovered within a specified retention period, but it does not prevent intentional deletion or modification.",
+        "C": "Key rotation changes authentication credentials but does not prevent authorized or compromised identities from modifying stored data.",
+        "D": "Blob versioning automatically maintains previous versions of an object when modified or deleted, but it does not enforce WORM compliance."
+      }
+    },
+    {
+      "id": "az-900-0076",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise wants to provision a set of Azure resources by writing declarative configuration files that can be version-controlled in Git and executed repeatedly to ensure infrastructure consistency. Which Azure tool natively supports this infrastructure-as-code approach?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Bicep"
+        },
+        {
+          "id": "B",
+          "text": "Azure Portal"
+        },
+        {
+          "id": "C",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "D",
+          "text": "Azure CLI interactive shell"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Bicep is Microsoft's recommended declarative language for deploying Azure resources, offering a simpler syntax than ARM templates while maintaining full native capability.",
+      "wrongOptionNotes": {
+        "B": "The Azure Portal provides a graphical user interface and is not designed for repeatable, declarative infrastructure-as-code pipelines.",
+        "C": "Azure Bastion is a networking service for secure VM connectivity, unrelated to infrastructure provisioning.",
+        "D": "Azure CLI is an imperative command-line tool executed interactively or in scripts, rather than a declarative infrastructure-as-code deployment engine."
+      }
+    },
+    {
+      "id": "az-900-0077",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A multinational corporation needs to enforce organizational compliance by automatically preventing the creation of unauthorized Azure resource types across multiple subscriptions. Which Azure governance feature should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Cost Management"
+        },
+        {
+          "id": "B",
+          "text": "Azure Role-Based Access Control"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Lock"
+        },
+        {
+          "id": "D",
+          "text": "Azure Policy"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Policy helps enforce corporate standards and assess compliance at scale by defining rules that govern resource properties and configurations.",
+      "wrongOptionNotes": {
+        "A": "Azure Cost Management tracks spending and budgets, but does not enforce compliance or restrict resource creation.",
+        "B": "Azure RBAC manages *who* has access to perform actions on resources, whereas Azure Policy controls *what* configurations and resource types are allowed.",
+        "C": "Resource locks prevent accidental deletion or modification of specific existing resources, rather than defining compliance rules across subscriptions."
+      }
+    },
+    {
+      "id": "az-900-0078",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An organization running mission-critical enterprise applications in Azure wants a unified cloud management platform that enables automated compliance auditing, security posture tracking, and threat protection across their hybrid cloud environment. Which service should they adopt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Key Vault"
+        },
+        {
+          "id": "B",
+          "text": "Azure Firewall"
+        },
+        {
+          "id": "C",
+          "text": "Azure DDoS Protection"
+        },
+        {
+          "id": "D",
+          "text": "Microsoft Defender for Cloud"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Microsoft Defender for Cloud provides tools to harden security posture, track regulatory compliance, and protect workloads across Azure, on-premises, and other clouds.",
+      "wrongOptionNotes": {
+        "A": "Azure Key Vault is designed for securely storing secrets, keys, and certificates, not for evaluating compliance or cloud security posture.",
+        "B": "Azure Firewall is a managed network security service that protects Azure Virtual Network resources, not a holistic security posture management platform.",
+        "C": "Azure DDoS Protection defends applications against Distributed Denial of Service attacks on the network layer."
+      }
+    },
+    {
+      "id": "az-900-0079",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An IT administrator needs to securely store and manage application connection strings, database passwords, and TLS/SSL certificates centrally, ensuring access is strictly audited and restricted to authorized applications. Which Azure service is designed for this purpose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Database for PostgreSQL"
+        },
+        {
+          "id": "B",
+          "text": "Azure Storage Account"
+        },
+        {
+          "id": "C",
+          "text": "Azure Key Vault"
+        },
+        {
+          "id": "D",
+          "text": "Azure Bastion"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Key Vault centralizes application secrets management, reducing the risk of secrets leaking through application source code or configuration files.",
+      "wrongOptionNotes": {
+        "A": "A relational database is not built for managing cryptographic keys and application secrets.",
+        "B": "Azure Storage accounts hold general files and data blobs and are not optimized for fine-grained secrets management or cryptographic operations.",
+        "D": "Azure Bastion provides secure SSH and RDP connectivity to virtual machines, not secrets management."
+      }
+    },
+    {
+      "id": "az-900-0080",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A startup company is migrating legacy applications to Azure and wants to estimate their expected monthly cloud expenditure before provisioning any infrastructure. Which Azure tool should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "B",
+          "text": "Azure Total Cost of Ownership Calculator"
+        },
+        {
+          "id": "C",
+          "text": "Azure Pricing Calculator"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cost Management"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Azure Pricing Calculator is a web-based tool used to estimate the cost of specific Azure services and configurations before creating them.",
+      "wrongOptionNotes": {
+        "A": "Azure Advisor provides recommendations for high availability, security, performance, and cost optimization on existing resources.",
+        "B": "The TCO Calculator compares on-premises datacenter costs against Azure cloud costs over a multi-year period, rather than providing granular resource-by-resource pricing.",
+        "D": "Azure Cost Management analyzes and manages actual spending for resources that have already been provisioned in an active subscription."
+      }
+    },
+    {
+      "id": "az-900-0081",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An enterprise development team needs to collaborate on source code repositories, track project work items, and automate continuous integration and deployment (CI/CD) pipelines to Azure. Which comprehensive suite of developer services should they utilize?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Resource Manager"
+        },
+        {
+          "id": "B",
+          "text": "Azure DevOps"
+        },
+        {
+          "id": "C",
+          "text": "Azure App Service"
+        },
+        {
+          "id": "D",
+          "text": "Azure Logic Apps"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure DevOps offers a comprehensive set of cloud-hosted tools for planning, developing, testing, and deploying software applications reliably.",
+      "wrongOptionNotes": {
+        "A": "Azure Resource Manager is the deployment and management service for Azure infrastructure, not a software development lifecycle platform.",
+        "C": "Azure App Service is a fully managed PaaS platform for hosting web apps, APIs, and mobile backends, not a developer collaboration suite.",
+        "D": "Azure Logic Apps is an integration service for building automated workflows and business processes, not a developer collaboration tool."
+      }
+    },
+    {
+      "id": "az-900-0082",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An e-commerce company is modernizing their flagship web application. They need to host the application front-end and back-end logic without managing underlying virtual machine operating systems, scaling infrastructure manually, or configuring web server software. Which Azure service should the team choose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Machines"
+        },
+        {
+          "id": "B",
+          "text": "Azure App Service"
+        },
+        {
+          "id": "C",
+          "text": "Azure Container Instances"
+        },
+        {
+          "id": "D",
+          "text": "Azure Kubernetes Service"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure App Service is the ideal PaaS choice for building and hosting web apps without managing infrastructure. It handles scaling, OS maintenance, and load balancing automatically.",
+      "wrongOptionNotes": {
+        "A": "Azure Virtual Machines provide infrastructure as a service (IaaS) which requires the team to manage operating systems, patching, and server configuration.",
+        "C": "While Azure Container Instances offer serverless containers, App Service provides a more comprehensive, integrated PaaS solution specifically tailored for multi-tier web applications with built-in deployment slots and scaling.",
+        "D": "Azure Kubernetes Service introduces complex cluster management and orchestration overhead that is unnecessary for a straightforward web application modernization."
+      }
+    },
+    {
+      "id": "az-900-0083",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A retail enterprise is planning to deploy a distributed business-critical application across two Azure regions to ensure high availability and business continuity. They need to select the appropriate scope for resource management, billing, and access control. Which hierarchical structure in Azure represents the highest organizational boundary?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resource Group"
+        },
+        {
+          "id": "B",
+          "text": "Management Group"
+        },
+        {
+          "id": "C",
+          "text": "Azure Tenant"
+        },
+        {
+          "id": "D",
+          "text": "Azure Subscription"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Azure tenant is the highest level in the Azure administrative hierarchy, representing a dedicated and trusted instance of Microsoft Entra ID associated with an organization.",
+      "wrongOptionNotes": {
+        "A": "A resource group is a fundamental container that holds related resources for an Azure solution, existing at a much lower level than the tenant.",
+        "B": "Management groups help manage access, policy, and compliance across multiple Azure subscriptions, but they sit above subscriptions rather than being the highest organizational container for all resource deployments.",
+        "D": "An Azure subscription is a logical unit used to group resources for billing and governance, but it is subordinate to the Azure tenant."
+      }
+    },
+    {
+      "id": "az-900-0084",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "A financial services organization is setting up a new Azure environment and needs to establish strict governance boundaries, consolidate billing, and apply centralized security policies across multiple subsidiary business units. Which Azure component should they create to group multiple subscriptions for policy and access management?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Virtual Network"
+        },
+        {
+          "id": "B",
+          "text": "Resource Group"
+        },
+        {
+          "id": "C",
+          "text": "Availability Set"
+        },
+        {
+          "id": "D",
+          "text": "Azure Management Group"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Management Groups enable hierarchical governance by allowing administrators to organize subscriptions and apply Azure policies and access controls efficiently across them.",
+      "wrongOptionNotes": {
+        "A": "An Azure Virtual Network is a networking construct used to enable secure communication between Azure resources, not an administrative governance container.",
+        "B": "Resource groups exist within a single subscription and cannot span multiple subscriptions for centralized governance.",
+        "C": "An availability set is a logical deployment grouping used to ensure high availability for virtual machines against hardware failures."
+      }
+    },
+    {
+      "id": "az-900-0085",
+      "domain": "Describe Azure Architecture and Services",
+      "question": "An operations team needs to deploy a set of Windows virtual machines that must remain available during planned hardware maintenance events, ensuring that at least some virtual machines are running and accessible at all times. Which Azure architecture feature should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Availability Zone"
+        },
+        {
+          "id": "B",
+          "text": "Azure Load Balancer"
+        },
+        {
+          "id": "C",
+          "text": "Availability Set"
+        },
+        {
+          "id": "D",
+          "text": "Azure Traffic Manager"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Availability Sets are used to isolate virtual machines across distinct fault and update domains, protecting them from simultaneous downtime during infrastructure updates and hardware failures.",
+      "wrongOptionNotes": {
+        "A": "While Availability Zones protect against datacenter-level failures, Availability Sets are specifically designed to distribute virtual machines across different update and fault domains within a single datacenter rack layout.",
+        "B": "Azure Load Balancer distributes incoming network traffic across backend instances, but it does not manage underlying hardware fault or update domains for virtual machines.",
+        "D": "Azure Traffic Manager is a DNS-based traffic load balancer that operates globally across regions, not within a single region for virtual machine hardware maintenance isolation."
+      }
+    },
+    {
+      "id": "az-900-0086",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company is planning to migrate a multi-tier web application to Azure. The security team mandates that production virtual machines must be strictly isolated from development virtual machines, and no accidental cross-environment network traffic should ever occur. Which Azure resource hierarchy component should you implement to enforce this mandatory structural separation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resource groups"
+        },
+        {
+          "id": "B",
+          "text": "Management groups"
+        },
+        {
+          "id": "C",
+          "text": "Azure Regions"
+        },
+        {
+          "id": "D",
+          "text": "Subscriptions"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure subscriptions serve as a primary boundary for billing, management, and scale. Using separate subscriptions for production and non-production environments is a best practice to ensure strict security isolation and clear administrative boundaries.",
+      "wrongOptionNotes": {
+        "A": "Resource groups organize related resources for a specific solution, but they do not provide the strict financial, security, and administrative boundary required between enterprise environments.",
+        "B": "Management groups are used to scope governance and compliance policies across multiple subscriptions, not for physical or direct network isolation of workloads.",
+        "C": "Azure regions define the geographic location of data centers, which does not guarantee logical or security isolation between different environment types."
+      }
+    },
+    {
+      "id": "az-900-0087",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An enterprise organization with hundreds of Azure subscriptions needs to apply a naming convention policy automatically to all subscriptions to maintain resource consistency. What is the most effective construct to achieve centralized governance across this enterprise?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Role-Based Access Control (RBAC)"
+        },
+        {
+          "id": "B",
+          "text": "Resource groups"
+        },
+        {
+          "id": "C",
+          "text": "Azure Blueprints"
+        },
+        {
+          "id": "D",
+          "text": "Management groups"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Management groups provide a governance scope above subscriptions. By organizing subscriptions into management groups, you can apply Azure Policy and Azure RBAC controls that automatically inherit to all subordinate subscriptions and resource groups.",
+      "wrongOptionNotes": {
+        "A": "RBAC handles authorization and permissions to resources, not the centralized application of structural naming convention policies.",
+        "B": "Resource groups exist within a single subscription and cannot be used to manage hundreds of subscriptions centrally.",
+        "C": "While blueprints can orchestrate the deployment of templates and policies, management groups are the structural hierarchy layer required for enterprise-wide policy inheritance."
+      }
+    },
+    {
+      "id": "az-900-0088",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your development team requires the ability to create and configure storage accounts and virtual networks in a specific sandbox subscription, but they must be explicitly prohibited from deleting any existing production resources. Which mechanism should you use to fulfill this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "B",
+          "text": "Management groups"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Manager (ARM) locks"
+        },
+        {
+          "id": "D",
+          "text": "Azure Role-Based Access Control (RBAC)"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Role-Based Access Control (RBAC) enables precise access management for Azure resources. By assigning appropriate roles, administrators can grant users the permissions they need to perform specific tasks (like creating storage accounts) while restricting other actions (like deletion).",
+      "wrongOptionNotes": {
+        "A": "Azure Policy audits or enforces resource properties, but assigning custom deny rules is better handled via explicit permission restrictions.",
+        "B": "Management groups organize subscriptions and apply policies, but they do not assign specific data-plane or management-plane action permissions to users.",
+        "C": "Resource locks prevent accidental deletion or modification of specific resources, but they apply globally to users rather than granting granular creation rights while denying deletion."
+      }
+    },
+    {
+      "id": "az-900-0089",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A production Azure SQL Database contains highly sensitive financial information. Compliance regulations dictate that no administrator, even with Owner privileges at the subscription level, should be able to accidentally delete this critical database. Which feature should you implement immediately?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Policy deny assignment"
+        },
+        {
+          "id": "B",
+          "text": "A ReadOnly resource lock"
+        },
+        {
+          "id": "C",
+          "text": "A CanNotDelete resource lock"
+        },
+        {
+          "id": "D",
+          "text": "Just-In-Time (JIT) VM access"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Resource locks apply across all users and roles to prevent accidental deletion or modification of critical resources. A 'CanNotDelete' lock allows read and modify operations while blocking deletion requests.",
+      "wrongOptionNotes": {
+        "A": "While an Azure Policy can deny certain actions, resource locks are specifically designed to prevent accidental deletions and modifications regardless of user permissions.",
+        "B": "A ReadOnly lock would prevent authorized applications from writing data to the database, disrupting normal business operations.",
+        "D": "JIT access is used for controlling inbound network traffic to Virtual Machines, not for preventing database deletion."
+      }
+    },
+    {
+      "id": "az-900-0090",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization wants to ensure that all newly created virtual machines across all subscriptions are deployed only within the 'East US' or 'West US' regions to comply with corporate data residency policies. What is the most efficient native tool to enforce this requirement automatically?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "C",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "D",
+          "text": "Azure Cost Management"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Policy evaluates resources and enforces governance rules at scale. By using built-in policies such as 'Allowed locations', administrators can block the creation of resources in unauthorized regions automatically.",
+      "wrongOptionNotes": {
+        "B": "Azure Advisor provides recommendations for security, performance, and cost, but it does not proactively block non-compliant resource deployments.",
+        "C": "Azure Service Health notifies you about Azure service outages, planned maintenance, and health advisories, rather than enforcing regional compliance.",
+        "D": "Azure Cost Management tracks spending and usage, not geographic compliance of resource deployments."
+      }
+    },
+    {
+      "id": "az-900-0091",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An enterprise operations team needs a single dashboard that provides personalized recommendations for high availability, security vulnerabilities, performance optimizations, and cost reduction across all active subscriptions. Which Azure tool provides these tailored insights?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Status"
+        },
+        {
+          "id": "B",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "C",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "D",
+          "text": "Azure Monitor"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Advisor is a built-in cloud consultant that helps you optimize your Azure deployments for cost, security, reliability, and performance by analyzing your resource configurations and usage telemetry.",
+      "wrongOptionNotes": {
+        "A": "Azure Status provides global information on Azure service health and outages, not internal resource recommendations.",
+        "B": "Azure Policy enforces and audits compliance rules, rather than analyzing configurations to provide performance or cost optimization advice.",
+        "D": "Azure Monitor collects telemetry data like metrics and logs, but it does not provide proactive optimization recommendations across all pillars."
+      }
+    },
+    {
+      "id": "az-900-0092",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your development team needs to deploy a standardized environment consisting of a resource group, a virtual network, a subnet, and a predefined set of role assignments repeatedly across multiple client projects. Which Azure feature should you use to automate and package this repeatable deployment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Blueprints"
+        },
+        {
+          "id": "B",
+          "text": "Azure DDoS Protection"
+        },
+        {
+          "id": "C",
+          "text": "Azure Cost Management"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Health"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Blueprints allow orchestration of artifact deployments such as ARM templates, RBAC assignments, and policies to maintain consistency and compliance when setting up new environments.",
+      "wrongOptionNotes": {
+        "B": "Azure DDoS Protection defends applications against distributed denial of service attacks.",
+        "C": "Azure Cost Management is dedicated to monitoring and optimizing cloud spending, not resource deployments.",
+        "D": "Azure Resource Health helps diagnose service problems affecting specific cloud resources, not template orchestration."
+      }
+    },
+    {
+      "id": "az-900-0093",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Finance department stakeholders need to analyze cloud spending trends, create department-specific budgets, and receive automated email alerts when spending exceeds 80% of the allocated monthly threshold. Which tool should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Invoice billing portal"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor cost recommendations"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor action groups"
+        },
+        {
+          "id": "D",
+          "text": "Azure Budgets in Cost Management"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Cost Management + Billing includes robust budget management features that allow organizations to monitor spending against defined limits and configure alert notifications for financial accountability.",
+      "wrongOptionNotes": {
+        "A": "The billing portal displays past invoices and payment profiles, but it does not support active budget creation and threshold alerts.",
+        "B": "Azure Advisor suggests ways to reduce costs (e.g., resizing idle VMs), but it does not manage spending thresholds or budget alert notifications.",
+        "C": "While action groups handle notification routing, they are triggered by monitoring metrics and logs rather than native cost threshold management."
+      }
+    },
+    {
+      "id": "az-900-0094",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An auditor needs to verify whether all virtual machines in the production subscription have Azure Disk Encryption enabled to comply with data-at-rest policies. Which tool provides a single dashboard showing compliance status against assigned governance rules?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Security Center / Microsoft Defender for Cloud"
+        },
+        {
+          "id": "B",
+          "text": "Azure Log Analytics workspace"
+        },
+        {
+          "id": "C",
+          "text": "Azure Pricing Calculator"
+        },
+        {
+          "id": "D",
+          "text": "Azure Service Trust Portal"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Microsoft Defender for Cloud (formerly Azure Security Center) assesses your cloud resources for security issues and compliance posture, providing direct visibility into whether resources like virtual machines comply with encryption and security baselines.",
+      "wrongOptionNotes": {
+        "B": "Log Analytics stores log data queried via Kusto Query Language, but it does not provide out-of-the-box regulatory compliance dashboards without custom queries.",
+        "C": "The Pricing Calculator is used for estimating the cost of Azure services prior to deployment.",
+        "D": "The Service Trust Portal provides audit reports and compliance documentation regarding Microsoft's cloud operations, not your internal resource configurations."
+      }
+    },
+    {
+      "id": "az-900-0095",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your team needs to programmatically deploy infrastructure across multiple subscriptions using a declarative syntax where you define the desired state of resources in a JSON file without writing imperative script commands. What should you use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure PowerShell modules"
+        },
+        {
+          "id": "B",
+          "text": "Azure Resource Manager (ARM) templates"
+        },
+        {
+          "id": "C",
+          "text": "Azure CLI deployment scripts"
+        },
+        {
+          "id": "D",
+          "text": "Azure Activity Log queries"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "ARM templates provide infrastructure-as-code capabilities using declarative JSON files, ensuring that deployments are consistent, repeatable, and managed as code.",
+      "wrongOptionNotes": {
+        "A": "Azure PowerShell executes procedural cmdlets to manage resources step by step.",
+        "C": "Azure CLI uses imperative command-line instructions rather than declarative template definitions.",
+        "D": "Activity Log queries are used for auditing historical control-plane operations, not for infrastructure deployment."
+      }
+    },
+    {
+      "id": "az-900-0096",
+      "domain": "Describe Azure Management and Governance",
+      "question": "You need to collect performance counters, OS event logs, and custom log files from both Azure virtual machines and on-premises physical servers into a central repository for analysis and alerting. Which Azure service should you deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Application Insights"
+        },
+        {
+          "id": "B",
+          "text": "Azure Storage Account blob container"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor Log Analytics workspace"
+        },
+        {
+          "id": "D",
+          "text": "Azure Event Hubs"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Monitor uses Log Analytics workspaces to store and query log and performance data collected from cloud and on-premises resources via monitoring agents.",
+      "wrongOptionNotes": {
+        "A": "Application Insights is tailored for application-level performance monitoring and telemetry, rather than general OS-level event logs across hybrid servers.",
+        "B": "Blob storage is a raw object store and does not provide built-in telemetry ingestion, indexing, or log querying features.",
+        "D": "Event Hubs is a big data streaming platform designed for high-throughput telemetry pipelines, not direct out-of-the-box OS log collection and querying."
+      }
+    },
+    {
+      "id": "az-900-0097",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your development team has accidentally deleted a critical staging database. The management team wants to review who executed the deletion command, the exact timestamp, and the IP address from which the request originated. Which Azure feature should you inspect?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Network Watcher IP flow verify"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cost Management cost exports"
+        },
+        {
+          "id": "C",
+          "text": "Azure Activity Log"
+        },
+        {
+          "id": "D",
+          "text": "Azure Application Insights"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Azure Activity Log records all management-plane operations performed on Azure resources, serving as the definitive audit trail for tracking who made changes and when.",
+      "wrongOptionNotes": {
+        "A": "IP flow verify checks packet routing rules for virtual machines to troubleshoot network connectivity issues.",
+        "B": "Cost exports provide data regarding financial billing and usage quantities, not administrative audit trails.",
+        "D": "Application Insights tracks application performance and user telemetry, not Azure control-plane subscription management events."
+      }
+    },
+    {
+      "id": "az-900-0098",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An operations engineer needs to configure automated email and SMS notifications whenever CPU utilization on a key database virtual machine exceeds 90% for more than 15 minutes. Which Azure Monitor component should be configured to handle the alert notification dispatch?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Diagnostic settings"
+        },
+        {
+          "id": "B",
+          "text": "Alert processing rules"
+        },
+        {
+          "id": "C",
+          "text": "Action groups"
+        },
+        {
+          "id": "D",
+          "text": "Log Analytics query packs"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Action groups in Azure Monitor bundle notification channels (email, SMS, voice, push) and automated actions (webhooks, automation runbooks) to respond when metric or log alerts are triggered.",
+      "wrongOptionNotes": {
+        "A": "Diagnostic settings route resource logs and metrics to destinations like storage accounts or Event Hubs, not alert notifications.",
+        "B": "Alert processing rules are used to suppress or route notifications during specific maintenance windows, not to define the notification channels themselves.",
+        "D": "Query packs store and share saved log queries, not notification dispatch configurations."
+      }
+    },
+    {
+      "id": "az-900-0099",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization wants to restrict access to the Azure portal so that administrators can only sign in from corporate office IP address ranges during standard business hours. Which Azure feature should you use to enforce this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Microsoft Entra Conditional Access"
+        },
+        {
+          "id": "B",
+          "text": "Azure Network Security Groups (NSGs)"
+        },
+        {
+          "id": "C",
+          "text": "Azure Firewall"
+        },
+        {
+          "id": "D",
+          "text": "Azure Bastion"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Microsoft Entra Conditional Access (formerly Azure AD Conditional Access) acts as an evaluation engine at authentication time, allowing you to enforce policies based on location, risk, device compliance, and network boundaries.",
+      "wrongOptionNotes": {
+        "B": "NSGs filter network traffic to and from Azure virtual machines and subnets, not access to the Azure management portal.",
+        "C": "Azure Firewall controls network-layer and application-layer traffic for virtual networks, not SaaS cloud management portal authentication.",
+        "D": "Azure Bastion provides secure RDP and SSH connectivity to virtual machines, not identity-based portal sign-in policies."
+      }
+    },
+    {
+      "id": "az-900-0100",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company requires a centralized location where all regulatory compliance audit reports, security evaluations, and independent third-party assessments of Microsoft Azure cloud services can be downloaded by internal auditors. Which Azure resource should you direct them to?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Quickstart Templates gallery"
+        },
+        {
+          "id": "B",
+          "text": "Azure Marketplace"
+        },
+        {
+          "id": "C",
+          "text": "Microsoft Service Trust Portal"
+        },
+        {
+          "id": "D",
+          "text": "Microsoft Learn documentation"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Microsoft Service Trust Portal hosts audit reports, compliance guides, and regulatory documentation detailing how Microsoft maintains cloud security, privacy, and compliance.",
+      "wrongOptionNotes": {
+        "A": "The Quickstart Templates gallery provides community-contributed ARM templates for deploying infrastructure.",
+        "B": "Azure Marketplace is an online store for buying and deploying certified software applications and solutions built for Azure.",
+        "D": "Microsoft Learn provides technical training modules and documentation, not official compliance audit reports."
+      }
+    },
+    {
+      "id": "az-900-0101",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company is establishing a cloud governance model for multiple Azure subscriptions. You need to group several related subscriptions together to centrally manage access control, compliance policies, and billing, while ensuring that these subscriptions share a common hierarchical inheritance root. Which Azure feature should you implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resource groups"
+        },
+        {
+          "id": "B",
+          "text": "Management groups"
+        },
+        {
+          "id": "C",
+          "text": "Azure Enterprise Agreements"
+        },
+        {
+          "id": "D",
+          "text": "Azure Active Directory tenants"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure management groups allow you to hierarchically manage access, policies, and compliance across multiple Azure subscriptions. Subscriptions belonging to a management group automatically inherit the governance conditions applied to it.",
+      "wrongOptionNotes": {
+        "A": "Resource groups exist within a single subscription and are used to manage collections of resources, not multiple subscriptions.",
+        "C": "An Enterprise Agreement is a licensing and billing structure, not a technical management construct for hierarchical governance and access control.",
+        "D": "An Azure AD tenant represents an entire organization and trust boundary, but it is not a management structure designed specifically for organizing subscriptions and applying inheritance policies."
+      }
+    },
+    {
+      "id": "az-900-0102",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your security operations team needs to receive instant alerts whenever any user changes an access control role (IAM) assignment within the production subscription. Which Azure tool should you use to track and alert on these control-plane operations?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Application Insights"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "C",
+          "text": "Azure Activity Log"
+        },
+        {
+          "id": "D",
+          "text": "Azure Monitor Metrics"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "The Azure Activity Log provides insight into subscription-level operations (control plane), such as when resources are modified, deleted, or when security permissions are altered, allowing for integration with alert rules.",
+      "wrongOptionNotes": {
+        "A": "Application Insights is an application performance management (APM) service used for monitoring live web applications, not subscription-level auditing.",
+        "B": "Azure Advisor provides proactive best practice recommendations for cost, security, reliability, operational excellence, and performance, not real-time event alerts.",
+        "D": "Azure Monitor Metrics track numerical performance data and telemetry from resources, not administrative control-plane audit events."
+      }
+    },
+    {
+      "id": "az-900-0103",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization wants to restrict resource deployment to only approved regions (e.g., East US and West US) to comply with data residency laws, while automatically auditing and blocking any non-compliant deployments. Which Azure governance feature should you use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "B",
+          "text": "Azure Role-Based Access Control (Azure RBAC)"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Lock"
+        },
+        {
+          "id": "D",
+          "text": "Azure Policy"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Policy is used to create, assign, and manage policies that enforce rules over your resources, ensuring compliance with corporate standards and service level agreements by evaluating resource properties during and after deployment.",
+      "wrongOptionNotes": {
+        "A": "Azure Service Health provides information about Azure service outages and planned maintenance, not governance policies.",
+        "B": "Azure RBAC manages who has access to perform operations, but it cannot restrict actions based on specific property values like deployment regions.",
+        "C": "Resource locks prevent accidental deletion or modification of specific resources, but they do not enforce structural configuration rules or region restrictions."
+      }
+    },
+    {
+      "id": "az-900-0104",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your development team needs to deploy identical application architectures across multiple environments (Dev, Test, Prod) repeatedly and reliably. The deployment must use a declarative template language that defines the infrastructure state. Which Azure service should you use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "B",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "C",
+          "text": "Azure CLI"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Manager (ARM) templates"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Resource Manager templates (and their Bicep equivalent) allow you to declaratively define the infrastructure required for your solution through JSON files, ensuring consistent, repeatable deployments.",
+      "wrongOptionNotes": {
+        "A": "Azure Bastion is a fully managed PaaS service that provides secure and seamless RDP/SSH connectivity to virtual machines.",
+        "B": "Azure ExpressRoute lets you create private connections between Azure datacenters and infrastructure on your premises.",
+        "C": "Azure CLI is an imperative command-line tool used to run scripts, rather than a declarative infrastructure-as-code template engine."
+      }
+    },
+    {
+      "id": "az-900-0105",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company needs a centralized portal that aggregates real-time security posture data, vulnerability assessments, and automated hardening recommendations across all Azure workloads and hybrid servers. Which Azure service should you deploy?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "B",
+          "text": "Azure Monitor"
+        },
+        {
+          "id": "C",
+          "text": "Azure Cost Management + Billing"
+        },
+        {
+          "id": "D",
+          "text": "Microsoft Defender for Cloud"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Microsoft Defender for Cloud is a cloud workload protection platform (CWPP) and cloud security posture management (CSPM) solution that strengthens the security posture of your data centers and provides threat protection.",
+      "wrongOptionNotes": {
+        "A": "Azure Service Health notifies you about Azure service disruptions and guidance during outages.",
+        "B": "While Azure Monitor collects telemetry, Microsoft Defender for Cloud is the dedicated security center for vulnerability assessment and compliance posture.",
+        "C": "Azure Cost Management + Billing is dedicated to tracking, analyzing, and optimizing cloud spending and budgets."
+      }
+    },
+    {
+      "id": "az-900-0106",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An administrator wants to prevent production virtual machines in a critical resource group from being accidentally deleted by junior operations engineers, while still allowing them to start, stop, and configure the VMs. Which tool should be applied?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A CanNotDelete resource lock"
+        },
+        {
+          "id": "B",
+          "text": "Revoking Owner permissions"
+        },
+        {
+          "id": "C",
+          "text": "A ReadOnly resource lock"
+        },
+        {
+          "id": "D",
+          "text": "A custom Azure Policy with deny effect"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure resource locks allow administrators to lock down subscriptions, resource groups, or resources to prevent other users in your organization from accidentally deleting or modifying critical resources. The CanNotDelete lock permits read and modify operations but blocks deletion.",
+      "wrongOptionNotes": {
+        "B": "Removing permissions altogether is overly restrictive if engineers still need to modify VM configurations.",
+        "C": "A ReadOnly lock would prevent junior engineers from performing operational actions like starting, stopping, or modifying configurations.",
+        "D": "While a policy could technically deny deletions, resource locks are the standard, direct mechanism for protecting specific individual resources or resource groups from deletion."
+      }
+    },
+    {
+      "id": "az-900-0107",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization requires that all resources created within any subscription must include a specific 'CostCenter' tag for internal chargeback accounting. Which feature can enforce this tagging requirement upon resource creation?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor"
+        },
+        {
+          "id": "C",
+          "text": "Azure Cost Management budgets"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Explorer"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Policy includes built-in policy definitions to enforce tagging requirements, such as requiring specific tag names and values or automatically appending tags to newly created resources.",
+      "wrongOptionNotes": {
+        "B": "Azure Advisor suggests best practices after resources are created, but it cannot proactively enforce tagging rules during deployment.",
+        "C": "Budgets track financial spending limits against resource groups or subscriptions, but they do not enforce tagging policies.",
+        "D": "Azure Resource Explorer is a diagnostic tool used to view and update the metadata of Azure resources, not an enforcement mechanism."
+      }
+    },
+    {
+      "id": "az-900-0108",
+      "domain": "Describe Azure Management and Governance",
+      "question": "You need to grant an external auditor temporary, audited access to review configuration logs inside your Azure subscription. The access must automatically expire after a specified number of hours. Which Azure feature should you utilize?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Privileged Identity Management (PIM)"
+        },
+        {
+          "id": "B",
+          "text": "Azure Active Directory Conditional Access"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Manager locks"
+        },
+        {
+          "id": "D",
+          "text": "Network Security Groups (NSGs)"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Active Directory Privileged Identity Management (PIM) manages, controls, and monitors access within Azure. PIM provides time-based and approval-based role activation to mitigate the risk of malicious, unauthorized, or accidental use of privileged permissions.",
+      "wrongOptionNotes": {
+        "B": "Conditional Access evaluates signals like location and device state to grant or block access, but it does not provide time-bound role elevation.",
+        "C": "Resource locks protect resources from deletion or updates, rather than managing identity access lifecycles.",
+        "D": "NSGs filter network traffic to and from Azure resources, not manage identity roles and permissions."
+      }
+    },
+    {
+      "id": "az-900-0109",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company's finance department wants to receive automated email notifications whenever cloud spending reaches 80% of the monthly budget allocated for the development department. Which tool should you configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Cost Management + Billing budgets and alerts"
+        },
+        {
+          "id": "B",
+          "text": "Azure Advisor cost recommendations"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor metric alerts on billing meters"
+        },
+        {
+          "id": "D",
+          "text": "Azure Service Health alerts"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Cost Management + Billing allows you to create budgets for subscriptions or resource groups and configure alerts that trigger emails or run automation webhooks when spending thresholds are met.",
+      "wrongOptionNotes": {
+        "B": "Azure Advisor provides optimization suggestions to reduce waste, but it does not monitor budget thresholds or send spending percentage alerts.",
+        "C": "Billing meters are tracked within Cost Management, which provides native budgeting and alert capabilities rather than standard Azure Monitor VM-style metric alerts.",
+        "D": "Service Health alerts are triggered by Azure platform outages or maintenance events, not by financial spending levels."
+      }
+    },
+    {
+      "id": "az-900-0110",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An enterprise architect needs a mechanism to evaluate how well their Azure environment aligns with the five pillars of the Microsoft Azure Well-Architected Framework, receiving actionable steps to improve performance and reliability. Which service provides this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Monitor"
+        },
+        {
+          "id": "B",
+          "text": "Azure Policy"
+        },
+        {
+          "id": "C",
+          "text": "Azure Migrate"
+        },
+        {
+          "id": "D",
+          "text": "Azure Advisor"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Advisor is a built-in cloud consultant that helps you follow best practices to optimize your Azure deployments. It analyzes your resource configuration and usage telemetry and recommends solutions to improve cost effectiveness, security, reliability, operational excellence, and performance.",
+      "wrongOptionNotes": {
+        "A": "Azure Monitor collects and aggregates telemetry data, but does not provide architectural guidance or recommendations.",
+        "B": "Azure Policy enforces governance and compliance rules, whereas Advisor provides advisory recommendations.",
+        "C": "Azure Migrate is a service used to assess and migrate on-premises workloads to Azure, not evaluate running cloud architectures."
+      }
+    },
+    {
+      "id": "az-900-0111",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your management team requires a consolidated, single-pane-of-glass graphical interface where they can view key operational performance charts alongside custom cost analysis widgets for multiple subscriptions. Which Azure tool should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Dashboards"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cloud Shell"
+        },
+        {
+          "id": "C",
+          "text": "Azure Migrate hub"
+        },
+        {
+          "id": "D",
+          "text": "Azure Active Directory portal"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Dashboards allow you to organize and combine custom tiles—including metrics, service health, and Azure Cost Management data—into one or more customized views in the Azure portal.",
+      "wrongOptionNotes": {
+        "B": "Azure Cloud Shell is an interactive, browser-accessible command-line environment, not a graphical dashboard.",
+        "C": "Azure Migrate is exclusively for server and application migration assessments.",
+        "D": "The Azure AD portal focuses on identity, user provisioning, and access management, not operational metrics and billing dashboards."
+      }
+    },
+    {
+      "id": "az-900-0112",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your company is migrating core workloads to Azure and wants to ensure that all deployments comply with specific regulatory standards, such as ISO 27001 and PCI-DSS, by continuously assessing control compliance and identifying gaps. Which tool should you use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Budgets"
+        },
+        {
+          "id": "B",
+          "text": "Azure Traffic Manager"
+        },
+        {
+          "id": "C",
+          "text": "Microsoft Defender for Cloud regulatory compliance dashboard"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Graph Explorer"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Microsoft Defender for Cloud streamlines the compliance process by providing a regulatory compliance dashboard that maps assessments directly to recognized standards and industry benchmarks, showing which controls are met and which require remediation.",
+      "wrongOptionNotes": {
+        "A": "Azure Budgets tracks financial limits and spending data, not compliance regulations.",
+        "B": "Azure Traffic Manager is a DNS-based traffic load balancer, unrelated to security compliance.",
+        "D": "Azure Resource Graph Explorer enables advanced querying of resource metadata, but does not offer out-of-the-box regulatory standard assessments."
+      }
+    },
+    {
+      "id": "az-900-0113",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your development team needs to query configuration data across hundreds of subscriptions using Kusto Query Language (KQL) to quickly identify unencrypted disks or public storage accounts. Which tool provides this high-performance resource querying capability?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "B",
+          "text": "Azure ExpressRoute"
+        },
+        {
+          "id": "C",
+          "text": "Azure Resource Graph"
+        },
+        {
+          "id": "D",
+          "text": "Azure File Sync"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure Resource Graph is an Azure service designed to extend resource management. It provides efficient and performant resource exploration with the ability to query at scale across a given set of subscriptions so that you can effectively govern your environment using KQL.",
+      "wrongOptionNotes": {
+        "A": "Azure Bastion is a secure networking service used for remote virtual machine management via RDP/SSH.",
+        "B": "ExpressRoute provides private, high-speed network circuits between on-premises datacenters and Azure.",
+        "D": "Azure File Sync enables centralizing your organization's file shares in Azure Files while keeping flexibility and performance of local file servers."
+      }
+    },
+    {
+      "id": "az-900-0114",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization requires that a designated group of security administrators have permissions to remediate security findings across all subscriptions in the tenant. Which scope should you assign this elevated role to?",
+      "options": [
+        {
+          "id": "A",
+          "text": "An individual storage account"
+        },
+        {
+          "id": "B",
+          "text": "A specific resource group"
+        },
+        {
+          "id": "C",
+          "text": "An Azure virtual network"
+        },
+        {
+          "id": "D",
+          "text": "The root management group"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Management groups provide scoping for policies and role assignments. By assigning roles at the root management group level, permissions inherit downward to all subscriptions and resource groups contained within the tenant hierarchy.",
+      "wrongOptionNotes": {
+        "A": "Scoping access to a single storage account is far too granular for organization-wide security management.",
+        "B": "Assigning permissions to a single resource group would only grant access within that specific boundary, failing the cross-subscription requirement.",
+        "C": "A virtual network is a networking resource, not a management or access control scope."
+      }
+    },
+    {
+      "id": "az-900-0115",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your operations team needs to be notified via an automated webhook when an Azure service incident affects the East US region where your primary database is hosted. Which feature should you configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Service Health alert"
+        },
+        {
+          "id": "B",
+          "text": "Azure Policy non-compliance alert"
+        },
+        {
+          "id": "C",
+          "text": "Azure Defender security alert"
+        },
+        {
+          "id": "D",
+          "text": "Azure Monitor VM diagnostic metric alert"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Service Health keeps you informed about Azure service health issues. You can create Service Health alerts to notify your team via email, SMS, or webhooks when service incidents, planned maintenance, or health advisories impact your specific subscriptions and regions.",
+      "wrongOptionNotes": {
+        "B": "Policy alerts report when resource configurations violate governance policies, not when Azure platform data centers experience outages.",
+        "C": "Defender alerts focus on threat detection and potential security compromises, not general platform service health incidents.",
+        "D": "Metric alerts track performance counters like CPU or memory on individual VMs, not global Azure cloud provider incidents."
+      }
+    },
+    {
+      "id": "az-900-0116",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Your organization plans to decommission an on-premises datacenter hosting 60 physical servers and migrate those workloads to Azure. Before executive leadership approves the project, you must build a financial business case projecting 5-year savings that accounts for avoided electricity, cooling, physical floor space, and IT labor costs alongside Azure compute expenses. Which tool should you use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Total Cost of Ownership (TCO) Calculator"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cost Management Budgets"
+        },
+        {
+          "id": "C",
+          "text": "Azure Pricing Calculator"
+        },
+        {
+          "id": "D",
+          "text": "Azure Advisor Cost Recommendations"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "The Microsoft Azure Total Cost of Ownership (TCO) Calculator is specifically designed for migration business cases because it incorporates indirect on-premises costs (power, cooling, hardware maintenance, real estate, and IT labor) to estimate multi-year savings in Azure.",
+      "wrongOptionNotes": {
+        "B": "Budgets track actual ongoing spending inside an existing Azure subscription and send alerts when thresholds are exceeded rather than modeling pre-migration datacenter savings.",
+        "C": "The Azure Pricing Calculator estimates the retail monthly cost of new Azure services, but it does not model existing on-premises operational expenses such as power, cooling, or real estate.",
+        "D": "Azure Advisor analyzes active, already-deployed Azure resources for optimization opportunities and cannot evaluate on-premises datacenter costs."
+      }
+    },
+    {
+      "id": "az-900-0117",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A research team needs to run large-scale Monte Carlo financial simulations on Azure virtual machines. The workload consists of stateless worker nodes that checkpoint progress every five minutes and can gracefully pause and resume if capacity is reclaimed. Which purchasing option provides the steepest compute discount for this workload?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Savings Plan for Compute"
+        },
+        {
+          "id": "B",
+          "text": "Pay-as-you-go Virtual Machines"
+        },
+        {
+          "id": "C",
+          "text": "3-year Azure Reserved Virtual Machine Instances"
+        },
+        {
+          "id": "D",
+          "text": "Azure Spot Virtual Machines"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Azure Spot Virtual Machines allow organizations to purchase unused Azure capacity at massive discounts in exchange for accepting that Azure can evict the VM with 30 seconds notice when capacity is needed elsewhere.",
+      "wrongOptionNotes": {
+        "A": "A Savings Plan requires committing to a fixed hourly spend across compute services for one or three years and offers smaller discounts than Spot capacity.",
+        "B": "Pay-as-you-go charges standard on-demand rates with no commitment discount, making it unnecessarily expensive for fault-tolerant batch workloads.",
+        "C": "Reservations provide up to 72 percent savings for steady, predictable 24/7 workloads, which is less than the discount available for interruptible compute and locks in a multi-year commitment."
+      }
+    },
+    {
+      "id": "az-900-0118",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A cloud engineer with the Contributor role on a production resource group attempts to update the firewall IP allowlist and enable diagnostic settings on an existing Azure Storage account, but every update fails with an authorization error stating the scope cannot be modified. The engineer is not attempting to delete the storage account. What is the most likely cause?",
+      "options": [
+        {
+          "id": "A",
+          "text": "A ReadOnly resource lock is applied to the storage account or its parent resource group"
+        },
+        {
+          "id": "B",
+          "text": "The Contributor role lacks permissions to configure storage networking settings"
+        },
+        {
+          "id": "C",
+          "text": "Azure Advisor automatically blocked changes to protect production availability"
+        },
+        {
+          "id": "D",
+          "text": "A CanNotDelete resource lock is applied to the storage account"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Resource Locks operate independently of RBAC permissions. A ReadOnly lock restricts all control-plane POST, PUT, and DELETE operations on the locked scope, preventing even Owners and Contributors from modifying settings until the lock is removed.",
+      "wrongOptionNotes": {
+        "B": "The built-in Contributor role grants full management rights over resources, including network firewall rules and diagnostic settings, unless restricted by a lock, deny assignment, or policy.",
+        "C": "Azure Advisor is a passive recommendation engine and never intercepts or blocks control-plane API modifications.",
+        "D": "A CanNotDelete lock prevents resource deletion while still allowing authorized users to read and modify configuration properties such as firewall rules."
+      }
+    },
+    {
+      "id": "az-900-0119",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Developers in your organization hold the Contributor role within a shared sandbox resource group so they can freely test new services. Last month, a developer inadvertently provisioned an expensive GPU-optimized virtual machine series (ND-series), exhausting the team budget. You must prevent high-cost VM sizes from being created while allowing developers to continue deploying standard VM sizes. What should you implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Assign an Azure Policy using the Allowed virtual machine size SKUs definition at the resource group scope"
+        },
+        {
+          "id": "B",
+          "text": "Create an Azure Monitor alert to notify managers when an ND-series VM is deployed"
+        },
+        {
+          "id": "C",
+          "text": "Apply a CanNotDelete resource lock to the sandbox resource group"
+        },
+        {
+          "id": "D",
+          "text": "Downgrade all developers from the Contributor role to the Reader role"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "While Role-Based Access Control (RBAC) controls what actions a user can perform (such as creating VMs), Azure Policy governs the allowable properties and configurations of those resources, enabling preventive enforcement of approved VM SKUs.",
+      "wrongOptionNotes": {
+        "B": "An alert provides reactive notification after the expensive VM has already been provisioned and started accruing charges rather than preventing its creation.",
+        "C": "Resource locks prevent deletion or modification of existing resources; they do not restrict which VM SKUs can be newly provisioned.",
+        "D": "Assigning the Reader role removes the ability to create or modify any resources, breaking the developers' requirement to deploy standard VMs freely."
+      }
+    },
+    {
+      "id": "az-900-0120",
+      "domain": "Describe Azure Management and Governance",
+      "question": "While traveling, an infrastructure engineer needs to run an urgent Bash deployment script stored in a shared directory to restart several Azure Kubernetes Service nodes. The engineer only has access to a locked-down corporate tablet that forbids installing local CLI tools or SDKs. Which tool enables the engineer to execute the script immediately?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure PowerShell installed on Windows Terminal"
+        },
+        {
+          "id": "B",
+          "text": "Azure Cloud Shell"
+        },
+        {
+          "id": "C",
+          "text": "Azure Blueprints"
+        },
+        {
+          "id": "D",
+          "text": "Azure Resource Graph Explorer"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Cloud Shell is a browser-based, Microsoft-managed shell accessible directly from the Azure portal or shell.azure.com, offering pre-configured Azure CLI and PowerShell tools along with persistent file storage without requiring local installation.",
+      "wrongOptionNotes": {
+        "A": "Installing Azure PowerShell locally is blocked by the device restrictions and does not natively execute Bash scripts without additional subsystems.",
+        "C": "Azure Blueprints is a declarative governance packaging service for orchestrating environments and does not provide an interactive command-line shell.",
+        "D": "Resource Graph Explorer executes read-only Kusto queries against resource metadata and cannot execute imperative Bash deployment scripts or restart compute nodes."
+      }
+    },
+    {
+      "id": "az-900-0121",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A global retail company operates 200 Linux and Windows point-of-sale servers across physical branch stores that cannot be migrated to the cloud due to local latency requirements. The central IT team wants to inventory these servers inside the Azure portal, apply Azure Policy guest configurations, and collect security logs centrally alongside their Azure VMs. Which service addresses this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Migrate"
+        },
+        {
+          "id": "B",
+          "text": "Azure Arc"
+        },
+        {
+          "id": "C",
+          "text": "Azure Bastion"
+        },
+        {
+          "id": "D",
+          "text": "Azure Virtual Machine Scale Sets"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Arc projects non-Azure servers, Kubernetes clusters, and databases into Azure Resource Manager as first-class resources, enabling organizations to apply consistent governance, tagging, policies, and monitoring across hybrid environments.",
+      "wrongOptionNotes": {
+        "A": "Azure Migrate is designed for discovering, assessing, and moving on-premises workloads into Azure rather than providing ongoing governance for workloads staying on-premises.",
+        "C": "Azure Bastion provides browser-based RDP and SSH connectivity to Azure VMs over private virtual networks rather than unified multi-environment governance.",
+        "D": "Virtual Machine Scale Sets manage groups of identical cloud-hosted Azure VMs and cannot onboard or govern physical servers located in branch stores."
+      }
+    },
+    {
+      "id": "az-900-0122",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An engineering team deployed a shared production Virtual Network and a temporary proof-of-concept SQL database into the same resource group. After completing the test, a junior administrator deleted the resource group expecting only the test database to be removed, which unexpectedly took down the production network. What Azure architectural guideline was violated?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resources should be placed in multiple resource groups simultaneously for redundancy"
+        },
+        {
+          "id": "B",
+          "text": "Virtual Networks and SQL databases cannot reside in the same Azure region"
+        },
+        {
+          "id": "C",
+          "text": "A single resource group can only contain resources of the same service category"
+        },
+        {
+          "id": "D",
+          "text": "Only resources that share the same lifecycle should be placed in the same resource group"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "Because resource groups act as the unit of lifecycle management in Azure, deleting a resource group removes all resources inside it. Shared networking components with long lifecycles should be isolated in dedicated resource groups separate from temporary or application-specific workloads.",
+      "wrongOptionNotes": {
+        "A": "In Azure Resource Manager, every resource can belong to one and only one resource group at a time.",
+        "B": "Resources of different types can coexist in the same region and communicate seamlessly across separate resource groups.",
+        "C": "Resource groups are logical containers explicitly designed to hold heterogeneous resources such as networks, databases, and compute together when they share a lifecycle."
+      }
+    },
+    {
+      "id": "az-900-0123",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Before approving a migration of regulated patient records to Azure, your legal and compliance officers request official third-party audit reports (such as SOC 2 Type II and ISO 27001) along with documentation detailing Microsoft's internal datacenter security controls. Where should you direct them to download these artifacts?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Monitor Activity Logs"
+        },
+        {
+          "id": "B",
+          "text": "Microsoft Defender for Cloud Regulatory Compliance blade"
+        },
+        {
+          "id": "C",
+          "text": "Azure Policy Compliance Dashboard"
+        },
+        {
+          "id": "D",
+          "text": "Microsoft Service Trust Portal"
+        }
+      ],
+      "correctAnswers": [
+        "D"
+      ],
+      "explanation": "The Microsoft Service Trust Portal provides customers with access to independent audit reports, ISO certifications, SOC reports, and compliance guides covering how Microsoft builds and operates its cloud services.",
+      "wrongOptionNotes": {
+        "A": "Activity Logs record control-plane operations performed within your subscription and do not contain external compliance audit documents.",
+        "B": "Defender for Cloud evaluates the compliance posture of your deployed Azure subscriptions against standards, but it does not host Microsoft's own third-party datacenter audit reports.",
+        "C": "The Azure Policy Compliance Dashboard tracks whether your organization's Azure resources adhere to assigned policies rather than providing Microsoft audit certifications."
+      }
+    },
+    {
+      "id": "az-900-0124",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A media analytics company plans to store 80 TB of raw video files in an Azure Storage account located in the East US region. A batch processing cluster will read all 80 TB weekly to generate metadata. Which architectural decision minimizes ongoing data transfer charges?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Move the processing cluster on-premises and download the files over the public internet"
+        },
+        {
+          "id": "B",
+          "text": "Deploy the processing cluster in West Europe to benefit from lower European compute rates"
+        },
+        {
+          "id": "C",
+          "text": "Deploy the processing cluster in the same East US region as the Storage account"
+        },
+        {
+          "id": "D",
+          "text": "Replicate the storage account to a second region using Read-Access Geo-Redundant Storage and read from the secondary region"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Azure does not charge for inbound data transfer (ingress) or data transfers within the same region between services in most scenarios, whereas outbound data transfer (egress) across regions or to the internet is metered and billed.",
+      "wrongOptionNotes": {
+        "A": "Downloading 80 TB weekly out of Azure to the public internet incurs maximum outbound internet egress charges.",
+        "B": "Reading 80 TB weekly across different Azure regions (East US to West Europe) triggers substantial outbound cross-region bandwidth egress charges.",
+        "D": "Geo-replication incurs ongoing replication bandwidth and secondary storage costs, whereas co-locating compute and storage in the primary region avoids cross-region data transfer fees."
+      }
+    },
+    {
+      "id": "az-900-0125",
+      "domain": "Describe Azure Management and Governance",
+      "question": "Users report intermittent HTTP 500 errors and five-second delays during checkout on an Azure App Service e-commerce application, even though CPU and memory metrics remain below 25 percent. The development team needs distributed request tracing to pinpoint which specific external API call or database query is failing inside the application code. Which feature should they enable?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Network Watcher Connection Monitor"
+        },
+        {
+          "id": "B",
+          "text": "Application Insights"
+        },
+        {
+          "id": "C",
+          "text": "Azure Service Health"
+        },
+        {
+          "id": "D",
+          "text": "Azure Advisor Performance Recommendations"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Application Insights instruments live web applications to provide deep telemetry including request failure diagnostics, end-to-end transaction tracing, dependency latency (such as SQL queries and REST calls), and exception stack traces.",
+      "wrongOptionNotes": {
+        "A": "Network Watcher diagnoses virtual network packet loss and routing issues, not HTTP 500 application stack traces or database query performance.",
+        "C": "Service Health tracks broad Azure platform outages and planned maintenance events rather than application code exceptions or SQL query latency.",
+        "D": "Azure Advisor provides high-level configuration tips such as SKU upgrades and does not perform real-time distributed transaction tracing."
+      }
+    },
+    {
+      "id": "az-900-0126",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A single Linux virtual machine running in the West US 2 region suddenly became unresponsive to SSH and displays an Unknown power state in the portal, while other VMs on the same virtual network continue operating normally. You need to quickly determine whether an underlying Microsoft physical host hardware fault affected this specific VM. Which blade should you inspect?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Resource Health"
+        },
+        {
+          "id": "B",
+          "text": "Azure Blueprints"
+        },
+        {
+          "id": "C",
+          "text": "Azure Service Health Planned Maintenance"
+        },
+        {
+          "id": "D",
+          "text": "Azure Pricing Calculator"
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "explanation": "Azure Resource Health provides personalized, resource-specific health status (Available, Unavailable, Degraded, or Unknown) and root-cause context when an individual resource experiences an unexpected platform hardware or host issue.",
+      "wrongOptionNotes": {
+        "B": "Azure Blueprints is a governance deployment tool and contains no runtime availability telemetry.",
+        "C": "Service Health focuses on regional or service-wide incidents and scheduled maintenance affecting Azure services broadly rather than diagnosing a single VM's host health.",
+        "D": "The Pricing Calculator estimates service costs and provides no operational or diagnostic telemetry."
+      }
+    },
+    {
+      "id": "az-900-0127",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A security operations team manages 50 Windows and Linux virtual machines in Azure and must retain detailed guest OS security event logs and syslog entries for 180 days. Analysts also need to run complex ad-hoc queries correlating failed login attempts across all 50 servers. Which Azure Monitor capability fulfills this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Monitor Metrics Explorer"
+        },
+        {
+          "id": "B",
+          "text": "Azure Resource Graph"
+        },
+        {
+          "id": "C",
+          "text": "Azure Monitor Logs backed by a Log Analytics workspace"
+        },
+        {
+          "id": "D",
+          "text": "Azure Activity Log"
+        }
+      ],
+      "correctAnswers": [
+        "C"
+      ],
+      "explanation": "Log Analytics workspaces serve as the central repository for Azure Monitor Logs, enabling ingestion of guest OS event logs, long-term retention configuration, and cross-server correlation using Kusto Query Language (KQL).",
+      "wrongOptionNotes": {
+        "A": "Metrics Explorer visualizes numerical time-series performance counters (such as CPU percentage) and cannot store or query text-based syslog or Windows Event Log records.",
+        "B": "Azure Resource Graph queries Azure Resource Manager configuration metadata across subscriptions and does not ingest guest OS log streams.",
+        "D": "The Activity Log records subscription-level control-plane management events (such as VM creation or deletion) for 90 days and does not collect guest OS security logs."
+      }
+    },
+    {
+      "id": "az-900-0128",
+      "domain": "Describe Azure Management and Governance",
+      "question": "A financial services firm operates a core transaction processing database hosted on a specific Azure virtual machine size (E16ds_v5) in East US. The workload runs continuously 24/7, and the architecture team commits to maintaining this exact VM family and region for the next three years. Which purchasing model minimizes compute expenses under these predictable conditions?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Azure Dev/Test Pricing"
+        },
+        {
+          "id": "B",
+          "text": "3-year Azure Reserved Virtual Machine Instance"
+        },
+        {
+          "id": "C",
+          "text": "Pay-as-you-go pricing"
+        },
+        {
+          "id": "D",
+          "text": "Azure Spot Virtual Machines"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Reserved Virtual Machine Instances provide the deepest predictable discounts for steady-state 24/7 production workloads when an organization can commit to a 1-year or 3-year term for a designated VM family and region.",
+      "wrongOptionNotes": {
+        "A": "Dev/Test pricing offers discounted rates exclusively for non-production development and testing environments, not production financial transaction workloads.",
+        "C": "Pay-as-you-go provides maximum flexibility to stop or change workloads anytime but carries the highest hourly compute rate.",
+        "D": "Spot VMs can be evicted by Azure with 30 seconds notice, making them unsuitable for a mission-critical 24/7 core transaction database."
+      }
+    },
+    {
+      "id": "az-900-0129",
+      "domain": "Describe Azure Management and Governance",
+      "question": "An engineer applies the tag CostCenter=Marketing to a resource group that already contains 12 virtual machines and 4 storage accounts. Immediately afterward, the engineer inspects the Tags property on one of the virtual machines and queries Resource Graph for VM tags, but none of the resources display the CostCenter=Marketing tag. Why did this happen?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Resource tags can only be assigned during initial deployment and cannot be added to existing resources"
+        },
+        {
+          "id": "B",
+          "text": "Tags applied to a resource group are not automatically inherited by the resources inside it"
+        },
+        {
+          "id": "C",
+          "text": "Resource tags take 24 hours to propagate from a resource group to existing resources"
+        },
+        {
+          "id": "D",
+          "text": "Virtual machines and storage accounts do not support resource tags"
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "explanation": "Azure Resource Manager does not propagate tags from subscriptions or resource groups down to individual resources. To ensure consistent tagging on child resources, organizations use Azure Policy (such as the Inherit a tag from the resource group effect) or automation scripts.",
+      "wrongOptionNotes": {
+        "A": "Tags can be added, updated, or removed on existing resource groups and resources at any time.",
+        "C": "Tags do not propagate automatically over time from resource groups to child resources.",
+        "D": "Both virtual machines and storage accounts fully support Azure Resource Manager tags."
+      }
+    }
+  ]
+}
