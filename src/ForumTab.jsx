@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbsUp, Send, LogIn, Trash2, MessageSquare } from 'lucide-react';
+import {
+  ThumbsUp, Send, LogIn, Trash2, MessageSquare,
+  ShieldCheck, ExternalLink, Award
+} from 'lucide-react';
 import { supabase } from './supabaseClient';
 
 export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
@@ -7,6 +10,7 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
   const [posts, setPosts] = useState([]);
   const [myUpvotes, setMyUpvotes] = useState(new Set());
   const [selectedTag, setSelectedTag] = useState('All');
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [loading, setLoading] = useState(true);
 
   // New Post Form
@@ -67,16 +71,40 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
   }, [selectedTag, user]);
 
   const handleGoogleLogin = async () => {
-  if (typeof requireAuth === 'function') {
-    requireAuth();
-    return;
-  }
-  if (!supabase) return;
-  await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: window.location.origin },
-  });
-};
+    if (typeof requireAuth === 'function') {
+      requireAuth();
+      return;
+    }
+    if (!supabase) return;
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin },
+    });
+  };
+
+  const userCompletedCerts = Array.isArray(user?.user_metadata?.completed_certs)
+    ? user.user_metadata.completed_certs
+    : [];
+
+  const getAuthorBadgePayload = () => {
+    if (userCompletedCerts.length === 0) {
+      return { verified_cert: null, credly_url: null };
+    }
+    const cleanCode = certHashtag.replace('#', '').toLowerCase();
+    const matchingCert =
+      userCompletedCerts.find((c) => c.name?.toLowerCase().includes(cleanCode)) ||
+      userCompletedCerts[0];
+
+    const badgeLabel =
+      userCompletedCerts.length > 1
+        ? `${matchingCert.name} (+${userCompletedCerts.length - 1})`
+        : matchingCert.name;
+
+    const badgeUrl =
+      matchingCert.credlyUrl || user?.user_metadata?.credly_profile_url || null;
+
+    return { verified_cert: badgeLabel, credly_url: badgeUrl };
+  };
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -85,15 +113,28 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
 
     const authorName =
       user.user_metadata?.full_name || user.email?.split('@')[0] || 'Certified Member';
+    const { verified_cert, credly_url } = getAuthorBadgePayload();
 
-    const { error } = await supabase.from('forum_posts').insert({
+    const basePayload = {
       user_id: user.id,
       author_name: authorName,
       cert_hashtag: certHashtag,
       post_type: postType,
       title: title.trim(),
       body: body.trim(),
+    };
+
+    let { error } = await supabase.from('forum_posts').insert({
+      ...basePayload,
+      verified_cert,
+      credly_url,
     });
+
+    // Fallback if optional badge columns haven't been added in Supabase yet
+    if (error && (error.message?.includes('column') || error.code === '42703')) {
+      const retry = await supabase.from('forum_posts').insert(basePayload);
+      error = retry.error;
+    }
 
     setSubmitting(false);
     if (!error) {
@@ -105,7 +146,8 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
 
   const handleToggleUpvote = async (postId) => {
     if (!supabase || !user) {
-      alert('Please sign in to upvote helpful guides.');
+      if (typeof requireAuth === 'function') requireAuth();
+      else alert('Please sign in to upvote helpful guides.');
       return;
     }
     const { data: newCount, error } = await supabase.rpc('toggle_upvote', {
@@ -139,6 +181,14 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
     );
   }
 
+  const displayedPosts = verifiedOnly
+    ? posts.filter(
+        (p) =>
+          Boolean(p.verified_cert) ||
+          (user && p.user_id === user.id && userCompletedCerts.length > 0)
+      )
+    : posts;
+
   return (
     <div className="space-y-4">
       {/* Header Bar */}
@@ -149,18 +199,35 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
           </div>
           <div>
             <h2 className="font-bold text-sm text-stone-900">Certification Hashtag Guidance</h2>
-            <p className="text-[11px] text-stone-500">Share #Passed debriefs & exam study notes</p>
+            <p className="text-[11px] text-stone-500">
+              Share #Passed debriefs, study notes & verified Credly experiences
+            </p>
           </div>
         </div>
 
-        {!user && (
+        <div className="flex items-center gap-2">
           <button
-            onClick={handleGoogleLogin}
-            className="px-3.5 py-2 rounded-xl bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800 flex items-center gap-1.5"
+            type="button"
+            onClick={() => setVerifiedOnly((v) => !v)}
+            className={`px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition ${
+              verifiedOnly
+                ? 'bg-emerald-700 text-white border-emerald-700'
+                : 'bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-400'
+            }`}
           >
-            <LogIn className="w-3.5 h-3.5" /> Sign in with Google to Post
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Verified Alumni Only</span>
           </button>
-        )}
+
+          {!user && (
+            <button
+              onClick={handleGoogleLogin}
+              className="px-3.5 py-2 rounded-xl bg-emerald-700 text-white text-xs font-semibold hover:bg-emerald-800 flex items-center gap-1.5"
+            >
+              <LogIn className="w-3.5 h-3.5" /> Sign In to Post
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Hashtag Filter Pills */}
@@ -196,6 +263,16 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
           onSubmit={handleCreatePost}
           className="bg-white border border-stone-200 rounded-2xl p-4 space-y-3"
         >
+          {userCompletedCerts.length > 0 && (
+            <div className="flex items-center gap-1.5 text-[11px] text-emerald-800 bg-emerald-50/80 border border-emerald-200/80 rounded-lg px-2.5 py-1.5">
+              <Award className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+              <span>
+                Posting with your verified credential badge:{' '}
+                <strong>{getAuthorBadgePayload().verified_cert}</strong>
+              </span>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-2">
             <select
               value={certHashtag}
@@ -252,21 +329,33 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
       {/* Feed */}
       {loading ? (
         <p className="text-center text-xs text-stone-500 py-6">Loading community posts...</p>
-      ) : posts.length === 0 ? (
-        <div className="bg-white border border-stone-200 rounded-2xl p-6 text-center text-xs text-stone-500">
-          No posts for <strong>{selectedTag}</strong> yet. Share the first exam guide!
+      ) : displayedPosts.length === 0 ? (
+        <div className="bg-white border border-stone-200 rounded-2xl p-6 text-center text-xs text-slate-500">
+          No {verifiedOnly ? 'verified alumni ' : ''}posts for <strong>{selectedTag}</strong> yet.
         </div>
       ) : (
         <div className="space-y-3">
-          {posts.map((post) => {
+          {displayedPosts.map((post) => {
             const voted = myUpvotes.has(post.id);
+            const liveSelfBadge =
+              user && post.user_id === user.id && userCompletedCerts.length > 0
+                ? userCompletedCerts[0]
+                : null;
+            const badgeText = post.verified_cert || liveSelfBadge?.name || null;
+            const badgeLink =
+              post.credly_url ||
+              liveSelfBadge?.credlyUrl ||
+              (user && post.user_id === user.id
+                ? user.user_metadata?.credly_profile_url
+                : null);
+
             return (
               <div
                 key={post.id}
-                className="bg-white border border-stone-200 rounded-2xl p-4 space-y-2"
+                className="bg-white border border-stone-200 rounded-2xl p-4 space-y-2.5"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="text-[11px] font-mono font-semibold bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded border border-emerald-100">
                       {post.cert_hashtag}
                     </span>
@@ -290,17 +379,38 @@ export default function ForumTab({ catalog, currentUser = null, requireAuth }) {
                   {post.body}
                 </p>
 
-                <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500">
-                  <span>
-                    By <strong>{post.author_name}</strong> •{' '}
-                    {new Date(post.created_at).toLocaleDateString()}
-                  </span>
+                <div className="pt-2.5 border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span>
+                      By <strong className="text-stone-800">{post.author_name}</strong> •{' '}
+                      {new Date(post.created_at).toLocaleDateString()}
+                    </span>
+
+                    {badgeText && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">
+                        <ShieldCheck className="w-3 h-3 text-emerald-700" />
+                        <span className="truncate max-w-[180px]">{badgeText}</span>
+                        {badgeLink && (
+                          <a
+                            href={badgeLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-0.5 text-emerald-700 hover:underline ml-1"
+                            title="Verify credential on Credly"
+                          >
+                            Credly <ExternalLink className="w-2.5 h-2.5" />
+                          </a>
+                        )}
+                      </span>
+                    )}
+                  </div>
+
                   <button
                     onClick={() => handleToggleUpvote(post.id)}
                     className={`px-2.5 py-1 rounded-lg border font-semibold flex items-center gap-1 transition ${
                       voted
                         ? 'bg-emerald-700 text-white border-emerald-700'
-                        : 'bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-400'
+                        : 'bg-stone-50 text-stone-700 border-slate-200 hover:border-emerald-400'
                     }`}
                   >
                     <ThumbsUp className="w-3 h-3" /> {post.upvotes}

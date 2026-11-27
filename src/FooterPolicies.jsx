@@ -38,30 +38,32 @@ export default function FooterPolicies() {
 
   return (
     <>
-      <footer className="max-w-5xl mx-auto px-4 pt-8 pb-6 mt-8 border-t border-stone-200 text-xs text-stone-500 space-y-3">
-        <p className="text-[11px] text-stone-500 leading-relaxed">
-          <strong className="text-stone-700">Original Practice Content:</strong> All questions and explanations on CertPrep Hub are original, blueprint-aligned practice scenarios—not official exam dumps. Independent study resource; not affiliated with Anthropic, AWS, Microsoft, Google, GitHub, or CompTIA.
-        </p>
+      <footer className="bg-white border-t border-stone-300/80 text-xs text-stone-500 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-3">
+          <p className="text-[11px] text-stone-600 leading-relaxed">
+            <strong className="text-stone-800">Original Practice Content:</strong> All questions and explanations on CertPrep Hub are original, blueprint-aligned practice scenarios—not official exam dumps. Independent study resource; not affiliated with Anthropic, AWS, Microsoft, Google Cloud, GitHub, or CompTIA.
+          </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-          <div className="flex items-center gap-1.5 text-stone-600 font-medium">
-            <ShieldCheck className="w-4 h-4 text-emerald-700" />
-            <span>CertPrep Hub • Blueprint Practice</span>
-          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1 border-t border-stone-100">
+            <div className="flex items-center gap-1.5 text-stone-700 font-semibold">
+              <ShieldCheck className="w-4 h-4 text-emerald-700" />
+              <span>CertPrep Hub • Blueprint Practice</span>
+            </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <button onClick={() => setActiveKey('about')} className="hover:text-emerald-700 transition">
-              About
-            </button>
-            <button onClick={() => setActiveKey('disclaimer')} className="hover:text-emerald-700 transition">
-              Exam Disclaimer
-            </button>
-            <button onClick={() => setActiveKey('privacy')} className="hover:text-emerald-700 transition">
-              Privacy Policy
-            </button>
-            <button onClick={() => setActiveKey('terms')} className="hover:text-emerald-700 transition">
-              Terms of Use
-            </button>
+            <div className="flex flex-wrap justify-center gap-4 font-medium">
+              <button onClick={() => setActiveKey('about')} className="hover:text-emerald-800 transition">
+                About
+              </button>
+              <button onClick={() => setActiveKey('disclaimer')} className="hover:text-emerald-800 transition">
+                Exam Disclaimer
+              </button>
+              <button onClick={() => setActiveKey('privacy')} className="hover:text-emerald-800 transition">
+                Privacy Policy
+              </button>
+              <button onClick={() => setActiveKey('terms')} className="hover:text-emerald-800 transition">
+                Terms of Use
+              </button>
+            </div>
           </div>
         </div>
       </footer>
@@ -69,7 +71,7 @@ export default function FooterPolicies() {
       {activeKey && (
         <div
           onClick={() => setActiveKey(null)}
-          className="fixed inset-0 z-50 bg-stone-900/50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-stone-900/55 backdrop-blur-xs flex items-center justify-center p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
