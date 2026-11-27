@@ -47,6 +47,13 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     resetExamProgress,
   } = useStudyProgress(user?.id);
 
+  // Automatically leave My Profile if the user signs out
+  useEffect(() => {
+    if (!user && activeTab === 'profile') {
+      setActiveTab('certs');
+    }
+  }, [user, activeTab]);
+
   useEffect(() => {
     fetch('/data/catalog.json')
       .then((res) => res.json())
@@ -214,18 +221,21 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
     return matchesCat && matchesSearch;
   });
 
-  // Aggregate Readiness Across All Catalog Exams
-  const aggregateStats = catalog.reduce(
-    (acc, cert) => {
-      const st = getExamStats(cert.id);
-      acc.attempted += st.totalAttempted;
-      acc.correct += st.totalCorrect;
-      acc.missed += st.missedIds.length;
-      acc.bookmarked += st.bookmarkedIds.length;
-      return acc;
-    },
-    { attempted: 0, correct: 0, missed: 0, bookmarked: 0 }
-  );
+  // Aggregate Readiness Across All Catalog Exams (used only when logged in)
+  const aggregateStats = user
+    ? catalog.reduce(
+        (acc, cert) => {
+          const st = getExamStats(cert.id);
+          acc.attempted += st.totalAttempted;
+          acc.correct += st.totalCorrect;
+          acc.missed += st.missedIds.length;
+          acc.bookmarked += st.bookmarkedIds.length;
+          return acc;
+        },
+        { attempted: 0, correct: 0, missed: 0, bookmarked: 0 }
+      )
+    : { attempted: 0, correct: 0, missed: 0, bookmarked: 0 };
+
   const overallAccuracy =
     aggregateStats.attempted > 0
       ? Math.round((aggregateStats.correct / aggregateStats.attempted) * 100)
@@ -284,9 +294,10 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
 
   const displayName =
     user?.user_metadata?.full_name || user?.email?.split('@')[0] || '';
-  const completedCerts = Array.isArray(user?.user_metadata?.completed_certs)
-    ? user.user_metadata.completed_certs
-    : [];
+  const completedCerts =
+    user && Array.isArray(user.user_metadata?.completed_certs)
+      ? user.user_metadata.completed_certs
+      : [];
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-sans pb-16">
@@ -383,26 +394,30 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                 <span className="hidden sm:inline">Guidance Forum</span>
                 <span className="sm:hidden">Forum</span>
               </button>
-              <button
-                onClick={() => {
-                  setActiveTab('profile');
-                  setSelectedCert(null);
-                  setMode(null);
-                }}
-                className={`px-2.5 sm:px-3 py-1.5 rounded-md flex items-center gap-1 transition ${
-                  activeTab === 'profile'
-                    ? 'bg-white text-emerald-800 font-semibold shadow-xs'
-                    : 'text-stone-600 hover:text-stone-900'
-                }`}
-              >
-                <User className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">My Profile</span>
-                {completedCerts.length > 0 && (
-                  <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
-                    {completedCerts.length}
-                  </span>
-                )}
-              </button>
+
+              {/* My Profile Tab: Shown ONLY when logged in */}
+              {user && (
+                <button
+                  onClick={() => {
+                    setActiveTab('profile');
+                    setSelectedCert(null);
+                    setMode(null);
+                  }}
+                  className={`px-2.5 sm:px-3 py-1.5 rounded-md flex items-center gap-1 transition ${
+                    activeTab === 'profile'
+                      ? 'bg-white text-emerald-800 font-semibold shadow-xs'
+                      : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">My Profile</span>
+                  {completedCerts.length > 0 && (
+                    <span className="ml-0.5 px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                      {completedCerts.length}
+                    </span>
+                  )}
+                </button>
+              )}
             </nav>
 
             {user ? (
@@ -443,7 +458,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
         {/* FULL-WIDTH WEBSITE CATALOG PORTAL */}
         {activeTab === 'certs' && !selectedCert && (
           <div className="space-y-6">
-            {/* Split Website Hero + Live Readiness Dashboard */}
+            {/* Split Website Hero + Snapshot Card */}
             <section className="bg-white border border-stone-200 rounded-2xl p-6 sm:p-8 shadow-xs">
               <div className="grid lg:grid-cols-12 gap-6 items-center">
                 <div className="lg:col-span-7 space-y-3">
@@ -454,10 +469,10 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                     Master Cloud, AI & Security Certifications with Scenario Practice
                   </h1>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed max-w-2xl">
-                    Train with 1,167 original blueprint-weighted scenarios, timed exam simulations, per-domain mastery analytics, and community pass debriefs.
+                    Train with 1,167 original blueprint-weighted scenarios, timed exam simulations, quick-revision concept cards, and community pass debriefs.
                   </p>
 
-                  {/* Mobile / Inline Search Bar */}
+                  {/* Search Bar */}
                   <div className="pt-1 max-w-md relative">
                     <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-3.5" />
                     <input
@@ -470,35 +485,52 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   </div>
                 </div>
 
-                {/* Right Readiness Summary Card */}
+                {/* Right Snapshot Card: Personal Readiness when logged in, Platform Overview when logged out */}
                 <div className="lg:col-span-5 bg-stone-50 border border-stone-200/90 rounded-2xl p-4 sm:p-5 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-stone-800">
-                      {user ? `${displayName}'s Readiness Overview` : 'Platform Snapshot'}
+                      {user ? `${displayName}'s Readiness Overview` : 'Platform Highlights'}
                     </span>
                     <span className="text-[11px] font-semibold text-emerald-700">
                       9 Active Tracks
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2.5">
-                    <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
-                      <p className="text-lg sm:text-xl font-extrabold text-emerald-800">
-                        {aggregateStats.attempted > 0 ? `${overallAccuracy}%` : '—'}
-                      </p>
-                      <p className="text-[11px] text-stone-500">Avg Accuracy</p>
+                  {user ? (
+                    <div className="grid grid-cols-3 gap-2.5">
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-emerald-800">
+                          {aggregateStats.attempted > 0 ? `${overallAccuracy}%` : '—'}
+                        </p>
+                        <p className="text-[11px] text-stone-500">Avg Accuracy</p>
+                      </div>
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-stone-900">1,167</p>
+                        <p className="text-[11px] text-stone-500">Original Qs</p>
+                      </div>
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-amber-700">
+                          {completedCerts.length}
+                        </p>
+                        <p className="text-[11px] text-stone-500">Earned Certs</p>
+                      </div>
                     </div>
-                    <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
-                      <p className="text-lg sm:text-xl font-extrabold text-stone-900">1,167</p>
-                      <p className="text-[11px] text-stone-500">Original Qs</p>
+                  ) : (
+                    <div className="grid grid-cols-3 gap-2.5">
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-emerald-800">9</p>
+                        <p className="text-[11px] text-stone-500">Exam Tracks</p>
+                      </div>
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-stone-900">1,167</p>
+                        <p className="text-[11px] text-stone-500">Original Qs</p>
+                      </div>
+                      <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
+                        <p className="text-lg sm:text-xl font-extrabold text-amber-700">100%</p>
+                        <p className="text-[11px] text-stone-500">Free Access</p>
+                      </div>
                     </div>
-                    <div className="bg-white border border-stone-200/80 rounded-xl p-3 text-center">
-                      <p className="text-lg sm:text-xl font-extrabold text-amber-700">
-                        {completedCerts.length}
-                      </p>
-                      <p className="text-[11px] text-stone-500">Earned Certs</p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </section>
@@ -543,79 +575,112 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   </div>
                 </div>
 
-                {/* Study Queue Summary Card */}
-                <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
-                  <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                    Your Study Queue
-                  </h3>
-                  <div className="space-y-2 text-xs">
-                    <div className="flex items-center justify-between py-1 border-b border-stone-100">
-                      <span className="text-stone-600">Questions Practiced</span>
-                      <span className="font-bold text-stone-900">{aggregateStats.attempted}</span>
+                {/* Personal Study Queue & Credentials: Shown ONLY when logged in */}
+                {user ? (
+                  <>
+                    <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
+                        Your Study Queue
+                      </h3>
+                      <div className="space-y-2 text-xs">
+                        <div className="flex items-center justify-between py-1 border-b border-stone-100">
+                          <span className="text-stone-600">Questions Practiced</span>
+                          <span className="font-bold text-stone-900">
+                            {aggregateStats.attempted}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between py-1 border-b border-stone-100">
+                          <span className="text-stone-600">Mistakes to Review</span>
+                          <span className="font-bold text-rose-700">{aggregateStats.missed}</span>
+                        </div>
+                        <div className="flex items-center justify-between py-1">
+                          <span className="text-stone-600">Bookmarked Scenarios</span>
+                          <span className="font-bold text-amber-700">
+                            {aggregateStats.bookmarked}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between py-1 border-b border-stone-100">
-                      <span className="text-stone-600">Mistakes to Review</span>
-                      <span className="font-bold text-rose-700">{aggregateStats.missed}</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1">
-                      <span className="text-stone-600">Bookmarked Scenarios</span>
-                      <span className="font-bold text-amber-700">{aggregateStats.bookmarked}</span>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Credly & Earned Certifications Card */}
-                <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
-                  <div className="flex items-center justify-between">
+                    <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
+                          My Credentials
+                        </h3>
+                        <button
+                          onClick={() => setActiveTab('profile')}
+                          className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                        >
+                          Manage
+                        </button>
+                      </div>
+
+                      {completedCerts.length > 0 ? (
+                        <div className="space-y-2">
+                          {completedCerts.slice(0, 3).map((c) => (
+                            <div
+                              key={c.id}
+                              className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/80 text-xs space-y-1"
+                            >
+                              <div className="flex items-center gap-1.5 text-emerald-800 font-semibold">
+                                <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+                                <span className="truncate">{c.name}</span>
+                              </div>
+                              {c.credlyUrl && (
+                                <a
+                                  href={c.credlyUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 text-[11px] text-stone-500 hover:text-emerald-700"
+                                >
+                                  Verify Credly <ExternalLink className="w-3 h-3" />
+                                </a>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-xs text-stone-500 space-y-2">
+                          <p className="leading-relaxed">
+                            Showcase your passed exams and Credly badge links on your profile.
+                          </p>
+                          <button
+                            onClick={() => setActiveTab('profile')}
+                            className="w-full py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold transition"
+                          >
+                            + Add Completed Cert
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <div className="hidden lg:block bg-white border border-stone-200 rounded-2xl p-4 shadow-xs space-y-3">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-stone-500">
-                      My Credentials
+                      How It Works
                     </h3>
+                    <ul className="space-y-2 text-xs text-stone-600 leading-relaxed">
+                      <li>
+                        <strong className="text-stone-800">1. Review Concepts:</strong> Scan crisp
+                        topic cards in Study Guides.
+                      </li>
+                      <li>
+                        <strong className="text-stone-800">2. Practice & Mock:</strong> Choose 10–50
+                        practice drills or full timed exams.
+                      </li>
+                      <li>
+                        <strong className="text-stone-800">3. Track Mastery:</strong> Sign in to
+                        save domain scores, mistakes, and Credly badges.
+                      </li>
+                    </ul>
                     <button
-                      onClick={() => setActiveTab('profile')}
-                      className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                      onClick={() => requireAuth()}
+                      className="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-xs font-semibold transition"
                     >
-                      Manage
+                      Sign In to Track Progress
                     </button>
                   </div>
-
-                  {completedCerts.length > 0 ? (
-                    <div className="space-y-2">
-                      {completedCerts.slice(0, 3).map((c) => (
-                        <div
-                          key={c.id}
-                          className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/80 text-xs space-y-1"
-                        >
-                          <div className="flex items-center gap-1.5 text-emerald-800 font-semibold">
-                            <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-                            <span className="truncate">{c.name}</span>
-                          </div>
-                          {c.credlyUrl && (
-                            <a
-                              href={c.credlyUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-[11px] text-stone-500 hover:text-emerald-700"
-                            >
-                              Verify Credly <ExternalLink className="w-3 h-3" />
-                            </a>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-xs text-stone-500 space-y-2">
-                      <p className="leading-relaxed">
-                        Already certified? Showcase your passed exams and Credly badge links on your profile.
-                      </p>
-                      <button
-                        onClick={() => setActiveTab('profile')}
-                        className="w-full py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold transition"
-                      >
-                        + Add Completed Cert
-                      </button>
-                    </div>
-                  )}
-                </div>
+                )}
               </aside>
 
               {/* Main 3-Column Certification Grid */}
@@ -642,7 +707,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                 ) : (
                   <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
                     {filteredCatalog.map((cert) => {
-                      const cardStats = getExamStats(cert.id);
+                      const cardStats = user ? getExamStats(cert.id) : null;
                       return (
                         <div
                           key={cert.id}
@@ -662,36 +727,38 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                               {cert.title}
                             </h2>
 
-                            {/* Domain Mastery & Saved Progress Bar */}
-                            <div className="mb-3">
-                              <div className="flex items-center justify-between text-[11px] mb-1">
-                                <span className="text-stone-500">
-                                  {cardStats.totalAttempted > 0
-                                    ? `Mastery: ${cardStats.readiness}% (${cardStats.totalCorrect}/${cardStats.totalAttempted})`
-                                    : 'Mastery: Not started'}
-                                </span>
-                                <div className="flex items-center gap-2">
-                                  {cardStats.missedIds.length > 0 && (
-                                    <span className="text-rose-700 font-medium">
-                                      {cardStats.missedIds.length} missed
-                                    </span>
-                                  )}
-                                  {cardStats.bookmarkedIds.length > 0 && (
-                                    <span className="text-amber-700 font-medium">
-                                      {cardStats.bookmarkedIds.length} saved
-                                    </span>
-                                  )}
+                            {/* Domain Mastery Bar: Shown only when user is logged in */}
+                            {user && cardStats && (
+                              <div className="mb-3">
+                                <div className="flex items-center justify-between text-[11px] mb-1">
+                                  <span className="text-stone-500">
+                                    {cardStats.totalAttempted > 0
+                                      ? `Mastery: ${cardStats.readiness}% (${cardStats.totalCorrect}/${cardStats.totalAttempted})`
+                                      : 'Mastery: Not started'}
+                                  </span>
+                                  <div className="flex items-center gap-2">
+                                    {cardStats.missedIds.length > 0 && (
+                                      <span className="text-rose-700 font-medium">
+                                        {cardStats.missedIds.length} missed
+                                      </span>
+                                    )}
+                                    {cardStats.bookmarkedIds.length > 0 && (
+                                      <span className="text-amber-700 font-medium">
+                                        {cardStats.bookmarkedIds.length} saved
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
+                                  <div
+                                    className={`h-full rounded-full transition-all ${
+                                      cardStats.readiness >= 70 ? 'bg-emerald-600' : 'bg-amber-500'
+                                    }`}
+                                    style={{ width: `${cardStats.readiness}%` }}
+                                  />
                                 </div>
                               </div>
-                              <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
-                                <div
-                                  className={`h-full rounded-full transition-all ${
-                                    cardStats.readiness >= 70 ? 'bg-emerald-600' : 'bg-amber-500'
-                                  }`}
-                                  style={{ width: `${cardStats.readiness}%` }}
-                                />
-                              </div>
-                            </div>
+                            )}
                           </div>
 
                           <div className="pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
@@ -724,7 +791,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   <ArrowLeft className="w-3.5 h-3.5" /> Back to Certifications
                 </button>
 
-                {currentStats.totalAttempted > 0 && (
+                {user && currentStats.totalAttempted > 0 && (
                   <button
                     onClick={() => {
                       if (
@@ -785,17 +852,18 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
               <div className="mb-6">
                 <div className="flex items-center justify-between text-xs font-semibold text-stone-700 mb-2.5">
                   <span className="flex items-center gap-1.5">
-                    <Layers className="w-4 h-4 text-emerald-700" /> Syllabus Weightage & Your Mastery
+                    <Layers className="w-4 h-4 text-emerald-700" />
+                    {user ? 'Syllabus Weightage & Your Mastery' : 'Syllabus Weightage & Question Split'}
                   </span>
-                  <span className="text-stone-400">Weight • Accuracy</span>
+                  <span className="text-stone-400">{user ? 'Weight • Accuracy' : 'Est. Qs'}</span>
                 </div>
 
                 <div className="space-y-3">
                   {selectedCert.domains.map((dom) => {
                     const estQs = Math.round((dom.weight / 100) * selectedCert.examQuestionCount);
-                    const domProgress = currentStats.domainBreakdown.find(
-                      (d) => d.domain === dom.name
-                    );
+                    const domProgress = user
+                      ? currentStats.domainBreakdown.find((d) => d.domain === dom.name)
+                      : null;
                     const acc = domProgress?.accuracy;
 
                     return (
@@ -806,32 +874,35 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                             <span className="text-stone-500">
                               {dom.weight}% (~{estQs} Qs)
                             </span>
-                            {acc !== null && acc !== undefined ? (
-                              <span
-                                className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${
-                                  acc >= 70
-                                    ? 'bg-emerald-50 text-emerald-700'
-                                    : 'bg-amber-50 text-amber-800'
-                                }`}
-                              >
-                                {acc}%
-                              </span>
-                            ) : (
-                              <span className="text-[11px] text-stone-400">New</span>
-                            )}
+                            {user &&
+                              (acc !== null && acc !== undefined ? (
+                                <span
+                                  className={`text-[11px] font-semibold px-1.5 py-0.5 rounded ${
+                                    acc >= 70
+                                      ? 'bg-emerald-50 text-emerald-700'
+                                      : 'bg-amber-50 text-amber-800'
+                                  }`}
+                                >
+                                  {acc}%
+                                </span>
+                              ) : (
+                                <span className="text-[11px] text-stone-400">New</span>
+                              ))}
                           </div>
                         </div>
                         <div className="w-full bg-stone-100 h-1.5 rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full ${
-                              acc !== null && acc !== undefined
+                              user && acc !== null && acc !== undefined
                                 ? acc >= 70
                                   ? 'bg-emerald-600'
                                   : 'bg-amber-500'
-                                : 'bg-stone-300'
+                                : 'bg-emerald-700'
                             }`}
                             style={{
-                              width: `${acc !== null && acc !== undefined ? acc : dom.weight}%`,
+                              width: `${
+                                user && acc !== null && acc !== undefined ? acc : dom.weight
+                              }%`,
                             }}
                           />
                         </div>
@@ -845,42 +916,43 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                 <p className="text-center text-xs text-stone-500 py-3">Loading question bank...</p>
               ) : allQuestions.length > 0 ? (
                 <div className="space-y-3">
-                  {/* Smart-Drill Shortcut Pills */}
-                  {(currentStats.weakDomains.length > 0 ||
-                    currentStats.missedIds.length > 0 ||
-                    currentStats.bookmarkedIds.length > 0) && (
-                    <div className="flex flex-wrap gap-2">
-                      {currentStats.weakDomains.length > 0 && (
-                        <button
-                          onClick={() => startSession('practice', 'WEAK')}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold transition"
-                        >
-                          <Target className="w-3.5 h-3.5 text-amber-700" />
-                          Drill Weakest Domains ({getFilteredPool('WEAK', currentStats).length} Qs)
-                        </button>
-                      )}
+                  {/* Smart-Drill Shortcut Pills (Logged-in users) */}
+                  {user &&
+                    (currentStats.weakDomains.length > 0 ||
+                      currentStats.missedIds.length > 0 ||
+                      currentStats.bookmarkedIds.length > 0) && (
+                      <div className="flex flex-wrap gap-2">
+                        {currentStats.weakDomains.length > 0 && (
+                          <button
+                            onClick={() => startSession('practice', 'WEAK')}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold transition"
+                          >
+                            <Target className="w-3.5 h-3.5 text-amber-700" />
+                            Drill Weakest Domains ({getFilteredPool('WEAK', currentStats).length} Qs)
+                          </button>
+                        )}
 
-                      {currentStats.missedIds.length > 0 && (
-                        <button
-                          onClick={() => startSession('practice', 'MISSED')}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 text-xs font-semibold transition"
-                        >
-                          <RotateCcw className="w-3.5 h-3.5 text-rose-700" />
-                          Review Mistakes ({currentStats.missedIds.length} Qs)
-                        </button>
-                      )}
+                        {currentStats.missedIds.length > 0 && (
+                          <button
+                            onClick={() => startSession('practice', 'MISSED')}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-900 border border-rose-200 text-xs font-semibold transition"
+                          >
+                            <RotateCcw className="w-3.5 h-3.5 text-rose-700" />
+                            Review Mistakes ({currentStats.missedIds.length} Qs)
+                          </button>
+                        )}
 
-                      {currentStats.bookmarkedIds.length > 0 && (
-                        <button
-                          onClick={() => startSession('practice', 'BOOKMARKED')}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 text-xs font-semibold transition"
-                        >
-                          <Bookmark className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
-                          Bookmarked ({currentStats.bookmarkedIds.length} Qs)
-                        </button>
-                      )}
-                    </div>
-                  )}
+                        {currentStats.bookmarkedIds.length > 0 && (
+                          <button
+                            onClick={() => startSession('practice', 'BOOKMARKED')}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-800 border border-stone-200 text-xs font-semibold transition"
+                          >
+                            <Bookmark className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
+                            Bookmarked ({currentStats.bookmarkedIds.length} Qs)
+                          </button>
+                        )}
+                      </div>
+                    )}
 
                   {/* Practice Deck & Number of Questions Selectors */}
                   <div className="grid sm:grid-cols-2 gap-2.5 bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs">
@@ -894,15 +966,20 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                         className="w-full bg-white border border-stone-200 rounded-lg px-2.5 py-2 text-xs font-medium text-stone-800"
                       >
                         <option value="All">All Domains ({allQuestions.length} Qs)</option>
-                        <option value="WEAK">
-                          Weakest Domains (&lt;70%) ({getFilteredPool('WEAK', currentStats).length} Qs)
-                        </option>
-                        <option value="MISSED">
-                          Missed Questions Queue ({currentStats.missedIds.length} Qs)
-                        </option>
-                        <option value="BOOKMARKED">
-                          Bookmarked Questions ({currentStats.bookmarkedIds.length} Qs)
-                        </option>
+                        {user && (
+                          <>
+                            <option value="WEAK">
+                              Weakest Domains (&lt;70%) (
+                              {getFilteredPool('WEAK', currentStats).length} Qs)
+                            </option>
+                            <option value="MISSED">
+                              Missed Questions Queue ({currentStats.missedIds.length} Qs)
+                            </option>
+                            <option value="BOOKMARKED">
+                              Bookmarked Questions ({currentStats.bookmarkedIds.length} Qs)
+                            </option>
+                          </>
+                        )}
                         {selectedCert.domains.map((d) => {
                           const count = allQuestions.filter((q) => q.domain === d.name).length;
                           return (
@@ -1283,7 +1360,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
               );
             })()}
 
-          {/* STUDY GUIDES TAB */}
+          {/* INTERACTIVE STUDY GUIDES TAB */}
           {activeTab === 'guides' && (
             <StudyGuidesTab catalog={catalog} onSelectCert={openBlueprint} />
           )}
@@ -1293,8 +1370,8 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
             <ForumTab catalog={catalog} currentUser={user} requireAuth={requireAuth} />
           )}
 
-          {/* PROFILE MANAGEMENT TAB */}
-          {activeTab === 'profile' && (
+          {/* PROFILE MANAGEMENT TAB (Only rendered when logged in) */}
+          {user && activeTab === 'profile' && (
             <ProfileTab user={user} catalog={catalog} onRequireAuth={requireAuth} />
           )}
         </div>
