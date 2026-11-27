@@ -606,6 +606,7 @@ export default function App() {
 
         {activeTab === 'forum' && <ForumTab catalog={catalog} />}
       </main>
+      <FooterPolicies />
     </div>
   );
 }
