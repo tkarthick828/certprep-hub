@@ -1054,16 +1054,34 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
         )}
 
         {/* COMPARE & ROADMAPS TAB */}
+        {/* STUDY GUIDES POSTCARD STUDIO (Full max-w-7xl width) */}
+        {activeTab === 'guides' && (
+          <StudyGuidesTab catalog={catalog} onSelectCert={openBlueprint} />
+        )}
+
+        {/* COMPARE & ROADMAPS TAB (Full max-w-7xl width) */}
         {activeTab === 'compare' && (
+          <CompareTab catalog={catalog} onSelectCert={openBlueprint} />
+        )}
+
+        {/* GUIDANCE FORUM TAB (Wide max-w-6xl width) */}
+        {activeTab === 'forum' && (
           <div className="max-w-6xl mx-auto">
-            <CompareTab catalog={catalog} onSelectCert={openBlueprint} />
+            <ForumTab catalog={catalog} currentUser={user} requireAuth={requireAuth} />
           </div>
         )}
 
-        {/* FOCUSED READER CONTAINER FOR BLUEPRINT, QUIZ, REPORT, GUIDES, FORUM & PROFILE */}
-        {activeTab !== 'compare' && (
-          <div className="max-w-3xl mx-auto">
-            {activeTab === 'certs' && selectedCert && !mode && currentStats && (
+        {/* PROFILE MANAGEMENT TAB (Wide max-w-6xl width, logged-in only) */}
+        {user && activeTab === 'profile' && (
+          <div className="max-w-6xl mx-auto">
+            <ProfileTab user={user} catalog={catalog} onRequireAuth={requireAuth} />
+          </div>
+        )}
+
+        {/* FOCUSED READER CONTAINER FOR EXAM BLUEPRINT, QUIZ & SCORE REPORT */}
+        {activeTab === 'certs' && selectedCert && (
+          <div className="max-w-4xl mx-auto">
+            {!mode && currentStats && (
               <div className="bg-white border border-stone-300/80 rounded-2xl overflow-hidden shadow-sm">
                 {/* Rich Emerald Blueprint Top Banner */}
                 <div className="bg-gradient-to-r from-emerald-900 to-teal-900 text-white p-5">
@@ -1706,21 +1724,6 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                   </div>
                 );
               })()}
-
-            {/* INTERACTIVE STUDY GUIDES TAB */}
-            {activeTab === 'guides' && (
-              <StudyGuidesTab catalog={catalog} onSelectCert={openBlueprint} />
-            )}
-
-            {/* GUIDANCE FORUM TAB */}
-            {activeTab === 'forum' && (
-              <ForumTab catalog={catalog} currentUser={user} requireAuth={requireAuth} />
-            )}
-
-            {/* PROFILE MANAGEMENT TAB (Only rendered when logged in) */}
-            {user && activeTab === 'profile' && (
-              <ProfileTab user={user} catalog={catalog} onRequireAuth={requireAuth} />
-            )}
           </div>
         )}
       </main>
