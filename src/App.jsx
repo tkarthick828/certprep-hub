@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import {
   BookOpen, Clock, Award, CheckCircle2, XCircle,
   ChevronRight, ChevronLeft, Flag, Hash, Layers,
@@ -357,11 +357,11 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
 
     let scaledEstimate = null;
     let passed = pct >= 70;
-    if (selectedCert.scoringType.includes('100–1000')) {
+    if (selectedCert.scoringType.includes('100â€“1000')) {
       scaledEstimate = 100 + Math.round((pct / 100) * 900);
       const passThreshold = selectedCert.passMarkDisplay.includes('720') ? 720 : 700;
       passed = scaledEstimate >= passThreshold;
-    } else if (selectedCert.scoringType.includes('100–900')) {
+    } else if (selectedCert.scoringType.includes('100â€“900')) {
       scaledEstimate = 100 + Math.round((pct / 100) * 800);
       passed = scaledEstimate >= 750;
     }
@@ -372,10 +372,10 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
   const handleCopyScorecard = async (report) => {
     const denom = report.attempted > 0 ? report.attempted : report.total;
     const summary = [
-      `CertPrep Hub — ${selectedCert.title} (${selectedCert.code})`,
+      `CertPrep Hub â€” ${selectedCert.title} (${selectedCert.code})`,
       `Status: ${report.passed ? 'BENCHMARK PASSED' : 'PRACTICE IN PROGRESS'}`,
       `Score: ${report.pct}% (${report.correct}/${denom})${
-        report.scaledEstimate ? ` • Est. Scaled Score: ${report.scaledEstimate}` : ''
+        report.scaledEstimate ? ` â€¢ Est. Scaled Score: ${report.scaledEstimate}` : ''
       }`,
       `Practice free at: ${window.location.origin}`,
     ].join('\n');
@@ -594,7 +594,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                     Master Cloud, AI & Security Certifications with Scenario Practice
                   </h1>
                   <p className="text-xs sm:text-sm text-emerald-100/90 leading-relaxed max-w-2xl">
-                    Train with 1,167 original blueprint-weighted scenarios, timed exam simulations, quick-revision concept cards, and community pass debriefs.
+                    Train with 4,500 original blueprint-weighted scenarios, timed exam simulations, quick-revision concept cards, and community pass debriefs.
                   </p>
 
                   {/* Search Bar */}
@@ -632,7 +632,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                     <div className="grid grid-cols-3 gap-2.5">
                       <div className="bg-emerald-950/60 border border-white/10 rounded-xl p-3 text-center">
                         <p className="text-lg sm:text-xl font-extrabold text-emerald-300">
-                          {aggregateStats.attempted > 0 ? `${overallAccuracy}%` : '—'}
+                          {aggregateStats.attempted > 0 ? `${overallAccuracy}%` : 'â€”'}
                         </p>
                         <p className="text-[11px] text-emerald-100/80">Avg Accuracy</p>
                       </div>
@@ -656,7 +656,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                         <p className="text-[11px] text-emerald-100/80">Exam Tracks</p>
                       </div>
                       <div className="bg-emerald-950/60 border border-white/10 rounded-xl p-3 text-center">
-                        <p className="text-lg sm:text-xl font-extrabold text-white">1,167</p>
+                        <p className="text-lg sm:text-xl font-extrabold text-white">4,500</p>
                         <p className="text-[11px] text-emerald-100/80">Original Qs</p>
                       </div>
                       <div className="bg-emerald-950/60 border border-white/10 rounded-xl p-3 text-center">
@@ -742,7 +742,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                               >
                                 {catalog.map((c) => (
                                   <option key={c.id} value={c.id}>
-                                    {c.code} — {c.title}
+                                    {c.code} â€” {c.title}
                                   </option>
                                 ))}
                               </select>
@@ -929,7 +929,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                           topic cards in Study Guides.
                         </li>
                         <li>
-                          <strong className="text-stone-800">2. Practice & Mock:</strong> Choose 10–50
+                          <strong className="text-stone-800">2. Practice & Mock:</strong> Choose 10â€“50
                           practice drills or full timed exams.
                         </li>
                         <li>
@@ -986,7 +986,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                             {/* Unified Tinted Card Header */}
                             <div className="bg-emerald-50/75 border-b border-emerald-100/90 px-4 py-2.5 flex items-center justify-between gap-2">
                               <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-emerald-800 text-white">
-                                {cert.provider} • {cert.code}
+                                {cert.provider} â€¢ {cert.code}
                               </span>
                               <span className="text-[11px] text-emerald-900/70 font-mono font-medium">
                                 {cert.hashtag}
@@ -1035,7 +1035,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
 
                           <div className="bg-stone-50 px-4 py-2.5 border-t border-stone-200/70 flex items-center justify-between text-xs text-stone-600">
                             <span className="font-medium">
-                              {cert.examQuestionCount} Qs • {cert.durationMinutes}m
+                              {cert.examQuestionCount} Qs â€¢ {cert.durationMinutes}m
                             </span>
                             <span className="text-emerald-800 font-bold flex items-center group-hover:translate-x-0.5 transition-transform">
                               Open Blueprint <ChevronRight className="w-4 h-4" />
@@ -1162,7 +1162,7 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                           ? 'Syllabus Weightage & Your Mastery'
                           : 'Syllabus Weightage & Question Split'}
                       </span>
-                      <span className="text-stone-400">{user ? 'Weight • Accuracy' : 'Est. Qs'}</span>
+                      <span className="text-stone-400">{user ? 'Weight â€¢ Accuracy' : 'Est. Qs'}</span>
                     </div>
 
                     <div className="space-y-3">
@@ -1579,13 +1579,13 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                           <Keyboard className="w-3.5 h-3.5" />
                           Keys:{' '}
                           <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">
-                            A–D
+                            Aâ€“D
                           </kbd>{' '}
-                          Answer •{' '}
+                          Answer â€¢{' '}
                           <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">
-                            ←/→
+                            â†/â†’
                           </kbd>{' '}
-                          Nav •{' '}
+                          Nav â€¢{' '}
                           <kbd className="px-1 py-0.2 bg-stone-100 rounded border border-stone-200">
                             S
                           </kbd>{' '}
@@ -1633,11 +1633,11 @@ function CertPrepWorkspace({ user, requireAuth, signOut }) {
                       </span>
                       <h2 className="text-2xl font-extrabold text-stone-900">
                         {report.scaledEstimate ? `Est. ${report.scaledEstimate} ` : ''}(
-                        {report.pct}% • {report.correct}/
+                        {report.pct}% â€¢ {report.correct}/
                         {report.attempted > 0 ? report.attempted : report.total} answered)
                       </h2>
                       <p className="text-xs text-stone-500 mt-1">
-                        Attempted {report.attempted} of {report.total} questions • Target Pass Mark:{' '}
+                        Attempted {report.attempted} of {report.total} questions â€¢ Target Pass Mark:{' '}
                         {selectedCert.passMarkDisplay}
                       </p>
 
@@ -1738,3 +1738,4 @@ export default function App() {
     </AuthGate>
   );
 }
+

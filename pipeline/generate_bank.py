@@ -21,6 +21,29 @@ FALLBACK_MODELS = [
     "gemini-4-hydrogen",
 ]
 
+SCENARIO_ANGLES = [
+    "production outage troubleshooting and root-cause isolation",
+    "security hardening, least-privilege IAM, and compliance guardrails",
+    "cost optimization under high throughput or strict budget constraints",
+    "multi-region resilience, failover, and disaster recovery tradeoffs",
+    "subtle configuration edge cases, limits, and anti-pattern remediation",
+]
+
+
+def load_api_key() -> str:
+    key = os.getenv("GEMINI_API_KEY")
+    if key:
+        return key.strip()
+
+    for env_file in (ROOT_DIR / ".env.local", ROOT_DIR / ".env"):
+        if env_file.exists():
+            for line in env_file.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line.startswith("GEMINI_API_KEY=") and not line.startswith("#"):
+                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+
+    raise RuntimeError("GEMINI_API_KEY is not set in environment, .env.local, or .env.")
+
 
 class RawOption(BaseModel):
     text: str = Field(description="Realistic technical option text without A/B/C/D prefix")
@@ -38,7 +61,7 @@ class GeneratedBatch(BaseModel):
     questions: list[RawQuestion]
 
 
-def is_duplicate(stem: str, existing_stems: list[str], threshold: float = 0.80) -> bool:
+def is_duplicate(stem: str, existing_stems: list[str], threshold: float = 0.78) -> bool:
     norm = stem.strip().lower()
     for prev in existing_stems:
         if SequenceMatcher(None, norm, prev).ratio() >= threshold:
@@ -91,13 +114,15 @@ def generate_batch_with_fallback(client: genai.Client, primary_model: str, promp
                         system_instruction="Output strictly valid single-choice exam questions.",
                         response_mime_type="application/json",
                         response_schema=GeneratedBatch,
-                        temperature=0.7,
+                        temperature=0.75,
                     ),
                 )
                 return GeneratedBatch.model_validate_json(response.text)
             except Exception as err:
                 err_msg = str(err)
-                is_transient = any(code in err_msg for code in ("503", "UNAVAILABLE", "429", "RESOURCE_EXHAUSTED", "500"))
+                is_transient = any(
+                    code in err_msg for code in ("503", "UNAVAILABLE", "429", "RESOURCE_EXHAUSTED", "500")
+                )
                 if is_transient:
                     wait_sec = 4 + random.uniform(1, 3)
                     print(f"    [BUSY: {active_model}] Switching/retrying in {wait_sec:.1f}s...")
@@ -112,10 +137,17 @@ def generate_batch_with_fallback(client: genai.Client, primary_model: str, promp
     raise RuntimeError("All Gemini models remained temporarily unavailable after retries.")
 
 
+def compute_exact_domain_targets(domains: list[dict], total_target: int) -> dict[str, int]:
+    targets = {d["name"]: max(1, round((d["weight"] / 100.0) * total_target)) for d in domains}
+    diff = total_target - sum(targets.values())
+    if diff != 0 and domains:
+        largest_dom = max(domains, key=lambda d: d["weight"])["name"]
+        targets[largest_dom] = max(1, targets[largest_dom] + diff)
+    return targets
+
+
 def generate_for_exam(exam_id: str, total_target: int, model: str) -> None:
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        raise RuntimeError("GEMINI_API_KEY environment variable is not set.")
+    api_key = load_api_key()
 
     catalog = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
     exam = next((item for item in catalog if item["id"] == exam_id), None)
@@ -133,13 +165,15 @@ def generate_for_exam(exam_id: str, total_target: int, model: str) -> None:
     existing_stems = [q["question"].strip().lower() for q in questions]
     client = genai.Client(api_key=api_key)
     prefix = exam["code"].lower().replace(" ", "").replace("/", "-")
+    domain_targets = compute_exact_domain_targets(exam["domains"], total_target)
 
     print(f"\n=== Generating for {exam['title']} ({exam['code']}) ===")
     print(f"Existing questions: {len(questions)} | Target total: {total_target}")
 
+    batch_counter = 0
     for dom in exam["domains"]:
         dom_name = dom["name"]
-        dom_target = max(1, round((dom["weight"] / 100.0) * total_target))
+        dom_target = domain_targets[dom_name]
         current_dom_qs = [q for q in questions if q["domain"] == dom_name]
         needed = dom_target - len(current_dom_qs)
 
@@ -147,21 +181,32 @@ def generate_for_exam(exam_id: str, total_target: int, model: str) -> None:
             print(f"  [SKIP] {dom_name}: already has {len(current_dom_qs)}/{dom_target} Qs")
             continue
 
-        print(f"  [WORK] {dom_name} ({dom['weight']}%): generating {needed} Qs...")
+        print(f"  [WORK] {dom_name} ({dom['weight']}%): generating {needed} Qs (target {dom_target})...")
 
         while needed > 0:
             batch_size = min(15, needed)
-            recent_topics = "\n".join(f"- {q['question'][:110]}..." for q in current_dom_qs[-15:])
+            angle = SCENARIO_ANGLES[batch_counter % len(SCENARIO_ANGLES)]
+            batch_counter += 1
+
+            # Sample across both early and recent questions in this domain to avoid duplicates
+            if len(current_dom_qs) <= 40:
+                sample_qs = current_dom_qs
+            else:
+                sample_qs = random.sample(current_dom_qs[:-15], 25) + current_dom_qs[-15:]
+
+            avoid_topics = "\n".join(f"- {q['question'][:115]}..." for q in sample_qs)
 
             prompt = (
                 f"You are a senior certification exam author creating original practice questions for "
                 f"'{exam['title']}' ({exam['code']}) by {exam['provider']}.\n"
-                f"Target Domain: '{dom_name}' (Weight: {dom['weight']}%).\n\n"
+                f"Target Domain: '{dom_name}' (Weight: {dom['weight']}%).\n"
+                f"Primary Focus Angle for this batch: {angle}.\n\n"
                 f"Generate {batch_size} realistic, scenario-based single-choice questions.\n"
                 f"Strict Rules:\n"
                 f"1. Every question must test applied decision-making, architecture tradeoffs, or troubleshooting—never trivia.\n"
                 f"2. Single-select ONLY: provide 4 plausible technical options with NO 'A.' or '1.' prefixes, and mark EXACTLY ONE option is_correct=true (never 0, never 2 or more).\n"
-                f"3. Do NOT repeat or paraphrase any of these already-generated scenarios:\n{recent_topics or 'None yet'}\n"
+                f"3. Use varied industry contexts, metrics, service combinations, and error symptoms.\n"
+                f"4. Do NOT repeat or paraphrase any of these already-generated scenarios:\n{avoid_topics or 'None yet'}\n"
             )
 
             parsed = generate_batch_with_fallback(client, model, prompt)
@@ -189,7 +234,7 @@ def generate_for_exam(exam_id: str, total_target: int, model: str) -> None:
                 json.dumps({"examId": exam_id, "questions": questions}, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
-            print(f"    Saved +{added_in_batch} Qs (Domain progress: {len(current_dom_qs)}/{dom_target})")
+            print(f"    Saved +{added_in_batch} Qs (Domain: {len(current_dom_qs)}/{dom_target} | Exam: {len(questions)}/{total_target})")
             time.sleep(1.5)
 
 
